@@ -3,13 +3,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}
-    {% endblock %}</title>
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
-{% block content %}
 
+{% block content %}
 {% endblock %}
+
+<script>
+    {% block javascript %}
+    {% endblock %}
+</script>
+<script src="{% static 'js/base.js' %}"></script>
 </body>
 </html>
