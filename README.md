@@ -14,7 +14,9 @@ Python 3.6.2
 2. Download Python 3.6 version for appropriate platform
 3. In terminal type 'conda install django', follow instructions given in shell, this should install everything you need
 4. Clone project into your folder
-5. To start up site on oyu computer go project root in terminal. Type python manage.py runserver
+5. To start up site on you computer go project root in terminal. Type python manage.py runserver
+6. Set project root to the first directory in this project named festival to avoid unresolved reference errors
+7. Set project interpreter to the python version previously downloaded with anaconda
 
 ## Project structure
 
