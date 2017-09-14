@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from festivalapp.views import index
 
 urlpatterns = [
+    url(r'^$', index, name='landingpage'),
     url(r'^admin/', admin.site.urls),
-    url(r'festivalapp/', include('festivalapp.urls'))
+    url(r'festivalapp/', include('festivalapp.urls')),
 ]
