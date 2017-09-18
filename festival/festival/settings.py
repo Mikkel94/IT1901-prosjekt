@@ -138,3 +138,5 @@ STATICFILES_DIRS = [
 # Media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR
+
+LOGIN_URL = '/festivalapp/login/'

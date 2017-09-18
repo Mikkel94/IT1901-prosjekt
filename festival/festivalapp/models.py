@@ -1,16 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
-class Band(models.Model):
-    name = models.CharField(max_length=128)
+class Employee(models.Model):
+    user = models.OneToOneField(User)
+    employee_status = models.CharField(max_length=32)
 
     def __str__(self):
-        return self.name
-
-
-class Concert(models.Model):
-    band = models.OneToOneField(Band)
-
-    def __str__(self):
-        return self.band.name
-
+        return self.user.username

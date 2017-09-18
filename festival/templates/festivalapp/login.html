@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="{% url 'festivalapp:login' %}" method="post">
+        {% csrf_token %}
+
+        <label for="username">Username:</label>
+        <input type="text" name="username" placeholder="Username">
+
+        <label for="password">Password:</label>
+        <input type="password" name="password">
+
+        <input type="submit" value="Submit">
+
+    </form>
+
+{% endblock %}

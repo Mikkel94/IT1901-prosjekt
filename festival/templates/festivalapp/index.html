@@ -1,4 +1,7 @@
-
+{% extends 'base.html' %}
 {% block content %}
-
+    <ul>
+        <li><a href="{% url 'festivalapp:login' %}">Login</a></li>
+        <li><a href="{% url 'festivalapp:register' %}">Register</a></li>
+    </ul>
 {% endblock %}
