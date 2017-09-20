@@ -22,6 +22,10 @@ class Concert(models.Model):
     name = models.CharField(max_length=50)
     band = models.CharField(max_length=40)
     date = models.DateField()
+    scenes = models.ForeignKey(Scene)
+
+class Scene(models.Model):
+    id = models.IntegerField(unique=True)
 
 
 # concert model end
