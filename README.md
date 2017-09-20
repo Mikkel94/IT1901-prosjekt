@@ -5,7 +5,12 @@ Prosjektarbeid IT1901 H17
 ## Requirements
 
 Django 1.11.3
+
 Python 3.6.2
+
+Argon2 password hasher (skriv 'pip install django[argon2]' i terminal)
+
+BCrypt password hasher ('skriv pip install bcrypt' i terminal)
 
 
 ## How to join the project
