@@ -2,14 +2,15 @@
 
 {%  block content %}
     <h2>Konserter:</h2>
+
+    {% if concerts %}
+
     <ul id="list_concert">
-        <li></li>
+        {% for concert in categories %}
+            {% if user.name in concert %}
+            <li> {{ concert.info }} </li>
+        {% endfor %}
     </ul>
-
-
-
-
-
 
 {% endblock %}
 
