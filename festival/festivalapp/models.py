@@ -19,13 +19,13 @@ class Employee(models.Model):
 
 
 class Band(models.Model):
-    name = models.CharField(max_length=60, default="BandX")
-    members = models.IntegerField(default=0)
+    name = models.CharField(max_length=60, null=True)
+    members = models.IntegerField(null = True, default=1)
 
 
 class Scene(models.Model):
     id = models.AutoField(primary_key=True)
-    
+
 
 class Concert(models.Model):
     name = models.CharField(max_length=50)
