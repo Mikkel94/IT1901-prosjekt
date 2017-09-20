@@ -6,7 +6,7 @@
     {% if concerts %}
 
     <ul id="list_concert">
-        {% for concert in categories %}
+        {% for concert in concerts %}
             {% if user.name in concert %}
             <li> {{ concert.info }} </li>
         {% endfor %}

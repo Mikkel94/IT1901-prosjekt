@@ -9,6 +9,7 @@ STATUS_CHOICES = (
     ('lystekniker', 'LYSTEKNIKER'),
 )
 
+
 class Employee(models.Model):
     user = models.OneToOneField(User)
     employee_status = models.CharField(max_length=32, choices=STATUS_CHOICES)
@@ -18,14 +19,15 @@ class Employee(models.Model):
 
 # concert model
 
+
 class Concert(models.Model):
     name = models.CharField(max_length=50)
     band = models.CharField(max_length=40)
     date = models.DateField()
-    scenes = models.ForeignKey(Scene)
+    scenes = models.ForeignKey('Scene')
+
 
 class Scene(models.Model):
-    id = models.IntegerField(unique=True)
-
+    id = models.AutoField(primary_key=True)
 
 # concert model end

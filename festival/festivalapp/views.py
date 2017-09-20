@@ -53,9 +53,3 @@ def register(request):
         'extra_info_user_form': extra_user_info_form,
         'registered': registered
     })
-
-
-#
-#def concert_list(request):
-#    if request.method == 'POST':
-#
