@@ -22,9 +22,19 @@ class Band(models.Model):
     name = models.CharField(max_length=60, null=True)
     members = models.IntegerField(null = True, default=1)
 
+    def __str__(self):
+        return self.name
+
 
 class Scene(models.Model):
     id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
+
 
 
 class Concert(models.Model):
@@ -32,6 +42,9 @@ class Concert(models.Model):
     bands = models.ForeignKey(Band)
     date = models.DateField()
     scenes = models.ForeignKey(Scene)
+
+    def __str__(self):
+        return self.name + " - " + self.bands.name
 
 
 
