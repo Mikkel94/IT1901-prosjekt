@@ -27,6 +27,7 @@ Views are linked to in each app, each apps view is included in the projects root
 
 ## How to contribute to the project
 ```bash
+pip install virtualenvwrapper
 git clone https://github.com/Mikkel94/IT1901-prosjekt.git
 cd IT1901-prosjekt
 mkvirtualenv festival
