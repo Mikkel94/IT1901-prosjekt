@@ -57,19 +57,13 @@ def register(request):
 
 
 def list_concert(request):
+    info = {}
     if request.user.is_authenticated():
             info = {
                 'concerts': list(Concert.objects.all()),
-                'user': request.user
+                'user': request.user,
             }
-    return render(request, 'festivalapp/concert_list.html', info)
+    return render(
+        request, 'festivalapp/concert_list.html', info
+    )
 
-# info = {
-#         'name':         Concert.name,
-#         'bands':        Concert.band
-#         'user':         request.user,
-#         'date':         Concert.date,
-#         'scene':        Concert.scene,
-#         'lightingWork': list(Concert.lightingWork),
-#         'soundWork':    list(Concert.soundWork),
-#     }

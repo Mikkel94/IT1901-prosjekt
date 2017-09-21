@@ -27,8 +27,8 @@ class Band(models.Model):
 
 
 class Scene(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50)
+    id = models.AutoField(primary_key=True, default=0)
+    name = models.CharField(max_length=50, default="bandName")
 
     def __str__(self):
         return self.name
@@ -43,7 +43,7 @@ class Concert(models.Model):
     soundWork = models.ManyToManyField(Employee, related_name="sound")
 
     def __str__(self):
-        return self.name + " - " + self.bands.name
+        return self.name + " - " + self.band.name
 
 
 

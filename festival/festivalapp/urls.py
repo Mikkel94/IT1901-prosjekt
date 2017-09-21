@@ -8,5 +8,3 @@ urlpatterns = [
     url(r'^register/$', register, name='register'),
     url(r'^concert_list/$', list_concert, name='list_concert')
 ]
-
-#     url(r'^concert_list/$', list_concert, name="list_concert")
