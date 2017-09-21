@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser, User
 STATUS_CHOICES = (
     ('arranger', 'ARRANGØR'),
     ('sound_technician', 'LYDTEKNIKER'),
-    ('light_technician', 'LYSTEKNIKER'),
+    ('light_technician', 'LYSTEKNIKER')
 )
 
 class Employee(models.Model):
@@ -17,12 +17,12 @@ class Employee(models.Model):
         return self.user.username
 
 
-class AppUser(AbstractUser):
-    grp = models.CharField(max_length=128, choices=STATUS_CHOICES)
-
-    def __str__(self):
-        return self.username
-
+#class AppUser(AbstractUser):
+#    grp = models.CharField(max_length=128, choices=STATUS_CHOICES, related_name="AppUser_grp")
+#
+#    def __str__(self):
+#        return self.username
+#
 #
 # class Scene(models.Model):
 #     name = models.CharField(max_length=32, unique=True)

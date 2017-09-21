@@ -13,6 +13,9 @@ from django.contrib.auth.models import Group
 def index(request):
     return render(request, 'festivalapp/index.html')
 
+def temp(request):
+    return render(request, 'template.html')
+
 @login_required
 def arranger(request):
     return render(request, 'festivalapp/arranger.html')
