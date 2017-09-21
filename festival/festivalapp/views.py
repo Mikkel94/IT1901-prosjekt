@@ -53,3 +53,6 @@ def register(request):
         'extra_info_user_form': extra_user_info_form,
         'registered': registered
     })
+
+def list_concert(request):
+    

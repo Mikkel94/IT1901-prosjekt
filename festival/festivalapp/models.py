@@ -34,9 +34,6 @@ class Scene(models.Model):
         return self.name
 
 
-
-
-
 class Concert(models.Model):
     name = models.CharField(max_length=50)
     bands = models.ForeignKey(Band)
