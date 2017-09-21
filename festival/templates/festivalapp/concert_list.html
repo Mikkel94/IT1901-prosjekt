@@ -1,18 +1,23 @@
 {% extends 'base.html' %}
 
 {%  block content %}
-
+    <p>hallo <br> Du er logget inn som: {{ user }}<3</p>
     {% if concerts %}
     <h2>Konserter:</h2>
 
     <ul id="list_concert">
-        {% for concert in concerts %}
-            {% if user.name in concert %}
-            <li> {{ concert.info }} </li>
+        {% for concert in concerts  %}
+            {% if user in concert.lightingWork  %}
+                <li>
+                    <p>{{ concert.name }}</p>
+                    <p>{{ concert.band }}</p>
+                    <p>{{ concert.date }}</p>
+                    <p>{{ concert.scene }}</p>
+                </li>
             {%  endif %}
         {% endfor %}
     </ul>
-
     {%  endif %}
+
 {% endblock %}
 

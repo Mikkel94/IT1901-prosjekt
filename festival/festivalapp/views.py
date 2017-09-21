@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
+from .models import Concert
 
 # Create your views here.
 def index(request):
@@ -54,5 +55,21 @@ def register(request):
         'registered': registered
     })
 
+
 def list_concert(request):
-    
+    if request.user.is_authenticated():
+            info = {
+                'concerts': list(Concert.objects.all()),
+                'user': request.user
+            }
+    return render(request, 'festivalapp/concert_list.html', info)
+
+# info = {
+#         'name':         Concert.name,
+#         'bands':        Concert.band
+#         'user':         request.user,
+#         'date':         Concert.date,
+#         'scene':        Concert.scene,
+#         'lightingWork': list(Concert.lightingWork),
+#         'soundWork':    list(Concert.soundWork),
+#     }

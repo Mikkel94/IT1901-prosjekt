@@ -35,10 +35,12 @@ class Scene(models.Model):
 
 
 class Concert(models.Model):
-    name = models.CharField(max_length=50)
-    bands = models.ForeignKey(Band)
+    name = models.CharField(max_length=50, default="Concert")
+    band = models.ForeignKey(Band)
     date = models.DateField()
-    scenes = models.ForeignKey(Scene)
+    scene = models.ForeignKey(Scene)
+    lightingWork = models.ManyToManyField(Employee, related_name="lighting")
+    soundWork = models.ManyToManyField(Employee, related_name="sound")
 
     def __str__(self):
         return self.name + " - " + self.bands.name
