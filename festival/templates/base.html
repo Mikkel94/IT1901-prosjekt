@@ -8,13 +8,55 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
-<header>
-    <h1>
-        Studentfestival™
-    </h1>
 
-</header>
-<div class="container">
+<!-- BANNER START -->
+  <div id="banner">
+
+  	<div id="bannerbilde">
+  	BANNER/BILDE KOMMER
+  	</div>
+
+  	<div id="loggedin" class="box konto">
+		<h1>LOGGET INN SOM </h1>
+	</div>
+
+  	<div class="box konto">
+	  	<h1> LOGIN </h1>
+	</div>
+
+  	<div class="box konto">
+	  	<h1>KONTO </h1>
+	</div>
+
+  </div>
+
+<!-- BANNER SLUTT -->
+
+<!-- MENY START -->
+
+	  <div id="meny">
+
+	  	<div class="menu box">
+	  	<h1> MENY 1 </h1>
+	  	</div>
+
+	  	<div class="menu box">
+	  	<h1> MENY 2 </h1>
+	  	</div>
+
+	  	<div class="menu box">
+	  	<h1> MENY 3 </h1>
+	  	</div>
+
+	  	<div class="menu box">
+	  	<h1> MENY 4 </h1>
+	  	</div>
+
+	  </div>
+
+<!-- MENY SLUTT -->
+
+<div class="container box" id="content">
     {% block content %}
     {% endblock %}
 </div>

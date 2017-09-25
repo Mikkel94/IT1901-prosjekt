@@ -20,5 +20,5 @@ from festivalapp.views import index
 urlpatterns = [
     url(r'^$', index, name='landingpage'),
     url(r'^admin/', admin.site.urls),
-    url(r'festivalapp/', include('festivalapp.urls')),
+    url(r'^festivalapp/', include('festivalapp.urls')),
 ]
