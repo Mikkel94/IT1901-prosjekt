@@ -1,12 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser, User
 
 # Create your models here.
 
 STATUS_CHOICES = (
-    ('arrangør', 'ARRANGØR'),
-    ('lydtekniker', 'LYDTEKNIKER'),
-    ('lystekniker', 'LYSTEKNIKER'),
+    ('arranger', 'ARRANGØR'),
+    ('sound_technician', 'LYDTEKNIKER'),
+    ('light_technician', 'LYSTEKNIKER')
 )
 
 
@@ -16,7 +16,6 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.user.username
-
 
 class Band(models.Model):
     name = models.CharField(max_length=60, null=True)
