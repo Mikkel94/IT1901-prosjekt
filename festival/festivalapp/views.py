@@ -22,14 +22,6 @@ def arranger(request):
     return render(request, 'festivalapp/arranger.html')
 
 @login_required
-def light_technician(request):
-    return render(request, 'festivalapp/light_technician.html')
-
-@login_required
-def sound_technician(request):
-    return render(request, 'festivalapp/sound_technician.html')
-
-@login_required
 def manager(request):
     return render(request, 'festivalapp/manager.html')
 
