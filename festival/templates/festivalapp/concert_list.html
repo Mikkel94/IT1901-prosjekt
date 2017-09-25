@@ -11,10 +11,11 @@
             {% for concert in concerts  %}
                 {% if user.name == concert.lightingWork.name or user.name == concert.soundWork.name  %}
                     <li>
-                        <p>Navn: {{ concert.name }}</p>
+                        <p>{{ concert.name }}</p>
                         <p>{{ concert.band }}</p>
                         <p>{{ concert.date }}</p>
                         <p>{{ concert.scene }}</p>
+                        <p> Du er {{ user }}</p>
                     </li>
                 {%  endif %}
             {% endfor %}
