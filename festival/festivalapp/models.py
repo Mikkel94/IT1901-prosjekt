@@ -9,6 +9,7 @@ STATUS_CHOICES = (
     ('light_technician', 'LYSTEKNIKER')
 )
 
+
 class Employee(models.Model):
     user = models.OneToOneField(User)
     employee_status = models.CharField(max_length=32, choices=STATUS_CHOICES)
@@ -16,38 +17,32 @@ class Employee(models.Model):
     def __str__(self):
         return self.user.username
 
+class Band(models.Model):
+    name = models.CharField(max_length=60, null=True)
+    members = models.IntegerField(null = True, default=1)
 
-#class AppUser(AbstractUser):
-#    grp = models.CharField(max_length=128, choices=STATUS_CHOICES, related_name="AppUser_grp")
-#
-#    def __str__(self):
-#        return self.username
-#
-#
-# class Scene(models.Model):
-#     name = models.CharField(max_length=32, unique=True)
-#
-#     def __str__(self):
-#         return self.name
-#
-# class Band(models.Model):
-#     name = models.CharField(max_length=32)
-#
-#     def __str__(self):
-#         return self.name
-#
-#
-# class Concert(models.Model):
-#     band = models.ForeignKey(Band)
-#     play_time = models.DateTimeField()
-#     scene = models.ForeignKey(Scene)
-#
-#     def __str__(self):
-#         return self.band
-#
+    def __str__(self):
+        return self.name
 
 
+class Scene(models.Model):
+    id = models.AutoField(primary_key=True, default=0)
+    name = models.CharField(max_length=50, default="bandName")
 
+    def __str__(self):
+        return self.name
+
+
+class Concert(models.Model):
+    name = models.CharField(max_length=50, default="Concert")
+    band = models.ForeignKey(Band)
+    date = models.DateField()
+    scene = models.ForeignKey(Scene)
+    lightingWork = models.ManyToManyField(Employee, related_name="lighting")
+    soundWork = models.ManyToManyField(Employee, related_name="sound")
+
+    def __str__(self):
+        return self.name + " - " + self.band.name
 
 
 

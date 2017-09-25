@@ -30,3 +30,12 @@ All html pages are placed into the directory named templates
 All static files (css/js/images etc) are placed into the corresponding subdirectory of directory named static
 Views are linked to in each app, each apps view is included in the projects root file urls.py
 
+## How to contribute to the project
+```bash
+pip install virtualenvwrapper
+git clone https://github.com/Mikkel94/IT1901-prosjekt.git
+cd IT1901-prosjekt
+mkvirtualenv festival
+workon festival
+pip install -r requirements.txt
+```
