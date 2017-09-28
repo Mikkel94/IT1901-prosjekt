@@ -2,7 +2,7 @@
 {% load staticfiles %}
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/loginstyle.css' %}">
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
@@ -15,9 +15,9 @@
   <div class="form">
     <form action="{% url 'festivalapp:login' %}" method="post" class="login-form">
       {% csrf_token %}
-      <input type="text" placeholder="brukernavn"/>
-      <input type="password" placeholder="passord"/>
-      <button type="submit">login</button>
+      <input type="text" name="username" placeholder="brukernavn"/>
+      <input type="password" name="password" placeholder="passord"/>
+      <input type="submit" value="Submit"/>
     </form>
   </div>
 </div>
