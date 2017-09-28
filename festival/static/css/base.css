@@ -25,14 +25,12 @@ div.box {
   text-align: center;
 }
 
-div.box:hover {
+div.menu:hover {
     box-sizing: border-box;
-
     border:1px;
     border-style: solid;
     border-color: lightgrey;
 }
-
 
 /* ------------ MENY FERDIG-------------------------------- */
 
@@ -40,7 +38,6 @@ div.box:hover {
 
 /* ------------ Start av banner --------------------------- */
 #banner {
-
 	background-color: #00796B;
 	min-height: 120px;
 	padding:15px;
@@ -55,7 +52,6 @@ div.box:hover {
     text-align: center;
     box-sizing: border-box;
     padding-top: 20px;
-
     border:1px;
     border-style: solid;
     border-color: lightgrey;
@@ -64,20 +60,16 @@ div.box:hover {
 #loggedin {
     flex-basis: 20%;
     background-color: #80CBC4;
-    margin-left: 10px   ;
-
+    margin-left: 10px;
 
 }
 
 div.konto {
     flex-basis: 10%;
-
     min-height : 70px;
     min-width : 150px;
     background-color: #80CBC4;
-
 }
-
 
 /* ------------ Ferdig med banner ------------------------- */
 
@@ -88,16 +80,97 @@ div.konto {
 	margin: 15px auto;
     height: auto;
     max-width: 60em;
-
-    background-color: #B2DFDB;
 }
 
-#content:hover {
-    box-sizing: border-box;
+/*-- content: Concert_list --*/
 
-    border:1px;
+ul {
+list-style-type: none;
+}
+
+
+.concert_element{
+    position:relative;
+    padding: 5%;
+    min-width:60%;
     border-style: solid;
-    border-color: lightgrey;
+    border-color: #00796B;
+    margin:20px;
+    background-color: #B2DFDB;
+
+
 }
+
+.concert_element > p {
+    text-align: center;
+    min-height: 10px;
+}
+
+.concert_element > p :empty{
+    display: none;
+}
+/*-- Ferdig med Concert_list --*/
+
+
+/*--------- Concert Modal -------*/
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15px auto;
+    margin-top:10em;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button {
+    background-color: #00796B;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white;
+    border: 2px solid #00796B;
+}
+
+.button:hover {
+    background-color: #00796B;
+    color: white;
+}
+/*--------- Ferdig Concert Modal -------*/
+
 
 /* ------------ Ferdig med content ------------------------- */
