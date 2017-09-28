@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser, User
 # Create your models here.
 
 STATUS_CHOICES = (
-    ('arranger', 'ARRANGØR'),
+    ('arranger', 'ARRANGER'),
     ('sound_technician', 'LYDTEKNIKER'),
     ('light_technician', 'LYSTEKNIKER')
 )
