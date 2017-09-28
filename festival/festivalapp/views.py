@@ -33,9 +33,15 @@ def booking_boss(request):
 def booking_supervisor(request):
     return render(request, 'festivalapp/booking_supervisor.html')
 
+<<<<<<< HEAD
 # @login_required
 # def all_login_page(request):
 #     return render(request, 'festivalapp/after_login.html')
+=======
+@login_required
+def all_login_page(request):
+    return render(request, 'festivalapp/index.html')
+>>>>>>> 1f8b118b50be2157ac10a5708856f78c46df5dea
 
 def after_login(request, user):
     if user.groups.filter(name='arranger').exists():
@@ -62,7 +68,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('festivalapp:all_login_page'))
+                return render(request, 'festivalapp/index.html')
             else:
                 return HttpResponse('ACCOUNT INACTIVE')
         else:
