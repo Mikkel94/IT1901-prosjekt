@@ -25,7 +25,7 @@ div.box {
   text-align: center;
 }
 
-div.box:hover {
+div.menu:hover {
     box-sizing: border-box;
 
     border:1px 1px 1px 1px;
