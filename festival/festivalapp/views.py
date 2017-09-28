@@ -8,7 +8,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
-from .models import Concert
+from .models import Concert, Employee
 
 # Create your views here.
 def index(request):
@@ -35,7 +35,7 @@ def booking_supervisor(request):
 
 @login_required
 def all_login_page(request):
-    return render(request, 'festivalapp/after_login.html')
+    return render(request, 'festivalapp/index.html')
 
 def after_login(request, user):
     if user.groups.filter(name='arranger').exists():
@@ -62,7 +62,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('festivalapp:all_login_page'))
+                return render(request, 'festivalapp/index.html')
             else:
                 return HttpResponse('ACCOUNT INACTIVE')
         else:
@@ -101,11 +101,19 @@ def register(request):
 def list_concert(request):
     info = {}
     if request.user.is_authenticated():
-            info = {
-                'concerts': list(Concert.objects.all()),
-                'user': request.user,
-            }
+        emp = Employee.objects.get(user=request.user)
+
+        cons = []
+        if emp.employee_status == 'light_technician':
+            cons = list(Concert.objects.filter(lightingWork=emp))
+        elif emp.employee_status == 'sound_technician':
+            cons = list(Concert.objects.filter(soundWork=emp))
+
+        info = {
+            'concerts': cons,
+            'user': request.user,
+            'employee': emp
+        }
     return render(
         request, 'festivalapp/concert_list.html', info
     )
-

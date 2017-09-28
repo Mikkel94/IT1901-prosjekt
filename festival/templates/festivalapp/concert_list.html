@@ -1,30 +1,27 @@
 {% extends 'base.html' %}
 
 {%  block content %}
-    <p>hallo <br> Du er logget inn som: {{ user }} <3</p>
-    {% if concerts %}
+    <p>hallo <br>
+        Du er logget inn som: {{ user }} <3</p>
+    <p>Status er: {{ employee.employee_status }}</p>
+
+
         <h2>Konserter:</h2>
 
 
         <ul id="list">
             <p>Dette er konsertene du skal jobbe med</p>
             {% for concert in concerts  %}
-                {% if user.name == concert.lightingWork.name or user.name == concert.soundWork.name  %}
-                    <li>
-                        <p>{{ concert.name }}</p>
-                        <p>{{ concert.band }}</p>
-                        <p>{{ concert.date }}</p>
-                        <p>{{ concert.scene }}</p>
-                        <p> Du er {{ user }}</p>
-                    </li>
-                {%  endif %}
+                <li>
+                    <p>{{ concert.name }}</p>
+                    <p>{{ concert.band }}</p>
+                    <p>{{ concert.date }}</p>
+                    <p>{{ concert.scene }}</p>
+                    <p> Du er {{ user }}</p>
+                </li>
             {% endfor %}
         </ul>
-    {% else %}
-        <h3>
-            Du har ingen konserter.
-        </h3>
-    {% endif %}
+
 
 {% endblock %}
 
