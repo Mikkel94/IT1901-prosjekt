@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
-from .models import Concert
+from .models import Concert, Employee
 
 # Create your views here.
 @login_required
@@ -64,11 +64,19 @@ def register(request):
 def list_concert(request):
     info = {}
     if request.user.is_authenticated():
-            info = {
-                'concerts': list(Concert.objects.all()),
-                'user': request.user,
-            }
+        emp = Employee.objects.get(user=request.user)
+
+        cons = []
+        if emp.employee_status == 'light_technician':
+            cons = list(Concert.objects.filter(lightingWork=emp))
+        elif emp.employee_status == 'sound_technician':
+            cons = list(Concert.objects.filter(soundWork=emp))
+
+        info = {
+            'concerts': cons,
+            'user': request.user,
+            'employee': emp
+        }
     return render(
         request, 'festivalapp/concert_list.html', info
     )
-
