@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+
+<div class="velkommenbox">Velkommen til festivalsiden!</div>
+<div class="login-page">
+
+
+  <div class="form">
+    <form action="{% url 'festivalapp:login' %}" method="post" class="login-form">
+      {% csrf_token %}
+      <input type="text" placeholder="brukernavn"/>
+      <input type="password" placeholder="passord"/>
+      <button type="submit">login</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
