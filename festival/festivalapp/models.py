@@ -11,7 +11,7 @@ STATUS_CHOICES = (
 
 
 class Employee(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, related_name='user')
     employee_status = models.CharField(max_length=32, choices=STATUS_CHOICES)
 
     def __str__(self):
