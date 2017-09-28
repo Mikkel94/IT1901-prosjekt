@@ -68,12 +68,15 @@ def list_concert(request):
     }
     if request.user.is_authenticated():
             emp = Employee.objects.get(user=request.user)
-            if emp.employee_status == 'lystekniker':
+            if emp.employee_status == 'light_technician':
                 info['concerts'] = list(Concert.objects.filter(lightingWork=emp))
-            elif emp.employee_status == 'lydtekniker':
+            elif emp.employee_status == 'sound_technician':
                 info['concerts'] = list(Concert.objects.filter(soundWork=emp))
-            elif emp.employee_status == 'arrangør':
+            elif emp.employee_status == 'arranger':
                 info['concerts'] = list(Concert.objects.all())
+                # for con in info['concerts']:
+                #     con.soundWork=list(con.soundWork)
+                #     con.lightingWork=list(con.lightingWork)
 
             info['emp'] = emp
     return render(
@@ -87,9 +90,9 @@ def home(request):
     if request.user.is_authenticated():
         emp = Employee.objects.get(user=request.user)
         cons = []
-        if emp.employee_status == 'lystekniker':
+        if emp.employee_status == 'light_technician':
             cons = list(Concert.objects.filter(lighting=emp))
-        elif emp.employee_status == 'lystekniker':
+        elif emp.employee_status == 'sound_technician':
             cons = list(Concert.objects.filter(sound=emp))
 
         info = {
