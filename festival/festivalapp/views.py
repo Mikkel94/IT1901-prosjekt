@@ -8,7 +8,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
-from .models import Concert
+from .models import Concert, Employee
 
 # Create your views here.
 def index(request):
@@ -33,9 +33,9 @@ def booking_boss(request):
 def booking_supervisor(request):
     return render(request, 'festivalapp/booking_supervisor.html')
 
-@login_required
-def all_login_page(request):
-    return render(request, 'festivalapp/after_login.html')
+# @login_required
+# def all_login_page(request):
+#     return render(request, 'festivalapp/after_login.html')
 
 def after_login(request, user):
     if user.groups.filter(name='arranger').exists():
@@ -97,15 +97,39 @@ def register(request):
         'registered': registered
     })
 
-
 def list_concert(request):
-    info = {}
+    info = {
+        'user': request.user
+    }
     if request.user.is_authenticated():
-            info = {
-                'concerts': list(Concert.objects.all()),
-                'user': request.user,
-            }
+            emp = Employee.objects.get(user=request.user)
+            if emp.employee_status == 'lystekniker':
+                info['concerts'] = list(Concert.objects.filter(lightingWork=emp))
+            elif emp.employee_status == 'lydtekniker':
+                info['concerts'] = list(Concert.objects.filter(soundWork=emp))
+            elif emp.employee_status == 'arrangør':
+                info['concerts'] = list(Concert.objects.all())
+
+            info['emp'] = emp
     return render(
         request, 'festivalapp/concert_list.html', info
     )
+
+def home(request):
+    info = {}
+    if request.user.is_authenticated():
+        emp = Employee.objects.get(user=request.user)
+        cons = []
+        if emp.employee_status == 'lystekniker':
+            cons = list(Concert.objects.filter(lighting=emp))
+        elif emp.employee_status == 'lystekniker':
+            cons = list(Concert.objects.filter(sound=emp))
+
+        info = {
+            'cons': cons,
+            'user': request.user,
+            'emp': emp
+        }
+        return render(request, 'festivalapp/home.html', info)
+    return render(request, 'festivalapp/home.html')
 
