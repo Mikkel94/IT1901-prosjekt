@@ -92,12 +92,5 @@ div.konto {
     background-color: #B2DFDB;
 }
 
-#content:hover {
-    box-sizing: border-box;
-
-    border:1px 1px 1px 1px;
-    border-style: solid;
-    border-color: lightgrey;
-}
 
 /* ------------ Ferdig med content ------------------------- */
