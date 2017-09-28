@@ -6,58 +6,14 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import Group
 
 from .models import Concert, Employee
 
 # Create your views here.
+@login_required
 def index(request):
     return render(request, 'festivalapp/index.html')
 
-def temp(request):
-    return render(request, 'template.html')
-
-@login_required
-def arranger(request):
-    return render(request, 'festivalapp/arranger.html')
-
-@login_required
-def manager(request):
-    return render(request, 'festivalapp/manager.html')
-
-@login_required
-def booking_boss(request):
-    return render(request, 'festivalapp/booking_boss.html')
-
-@login_required
-def booking_supervisor(request):
-    return render(request, 'festivalapp/booking_supervisor.html')
-
-<<<<<<< HEAD
-# @login_required
-# def all_login_page(request):
-#     return render(request, 'festivalapp/after_login.html')
-=======
-@login_required
-def all_login_page(request):
-    return render(request, 'festivalapp/index.html')
->>>>>>> 1f8b118b50be2157ac10a5708856f78c46df5dea
-
-def after_login(request, user):
-    if user.groups.filter(name='arranger').exists():
-        return arranger(request)
-    elif user.groups.filter(name='light_technician').exists():
-        return light_technician(request)
-    elif user.groups.filter(name='sound_technician').exists():
-        return sound_technician(request)
-    elif user.groups.filter(name='manager').exists():
-        return manager(request)
-    elif user.groups.filter(name='booking_boss').exists():
-        return booking_boss(request)
-    elif user.groups.filter(name='booking_supervisor').exists():
-        return booking_supervisor(request)
-    else:
-        return HttpResponse('Something fishy')
 
 def user_login(request):
     if request.method == 'POST':
@@ -68,14 +24,15 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return render(request, 'festivalapp/index.html')
+                return HttpResponseRedirect(reverse('festivalapp:index'))
             else:
                 return HttpResponse('ACCOUNT INACTIVE')
         else:
             print('Username: {} \nPassword: {}'.format(username, password))
             return HttpResponse('INVALID CREDENTIALS')
     else:
-        return render(request, 'festivalapp/login.html')
+        return render(request, 'loginsite.html')
+
 
 def register(request):
     registered = False
@@ -103,6 +60,8 @@ def register(request):
         'registered': registered
     })
 
+
+@login_required
 def list_concert(request):
     info = {
         'user': request.user
@@ -121,6 +80,8 @@ def list_concert(request):
         request, 'festivalapp/concert_list.html', info
     )
 
+
+@login_required
 def home(request):
     info = {}
     if request.user.is_authenticated():
