@@ -60,6 +60,11 @@ def register(request):
         'registered': registered
     })
 
+@login_required
+def user_logout(request):
+    logout(request)
+    return render(request, 'loginsite.html')
+
 
 @login_required
 def list_concert(request):
