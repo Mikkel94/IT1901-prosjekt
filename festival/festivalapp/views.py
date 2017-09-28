@@ -60,23 +60,43 @@ def register(request):
         'registered': registered
     })
 
+
 @login_required
 def list_concert(request):
-    info = {}
+    info = {
+        'user': request.user
+    }
     if request.user.is_authenticated():
-        emp = Employee.objects.get(user=request.user)
+            emp = Employee.objects.get(user=request.user)
+            if emp.employee_status == 'lystekniker':
+                info['concerts'] = list(Concert.objects.filter(lightingWork=emp))
+            elif emp.employee_status == 'lydtekniker':
+                info['concerts'] = list(Concert.objects.filter(soundWork=emp))
+            elif emp.employee_status == 'arrangør':
+                info['concerts'] = list(Concert.objects.all())
 
-        cons = []
-        if emp.employee_status == 'light_technician':
-            cons = list(Concert.objects.filter(lightingWork=emp))
-        elif emp.employee_status == 'sound_technician':
-            cons = list(Concert.objects.filter(soundWork=emp))
-
-        info = {
-            'concerts': cons,
-            'user': request.user,
-            'employee': emp
-        }
+            info['emp'] = emp
     return render(
         request, 'festivalapp/concert_list.html', info
     )
+
+
+@login_required
+def home(request):
+    info = {}
+    if request.user.is_authenticated():
+        emp = Employee.objects.get(user=request.user)
+        cons = []
+        if emp.employee_status == 'lystekniker':
+            cons = list(Concert.objects.filter(lighting=emp))
+        elif emp.employee_status == 'lystekniker':
+            cons = list(Concert.objects.filter(sound=emp))
+
+        info = {
+            'cons': cons,
+            'user': request.user,
+            'emp': emp
+        }
+        return render(request, 'festivalapp/home.html', info)
+    return render(request, 'festivalapp/home.html')
+
