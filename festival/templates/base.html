@@ -13,18 +13,18 @@
   <div id="banner">
 
   	<div id="bannerbilde">
-  	BANNER/BILDE KOMMER
+  	<img src="{% static 'img/Banner.png' %}" style="width: 100%; height: 100%; " alt="Bannerbilde">
   	</div>
 
   	<div id="loggedin" class="box konto">
-		<h1>LOGGET INN SOM </h1>
+		<h1>LOGGET INN SOM: {{ user }} ({% if emp.employee_status != None %}{% endif %}{{ emp.employee_status }})</h1>
 	</div>
 
-  	<div class="box konto">
+  	<div class="box konto" id="login">
 	  	<h1> LOGIN </h1>
 	</div>
 
-  	<div class="box konto">
+  	<div class="box konto" id="konto">
 	  	<h1>KONTO </h1>
 	</div>
 

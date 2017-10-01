@@ -1,5 +1,5 @@
 body {
-	background-color: #E0F2F1;
+	background-color: #BDBDBD;
 	margin: 0;
 }
 
@@ -10,15 +10,15 @@ body {
     height:80px;
     min-width: 150px;
 
-    background-color: #80CBC4;
+    background-color: #616161;
 }
 
 div.menu {
     box-sizing: border-box;
 	height: 80px;
     min-width : 150px;
-	background-color: #80CBC4;
-	flex-basis: 25%;
+	background-color: #616161;
+	flex-basis: 20%;
 }
 
 div.box {
@@ -38,9 +38,10 @@ div.menu:hover {
 
 /* ------------ Start av banner --------------------------- */
 #banner {
-	background-color: #00796B;
+	background-color: #000000;
 	min-height: 120px;
-	padding:15px;
+    max-height: 130px;
+	padding: 15px;
     display: flex;
 
 }
@@ -48,27 +49,33 @@ div.menu:hover {
 
 #bannerbilde {
     flex-basis: 60%;
-    font-size: 60px;
-    text-align: center;
-    box-sizing: border-box;
-    padding-top: 20px;
-    border:1px;
-    border-style: solid;
-    border-color: lightgrey;
 }
 
 #loggedin {
     flex-basis: 20%;
-    background-color: #80CBC4;
+    background-color: #323232;
     margin-left: 10px;
+    color: white;
+    border-radius: 10px;
+    font-size: 0.8vw;
+
+}
+#login {
+    margin-right:15px;
+    margin-left: 15px;
+}
+
+#konto {
 
 }
 
 div.konto {
     flex-basis: 10%;
     min-height : 70px;
+    color: white;
     min-width : 150px;
-    background-color: #80CBC4;
+    background-color:#323232;
+    border-radius: 10px;
 }
 
 /* ------------ Ferdig med banner ------------------------- */
