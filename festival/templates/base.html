@@ -50,6 +50,10 @@ div.
             <h1>
                 <a href="{% url 'festivalapp:manager' %}">Manager page</a>
             </h1>
+        {% elif emp.employee_status == 'arranger' %}
+            <h1>
+                <a href="{% url 'festivalapp:arranger' %}">Arranger page</a>
+            </h1>
         {% endif %}
     </div>
 

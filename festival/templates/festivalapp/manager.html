@@ -2,6 +2,13 @@
 {% load bootstrap3 %}
 {% block content %}
 
-{% bootstrap_form manager_form %}
+    band: {{ band.name }}
+    <br>
+    manager: {{ band.manager }}
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form manager_form %}
+        <input type="submit" value="Submit">
+    </form>
 
 {% endblock %}
