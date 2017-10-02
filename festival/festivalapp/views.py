@@ -119,6 +119,7 @@ def manager(request):
                 print(band_needs)
                 band.sound_needs = band_needs.cleaned_data['sound_needs']
                 band.light_needs = band_needs.cleaned_data['light_needs']
+                band.specific_needs = band_needs.cleaned_data['specific_needs']
                 band.save()
             else:
                 print(band_needs.errors)
@@ -131,4 +132,4 @@ def manager(request):
 
 @login_required
 def arrangerBasic(request):
-    pass
+    arranger = Employee.objects.get()

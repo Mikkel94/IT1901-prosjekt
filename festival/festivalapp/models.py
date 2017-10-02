@@ -15,8 +15,7 @@ STATUS_CHOICES = (
 class Employee(models.Model):
     user = models.OneToOneField(User, related_name='user')
     employee_status = models.CharField(max_length=32, choices=STATUS_CHOICES)
-    is_manager = models.BooleanField(default=False)
-    is_arranger = models.BooleanField(default=False)
+
 
     def __str__(self):
         return self.user.username
@@ -35,7 +34,7 @@ class Band(models.Model):
     members = models.IntegerField(null = True, default=1)
     light_needs = models.IntegerField(default=0)
     sound_needs = models.IntegerField(default=0)
-
+    specific_needs = models.TextField(default=None)
 
     def __str__(self):
         return self.name
