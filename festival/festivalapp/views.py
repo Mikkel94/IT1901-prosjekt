@@ -111,8 +111,10 @@ def manager(request):
         if request.method == 'POST':
             band_needs = BandNeedsForm(data=request.POST)
             if band_needs.is_valid():
-                band.sound_needs = band_needs.sound_needs
-                band.light_needs = band_needs.light_needs
+                print(band_needs)
+                band.sound_needs = band_needs.cleaned_data['sound_needs']
+                band.light_needs = band_needs.cleaned_data['light_needs']
+                band.specific_needs = band_needs.cleaned_data['specific_needs']
                 band.save()
             else:
                 print(band_needs.errors)
@@ -120,4 +122,9 @@ def manager(request):
             band_needs = BandNeedsForm()
         return render(request, 'festivalapp/manager.html', {
             'manager_form': band_needs,
+            'band': band
 })
+
+@login_required
+def arrangerBasic(request):
+    arranger = Employee.objects.get()
