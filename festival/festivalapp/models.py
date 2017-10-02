@@ -15,16 +15,10 @@ STATUS_CHOICES = (
 class Employee(models.Model):
     user = models.OneToOneField(User, related_name='user')
     employee_status = models.CharField(max_length=32, choices=STATUS_CHOICES)
+    is_manager = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
-
-class Band(models.Model):
-    name = models.CharField(max_length=60, null=True)
-    members = models.IntegerField(null = True, default=1)
-
-    def __str__(self):
-        return self.name
 
 
 class Scene(models.Model):
@@ -33,6 +27,17 @@ class Scene(models.Model):
 
     def __str__(self):
         return self.name
+
+class Band(models.Model):
+    name = models.CharField(max_length=60, null=True)
+    manager = models.OneToOneField(Employee, null=True)
+    members = models.IntegerField(null = True, default=1)
+    light_needs = models.IntegerField(default=0)
+    sound_needs = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
 
 
 class Concert(models.Model):

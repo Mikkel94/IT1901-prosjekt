@@ -4,3 +4,4 @@ Django==1.11.5
 pycparser==2.18
 pytz==2017.2
 six==1.11.0
+django-bootstrap3==9.0.0
