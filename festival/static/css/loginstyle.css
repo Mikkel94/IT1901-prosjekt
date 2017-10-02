@@ -4,6 +4,7 @@
   width: 360px;
   padding: 0 0 0;
   margin: auto;
+  background-color: black;
 }
 .form {
   position: relative;
@@ -18,7 +19,8 @@
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
-  background: #E0F2F1;
+  background: #EEEEEE;
+  color: black;
   width: 100%;
   border: 0;
   margin: 0 0 15px;
@@ -26,27 +28,27 @@
   box-sizing: border-box;
   font-size: 14px;
 }
-.form button {
+.form .button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background-color: #4DB6AC;
+  background-color: #BDBDBD;
   width: 100%;
   border: 0;
   padding: 15px;
   color: #000000;
-  font-size: 16px;
+  font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: #BDBDBD;
+  background-color: #9E9E9E;
 }
 
-.form button:hover,.form button:active,.form button:focus {
-  background: #43A047;
+.form .button:hover,.form button:active,.form button:focus {
+  background: #9E9E9E;
 }
 .form .message {
   margin: 15px 0 0;
@@ -94,7 +96,7 @@
   color: #EF3B3A;
 }
 body {
-    background-color: #80CBC4;
+  background-color: #BDBDBD;
   font-family: "Roboto", sans-serif;
 }
 
