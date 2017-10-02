@@ -96,7 +96,7 @@ def home(request):
         if emp.employee_status == 'light_technician':
             cons = list(Concert.objects.filter(lighting=emp))
         elif emp.employee_status == 'sound_technician':
-            cons = list(Concert.objects.filter(sound=emp))
+            cons = list(Concert.objects.filter(soundWork=emp))
         elif emp.employee_status == 'arranger':
             cons = list(Concert.objects.all())
 
