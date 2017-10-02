@@ -10,49 +10,45 @@
 <body>
 
 <!-- BANNER START -->
-  <div id="banner">
+<div id="banner">
 
-  	<div id="bannerbilde">
-  	<img src="{% static 'img/Banner.png' %}" style="width: 100%; height: 100%; " alt="Bannerbilde">
-  	</div>
+    <div id="bannerbilde">
+        <img src="{% static 'img/Banner.png' %}" style="width: 100%; height: 100%; " alt="Bannerbilde">
+    </div>
 
-  	<div id="loggedin" class="box konto">
-		<h1>LOGGET INN SOM: {{ user }} ({% if emp.employee_status != None %}{% endif %}{{ emp.employee_status }})</h1>
-	</div>
+    {% if user %}
 
-  	<div class="box konto" id="login">
-	  	<h1> LOGIN </h1>
-	</div>
+        <div id="loggedin" class="box konto">
+            <h1>LOGGET INN SOM: {{ user }}</h1>
+            <h1>{{ emp.employee_status }}</h1>
+        </div>
+        <div class="box konto" id="konto">
+            <h1>KONTO </h1>
+        </div>
+        <div class="box konto" id="logout">
+            <h1><a href="{% url 'festivalapp:logout' %}">Logg ut</a></h1>
+        </div>
+    {% else %}
+        <div class="box konto" id="login">
+            <h1><a href="{% url 'festivalapp:login' %}">Logg inn</a></h1>
+        </div>
+    {% endif %}
 
-  	<div class="box konto" id="konto">
-	  	<h1>KONTO </h1>
-	</div>
 
-  </div>
+</div>
 
 <!-- BANNER SLUTT -->
 
 <!-- MENY START -->
 
-	  <div id="meny">
+<div id="meny">
 
-	  	<div class="menu box">
-	  	<h1> MENY 1 </h1>
-	  	</div>
+    <div class="menu box">
+        <h1></h1>
+    </div>
 
-	  	<div class="menu box">
-	  	<h1> MENY 2 </h1>
-	  	</div>
 
-	  	<div class="menu box">
-	  	<h1> MENY 3 </h1>
-	  	</div>
-
-	  	<div class="menu box">
-	  	<h1> MENY 4 </h1>
-	  	</div>
-
-	  </div>
+</div>
 
 <!-- MENY SLUTT -->
 

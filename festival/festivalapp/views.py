@@ -24,7 +24,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('festivalapp:index'))
+                return home(request) # HttpResponseRedirect(reverse('festivalapp:index'))
             else:
                 return HttpResponse('ACCOUNT INACTIVE')
         else:
@@ -33,7 +33,7 @@ def user_login(request):
     else:
         return render(request, 'loginsite.html')
 
-
+@login_required
 def register(request):
     registered = False
     if request.method == 'POST':
@@ -74,19 +74,17 @@ def list_concert(request):
     if request.user.is_authenticated():
             emp = Employee.objects.get(user=request.user)
             if emp.employee_status == 'light_technician':
-                info['concerts'] = list(Concert.objects.filter(lightingWork=emp))
+                info['concerts'] = list(Concert.objects.filter(lightingWork=emp).order_by('date'))
             elif emp.employee_status == 'sound_technician':
-                info['concerts'] = list(Concert.objects.filter(soundWork=emp))
+                info['concerts'] = list(Concert.objects.filter(soundWork=emp).order_by('date'))
             elif emp.employee_status == 'arranger':
-                info['concerts'] = list(Concert.objects.all())
+                info['concerts'] = list(Concert.objects.all().order_by('date'))
                 # for con in info['concerts']:
                 #     con.soundWork=list(con.soundWork)
                 #     con.lightingWork=list(con.lightingWork)
 
             info['emp'] = emp
-    return render(
-        request, 'festivalapp/concert_list.html', info
-    )
+    return render(request, 'festivalapp/concert_list.html', info)
 
 
 @login_required
@@ -99,12 +97,14 @@ def home(request):
             cons = list(Concert.objects.filter(lighting=emp))
         elif emp.employee_status == 'sound_technician':
             cons = list(Concert.objects.filter(sound=emp))
+        elif emp.employee_status == 'arranger':
+            cons = list(Concert.objects.all())
 
         info = {
             'cons': cons,
             'user': request.user,
             'emp': emp
         }
-        return render(request, 'festivalapp/home.html', info)
-    return render(request, 'festivalapp/home.html')
+        return render(request, 'festivalapp/index.html', info)
+    return render(request, 'festivalapp/index.html')
 

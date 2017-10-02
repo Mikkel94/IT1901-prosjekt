@@ -9,6 +9,7 @@
         <h2>Konserter:</h2>
 
         {% if emp.employee_status == 'sound_technician' or emp.employee_status == 'light_technician' %}
+
         <ul id="list">
             <p>Dette er konsertene du skal jobbe med</p>
             {% for concert in concerts  %}
@@ -36,7 +37,9 @@
                     </li>
 
             {% endfor %}
+
         {%  elif emp.employee_status == 'arranger' %}
+
             {% for concert in concerts  %}
                     <li class="concert_element">
                         <p>{{ concert.name }}</p>
@@ -76,6 +79,7 @@
                     </li>
             {% endfor %}
         </ul>
+
         {%  endif %}
 
 {% endblock %}

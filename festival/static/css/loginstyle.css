@@ -40,6 +40,11 @@
   transition: all 0.3 ease;
   cursor: pointer;
 }
+
+.button:hover {
+  background-color: #BDBDBD;
+}
+
 .form button:hover,.form button:active,.form button:focus {
   background: #43A047;
 }

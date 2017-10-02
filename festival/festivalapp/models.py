@@ -6,7 +6,9 @@ from django.contrib.auth.models import AbstractUser, User
 STATUS_CHOICES = (
     ('arranger', 'ARRANGER'),
     ('sound_technician', 'LYDTEKNIKER'),
-    ('light_technician', 'LYSTEKNIKER')
+    ('light_technician', 'LYSTEKNIKER'),
+    ('manager', 'MANAGER'),
+
 )
 
 
@@ -26,8 +28,8 @@ class Band(models.Model):
 
 
 class Scene(models.Model):
-    id = models.AutoField(primary_key=True, default=0)
-    name = models.CharField(max_length=50, default="bandName")
+    id = models.IntegerField(primary_key=True, default=0)
+    name = models.CharField(max_length=50, default="Scene")
 
     def __str__(self):
         return self.name
