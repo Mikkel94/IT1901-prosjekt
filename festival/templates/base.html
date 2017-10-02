@@ -9,6 +9,8 @@
 </head>
 <body>
 
+div.
+
 <!-- BANNER START -->
 <div id="banner">
 
@@ -44,7 +46,11 @@
 <div id="meny">
 
     <div class="menu box">
-        <h1></h1>
+        {% if emp.employee_status == 'manager' %}
+            <h1>
+                <a href="{% url 'festivalapp:manager' %}">Manager page</a>
+            </h1>
+        {% endif %}
     </div>
 
 

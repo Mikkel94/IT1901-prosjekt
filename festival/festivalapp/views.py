@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import EmployeeForm, ExtraInfoEmployeeForm
+from .forms import EmployeeForm, ExtraInfoEmployeeForm, BandNeedsForm
 
 # Login / Logout
 from django.http import HttpResponseRedirect, HttpResponse
@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
-from .models import Concert, Employee
+from .models import Concert, Employee, Band
 
 # Create your views here.
 @login_required
@@ -108,3 +108,21 @@ def home(request):
         return render(request, 'festivalapp/index.html', info)
     return render(request, 'festivalapp/index.html')
 
+@login_required
+def manager(request):
+    manager = Employee.objects.get(user=request.user)
+    if Band.objects.get(manager=manager) != None:
+        band = Band.objects.get(manager=manager)
+        if request.method == 'POST':
+            band_needs = BandNeedsForm(data=request.POST)
+            if band_needs.is_valid():
+                band.sound_needs = band_needs.sound_needs
+                band.light_needs = band_needs.light_needs
+                band.save()
+            else:
+                print(band_needs.errors)
+        else:
+            band_needs = BandNeedsForm()
+        return render(request, 'festivalapp/manager.html', {
+            'manager_form': band_needs,
+})
