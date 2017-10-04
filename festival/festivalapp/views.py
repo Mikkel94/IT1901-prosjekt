@@ -136,6 +136,7 @@ def booking_responsible(request):
     else:
         return home(request)
 
+@login_required
 def delete_band(request, pk):
     # pk = band.kwargs['pk'] #Might be this instead
     Band.objects.get(pk=pk).delete()
