@@ -91,7 +91,7 @@ def home(request):
         emp = Employee.objects.get(user=request.user)
         cons = []
         if emp.employee_status == 'light_technician':
-            cons = list(Concert.objects.filter(lighting=emp))
+            cons = list(Concert.objects.filter(lightingWork=emp))
         elif emp.employee_status == 'sound_technician':
             cons = list(Concert.objects.filter(soundWork=emp))
         elif emp.employee_status == 'arranger':
@@ -170,4 +170,4 @@ def book_band(request, pk):
         })
 
 
-    
+
