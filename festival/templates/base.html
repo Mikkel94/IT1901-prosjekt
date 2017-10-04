@@ -42,36 +42,29 @@
 
     {% if emp.employee_status == 'manager' %}
         <div class="menu box">
-        
             <h1>
                 <a href="{% url 'festivalapp:manager' %}" style="text-decoration: none; Color: white;">Manager page</a>
             </h1>    
          </div>
-
     {% endif %}
 
-    {% elif emp.employee_status == 'arranger' %}
-                <a href="{% url 'festivalapp:manager' %}">Manager page</a>
-            </h1>
-        
+    {% if emp.employee_status == 'arranger' %}
+        <div class="menu box">
             <h1>
-                <a href="{% url 'festivalapp:arranger' %}">Arranger page</a>
+                <a href="{% url 'festivalapp:arranger' %}" style="text-decoration: none; Color: white;">Arranger page</a>
             </h1>
-        
          </div>
     {% endif %}
 
     {% if emp.employee_status != None %}
          <div class="menu box">
-        
             <h1>
                 <a href="{% url 'festivalapp:list_concert' %}" style="text-decoration: none; Color: white;">Concert list</a>
             </h1>    
          </div>
+         
     {% endif %}
-
     
-
 
 </div>
 

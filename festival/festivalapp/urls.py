@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import index, user_login, register, list_concert, user_logout, manager
+from .views import index, user_login, register, list_concert, user_logout, manager, arrangerBasic
 
 app_name = 'festivalapp'
 urlpatterns = [
@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^logout/$', user_logout, name='logout'),
     url(r'^register/$', register, name='register'),
     url(r'^concert_list/$', list_concert, name='list_concert'),
-    url(r'^manager/$', manager, name='manager')
+    url(r'^manager/$', manager, name='manager'),
+    url(r'^arranger/$', arrangerBasic, name='arranger')
 
 ]
