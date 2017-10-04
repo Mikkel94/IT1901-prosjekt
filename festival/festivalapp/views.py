@@ -131,5 +131,6 @@ def manager(request):
 })
 
 @login_required
-def arrangerBasic(request):
-    arranger = Employee.objects.get()
+def arranger(request):
+    arranger = Employee.objects.get(user=request.user)
+    
