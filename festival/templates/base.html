@@ -14,17 +14,13 @@
 <div id="banner">
 
     <div id="bannerbilde">
-        <a href="{% url 'festivalapp:index' %}"><img src="{% static 'img/Banner.png' %}" style="width: 100%; height: 100%; " alt="Bannerbilde"></a>
+        <a href="{% url 'festivalapp:index' %}"><img src="{% static 'img/Banner.png' %}" alt="Bannerbilde"></a>
     </div>
 
     {% if user %}
-
         <div id="loggedin" class="box konto">
             <h1>LOGGET INN SOM: {{ user }}</h1>
             <h1>{{ emp.employee_status }}</h1>
-        </div>
-        <div class="box konto" id="konto">
-            <h1>KONTO </h1>
         </div>
         <div class="box konto" id="logout">
             <h1><a class="logout" href="{% url 'festivalapp:logout' %}" style="text-decoration: none;">Logg ut</a></h1>
@@ -44,18 +40,39 @@
 
 <div id="meny">
 
-    <div class="menu box">
-        {% if emp.employee_status == 'manager' %}
+    {% if emp.employee_status == 'manager' %}
+        <div class="menu box">
             <h1>
-                <a href="{% url 'festivalapp:manager' %}">Manager page</a>
-            </h1>
-        {% elif emp.employee_status == 'booking_responsible' %}
-            <h1>
-                <a href="{% url 'festivalapp:booking_responsible' %}">Bookingansvarlig page</a>
-            </h1>
-        {% endif %}
-    </div>
+                <a href="{% url 'festivalapp:manager' %}" style="text-decoration: none; Color: white;">Manager page</a>
+            </h1>    
+         </div>
+    {% endif %}
 
+    {% if emp.employee_status == 'arranger' %}
+        <div class="menu box">
+            <h1>
+                <a href="{% url 'festivalapp:arranger' %}" style="text-decoration: none; Color: white;">Arranger page</a>
+            </h1>
+         </div>
+    {% endif %}
+
+    {% if emp.employee_status == 'booking_responsible' %}
+        <div class="menu box">
+            <h1>
+                <a href="{% url 'festivalapp:booking_responsible' %}" style="text-decoration: none; Color: white;">Bookingansvarlig page</a>
+            </h1>
+        </div>
+    {% endif %}
+
+    {% if emp.employee_status != None %}
+         <div class="menu box">
+            <h1>
+                <a href="{% url 'festivalapp:list_concert' %}" style="text-decoration: none; Color: white;">Concert list</a>
+            </h1>    
+         </div>
+         
+    {% endif %}
+    
 
 </div>
 
