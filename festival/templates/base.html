@@ -56,6 +56,14 @@
          </div>
     {% endif %}
 
+    {% if emp.employee_status == 'booking_responsible' %}
+        <div class="menu box">
+            <h1>
+                <a href="{% url 'festivalapp:booking_responsible' %}" style="text-decoration: none; Color: white;">Bookingansvarlig page</a>
+            </h1>
+        </div>
+    {% endif %}
+
     {% if emp.employee_status != None %}
          <div class="menu box">
             <h1>
