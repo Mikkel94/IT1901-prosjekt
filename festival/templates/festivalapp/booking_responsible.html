@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for band in bands %}
+        {% if not band.is_booked %}
+
+            <li class="concert_element">
+
+                <p>Name: {{ band.name }}</p>
+                <p>Manager: {{ band.manager }}</p>
+                <p>Number of members: {{ band.members }}</p>
+                <p>Light needs: {{ band.light_needs }}</p>
+                <p>Sound needs: {{ band.sound_needs }}</p>
+                <p>Specific needs: {{ band.specific_needs }}</p>
+                <a href="{% url 'festivalapp:delete_band' pk=band.pk %}" type="button" class="button delete-button">Delete</a>
+                <a href="{% url 'festivalapp:booking' pk=band.pk %}" type="button" class="button add-button">Add</a>
+
+
+            </li>
+
+        {% endif %}
+    {% endfor %}
+
+
+{% endblock %}

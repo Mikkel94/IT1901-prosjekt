@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import EmployeeForm, ExtraInfoEmployeeForm, BandNeedsForm
+from .forms import EmployeeForm, ExtraInfoEmployeeForm, BandNeedsForm, BookBandForm
 
 # Login / Logout
 from django.http import HttpResponseRedirect, HttpResponse
@@ -126,5 +126,49 @@ def manager(request):
 })
 
 @login_required
-def arrangerBasic(request):
-    arranger = Employee.objects.get()
+def booking_responsible(request):
+    if Employee.objects.filter(user=request.user, employee_status='booking_responsible'):
+        #booking_responsible = Employee.objects.get(user=request.user) # Trenger kanskje senere
+        bands = Band.objects.filter(is_booked=False)
+        return render(request, 'festivalapp/booking_responsible.html', {
+            'bands': bands,
+        })
+    else:
+        return home(request)
+
+@login_required
+def delete_band(request, pk):
+    # pk = band.kwargs['pk'] #Might be this instead
+    Band.objects.get(pk=pk).delete()
+    return home(request)
+
+@login_required
+def book_band(request, pk):
+    band = Band.objects.get(pk=pk)
+    if request.method == 'POST':
+        booking_form = BookBandForm(data=request.POST)
+        if(booking_form.is_valid()):
+            genre = booking_form.cleaned_data['genre']
+            date = booking_form.cleaned_data['date']
+            scene = booking_form.cleaned_data['scene']
+            name = band.name + ' concert'
+            concert = Concert.objects.get_or_create(
+                                                    name=name,
+                                                    date=date,
+                                                    scene=scene,
+                                                    genre=genre,
+                                                    band=band,
+                                                )
+            band.is_booked = True
+            concert.save()
+        else:
+            print(booking_form.errors)
+        return reverse('home')
+    else:
+        booking_form = BookBandForm()
+        return render(request, 'festivalapp/booking_form.html', {
+            'booking_form': booking_form
+        })
+
+
+
