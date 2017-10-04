@@ -68,9 +68,7 @@ def user_logout(request):
 
 @login_required
 def list_concert(request):
-    info = {
-        'user': request.user
-    }
+    info = {}
     if request.user.is_authenticated():
             emp = Employee.objects.get(user=request.user)
             if emp.employee_status == 'light_technician':
@@ -83,7 +81,6 @@ def list_concert(request):
                 #     con.soundWork=list(con.soundWork)
                 #     con.lightingWork=list(con.lightingWork)
 
-            info['emp'] = emp
     return render(request, 'festivalapp/concert_list.html', info)
 
 
@@ -101,9 +98,7 @@ def home(request):
             cons = list(Concert.objects.all())
 
         info = {
-            'cons': cons,
-            'user': request.user,
-            'emp': emp
+            'cons': cons
         }
         return render(request, 'festivalapp/index.html', info)
     return render(request, 'festivalapp/index.html')
