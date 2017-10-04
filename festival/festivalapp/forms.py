@@ -19,8 +19,3 @@ class BandNeedsForm(forms.ModelForm):
         model = Band
         fields = ('light_needs', 'sound_needs')
 
-class CreateNewManagerForm(EmployeeForm):
-    pass
-    
-    def __init__(self):
-        super(CreateNewManagerForm, self).__init__(*args, **kwargs)

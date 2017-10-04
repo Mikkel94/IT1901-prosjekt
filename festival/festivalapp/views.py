@@ -68,9 +68,7 @@ def user_logout(request):
 
 @login_required
 def list_concert(request):
-    info = {
-        'user': request.user
-    }
+    info = {}
     if request.user.is_authenticated():
             emp = Employee.objects.get(user=request.user)
             if emp.employee_status == 'light_technician':
@@ -83,7 +81,6 @@ def list_concert(request):
                 #     con.soundWork=list(con.soundWork)
                 #     con.lightingWork=list(con.lightingWork)
 
-            info['emp'] = emp
     return render(request, 'festivalapp/concert_list.html', info)
 
 
@@ -94,16 +91,14 @@ def home(request):
         emp = Employee.objects.get(user=request.user)
         cons = []
         if emp.employee_status == 'light_technician':
-            cons = list(Concert.objects.filter(lighting=emp))
+            cons = list(Concert.objects.filter(lightingWork=emp))
         elif emp.employee_status == 'sound_technician':
             cons = list(Concert.objects.filter(soundWork=emp))
         elif emp.employee_status == 'arranger':
             cons = list(Concert.objects.all())
 
         info = {
-            'cons': cons,
-            'user': request.user,
-            'emp': emp
+            'cons': cons
         }
         return render(request, 'festivalapp/index.html', info)
     return render(request, 'festivalapp/index.html')
@@ -116,8 +111,10 @@ def manager(request):
         if request.method == 'POST':
             band_needs = BandNeedsForm(data=request.POST)
             if band_needs.is_valid():
-                band.sound_needs = band_needs.sound_needs
-                band.light_needs = band_needs.light_needs
+                print(band_needs)
+                band.sound_needs = band_needs.cleaned_data['sound_needs']
+                band.light_needs = band_needs.cleaned_data['light_needs']
+                band.specific_needs = band_needs.cleaned_data['specific_needs']
                 band.save()
             else:
                 print(band_needs.errors)
@@ -125,4 +122,9 @@ def manager(request):
             band_needs = BandNeedsForm()
         return render(request, 'festivalapp/manager.html', {
             'manager_form': band_needs,
+            'band': band
 })
+
+@login_required
+def arrangerBasic(request):
+    arranger = Employee.objects.get()
