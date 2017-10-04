@@ -49,9 +49,9 @@
             <h1>
                 <a href="{% url 'festivalapp:manager' %}">Manager page</a>
             </h1>
-        {% elif emp.employee_status == 'arranger' %}
+        {% elif emp.employee_status == 'booking_responsible' %}
             <h1>
-                <a href="{% url 'festivalapp:arranger' %}">Arranger page</a>
+                <a href="{% url 'festivalapp:booking_responsible' %}">Bookingansvarlig page</a>
             </h1>
         {% endif %}
     </div>
