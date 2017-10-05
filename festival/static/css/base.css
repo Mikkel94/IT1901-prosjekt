@@ -112,8 +112,6 @@ list-style-type: none;
     border-color: #666666;
     margin:20px;
     background-color: #9B9B9B;
-
-
 }
 
 .concert_element > p {
@@ -129,8 +127,8 @@ list-style-type: none;
 
 /*--------- Concert Modal -------*/
  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
+    display: none;
+    position: fixed;
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
@@ -149,6 +147,7 @@ list-style-type: none;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+	background-color: #BDBDBD;
 }
 
 /* The Close Button */
