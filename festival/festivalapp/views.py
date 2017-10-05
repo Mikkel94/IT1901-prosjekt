@@ -85,25 +85,6 @@ def list_concert(request):
 
 
 @login_required
-def home(request):
-    info = {}
-    if request.user.is_authenticated():
-        emp = Employee.objects.get(user=request.user)
-        cons = []
-        if emp.employee_status == 'light_technician':
-            cons = list(Concert.objects.filter(lightingWork=emp))
-        elif emp.employee_status == 'sound_technician':
-            cons = list(Concert.objects.filter(soundWork=emp))
-        elif emp.employee_status == 'arranger':
-            cons = list(Concert.objects.all())
-
-        info = {
-            'cons': cons
-        }
-        return render(request, 'festivalapp/index.html', info)
-    return render(request, 'festivalapp/index.html')
-
-@login_required
 def manager(request):
     manager = Employee.objects.get(user=request.user)
     if Band.objects.get(manager=manager) != None:
