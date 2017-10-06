@@ -84,24 +84,24 @@ def list_concert(request):
     return render(request, 'festivalapp/concert_list.html', info)
 
 
-@login_required
-def home(request):
-    info = {}
-    if request.user.is_authenticated():
-        emp = models.Employee.objects.get(user=request.user)
-        cons = []
-        if emp.employee_status == 'light_technician':
-            cons = list(models.Concert.objects.filter(lighting_work=emp))
-        elif emp.employee_status == 'sound_technician':
-            cons = list(models.Concert.objects.filter(sound_work=emp))
-        elif emp.employee_status == 'arranger':
-            cons = list(models.Concert.objects.all())
-
-        info = {
-            'cons': cons
-        }
-        return render(request, 'festivalapp/index.html', info)
-    return render(request, 'festivalapp/index.html')
+# @login_required
+# def home(request):
+#     info = {}
+#     if request.user.is_authenticated():
+#         emp = models.Employee.objects.get(user=request.user)
+#         cons = []
+#         if emp.employee_status == 'light_technician':
+#             cons = list(models.Concert.objects.filter(lighting_work=emp))
+#         elif emp.employee_status == 'sound_technician':
+#             cons = list(models.Concert.objects.filter(sound_work=emp))
+#         elif emp.employee_status == 'arranger':
+#             cons = list(models.Concert.objects.all())
+#
+#         info = {
+#             'cons': cons
+#         }
+#         return render(request, 'festivalapp/index.html', info)
+#     return render(request, 'festivalapp/index.html')
 
 @login_required
 def manager(request):
