@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Employee, Band
+from .models import Employee, Band, Concert
 
 class EmployeeForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -19,3 +19,7 @@ class BandNeedsForm(forms.ModelForm):
         model = Band
         fields = ('light_needs', 'sound_needs')
 
+class BookBandForm(forms.ModelForm):
+    class Meta:
+        model = Concert
+        fields = ('genre', 'date', 'scene')

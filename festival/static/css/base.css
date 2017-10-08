@@ -8,8 +8,7 @@ body {
 #meny {
     display: flex;
     height:80px;
-    min-width: 150px;
-
+    flex-basis: 100%;
     background-color: #616161;
 }
 
@@ -32,6 +31,14 @@ div.menu:hover {
     border-color: lightgrey;
 }
 
+#tomboks {
+    box-sizing: border-box;
+    height: 80px;
+    min-width : 150px;
+    background-color: #616161;
+    flex-basis: 20%;
+}
+
 /* ------------ MENY FERDIG-------------------------------- */
 
 
@@ -39,8 +46,7 @@ div.menu:hover {
 /* ------------ Start av banner --------------------------- */
 #banner {
 	background-color: #000000;
-	min-height: 120px;
-    max-height: 130px;
+    height: 100px;
 	padding: 15px;
     display: flex;
 
@@ -48,26 +54,20 @@ div.menu:hover {
 
 
 #bannerbilde {
-    flex-basis: 60%;
+    flex-basis: 65%;
 }
 
 #loggedin {
-    flex-basis: 20%;
+    flex-basis: 25%;
     background-color: #323232;
-    margin-left: 10px;
     color: white;
     border-radius: 10px;
-    font-size: 0.8vw;
+    font-size: 0.75em;
 
 }
 #login {
     margin-right:10px;
     margin-left: 10px;
-}
-
-#konto {
-padding-top: 20px;
-
 }
 
 div.konto {
@@ -80,7 +80,9 @@ div.konto {
 }
 
 #logout {
-    padding-top: 20px;
+    margin-left: 15px;
+    padding-top: 8px;
+    flex-basis: 10%;
 }
 
 .logout:visited {
