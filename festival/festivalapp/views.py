@@ -71,16 +71,19 @@ def list_concert(request):
     info = {}
     if request.user.is_authenticated():
             emp = models.Employee.objects.get(user=request.user)
+
             if emp.employee_status == 'light_technician':
-                info['concerts'] = list(models.Concert.objects.filter(lightingWork=emp).order_by('date'))
+                info['concerts'] = list(models.Concert.objects.filter(lighting_work=emp).order_by('date'))
             elif emp.employee_status == 'sound_technician':
                 info['concerts'] = list(models.Concert.objects.filter(soundWork=emp).order_by('date'))
             elif emp.employee_status == 'arranger':
                 info['concerts'] = list(models.Concert.objects.all().order_by('date'))
+            elif emp.employee_status == 'manager':
+                band = models.Band.objects.get(manager=emp)
+                info['concerts'] = list(models.Concert.objects.filter(band=band).order_by('date'))
                 # for con in info['concerts']:
                 #     con.soundWork=list(con.soundWork)
                 #     con.lightingWork=list(con.lightingWork)
-
     return render(request, 'festivalapp/concert_list.html', info)
 
 
@@ -122,7 +125,7 @@ def manager(request):
             band_needs = forms.BandNeedsForm()
         return render(request, 'festivalapp/manager.html', {
             'manager_form': band_needs,
-            'models.Band': models.Band
+            'band': band
 })
 
 @login_required
@@ -187,14 +190,18 @@ def book_band(request, pk):
 @login_required
 def show_previous_festivals(request):
     festivals = []
+    concerts = models.Concert.objects.all()
     today = datetime.datetime.now()
     for festival in models.Festival.objects.all():
         if not ((festival.end_date.day >= today.day) and
             (festival.end_date.month >= today.month) and
             (festival.end_date.year >= today.year)):
             festivals.append(festival)
+
     return render(request, 'festivalapp/old_festivals.html', {
-        'festivals': festivals
+        'festivals': festivals,
+        'genres': models.GENRES,
+        'concerts': concerts,
     })
 
 

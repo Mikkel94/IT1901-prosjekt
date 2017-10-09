@@ -2,9 +2,51 @@
 
 {% block content %}
 
-    {% for festival in festivals %}
+    <select>
+        {% for genre, genre2 in genres %}
+            <option class="option" value="{{genre2}}" onchange="changeGenre()">{{genre2}}</option>
+        {% endfor %}
+    </select>
+
+
+
+
+
+    {% for concert in concerts %}
+
+    	<div class="{{ concert.genre }} con">
+    		{{concert.name}}
+    		{{concert.genre}}
+    	</div>
 
     {% endfor %}
+
+
+<script>
+
+	function changeGenre() {
+		var genre = document.getElementsByClassName(option);
+   	console.log(genre)
+    var concerts = document.getElementsByClassName(genre);	
+    if (genre == "ROCK") {
+    	c = document.getElementsByClassName("con")
+    	for (var i = c.length - 1; i >= 0; i--) {
+    		if (c[i].class === "ROCK") {
+    			c[i].display = "block";
+    		}
+    	}
+    }
+    if (genre == "POP") {
+    	c = document.getElementsByClassName("con")
+    	for (var i = c.length - 1; i >= 0; i--) {
+    		if (c[i].class === "POP") {
+    			c[i].display = "block";
+    		}
+    	}
+    }
+	}
+    
+</script>
     
 
 
