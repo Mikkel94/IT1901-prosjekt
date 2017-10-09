@@ -107,15 +107,15 @@ def list_concert(request):
 def manager(request):
     manager = models.Employee.objects.get(user=request.user)
     if models.Band.objects.get(manager=manager) != None:
-        models.Band = models.Band.objects.get(manager=manager)
+        band = models.Band.objects.get(manager=manager)
         if request.method == 'POST':
             band_needs = forms.BandNeedsForm(data=request.POST)
             if band_needs.is_valid():
                 print(band_needs)
-                models.Band.sound_needs = band_needs.cleaned_data['sound_needs']
-                models.Band.light_needs = band_needs.cleaned_data['light_needs']
-                models.Band.specific_needs = band_needs.cleaned_data['specific_needs']
-                models.Band.save()
+                band.sound_needs = band_needs.cleaned_data['sound_needs']
+                band.light_needs = band_needs.cleaned_data['light_needs']
+                band.specific_needs = band_needs.cleaned_data['specific_needs']
+                band.save()
             else:
                 print(band_needs.errors)
         else:
@@ -143,11 +143,11 @@ def booking_responsible(request):
 @login_required
 def assign_tech_to_concert(request, tech_pk, concert_pk):
     tech = models.Employee.objects.get(pk=tech_pk)
-    models.Concert = models.Concert.objects.get(pk=concert_pk)
+    concert = models.Concert.objects.get(pk=concert_pk)
     if tech.employee_status == 'light_technician':
-        models.Concert.lighting_work.add(tech)
+        concert.lighting_work.add(tech)
     elif tech.employee_status == 'sound_technician':
-        models.Concert.sound_work.add(tech)
+        concert.sound_work.add(tech)
     return index(request)
 
 @login_required
