@@ -2,11 +2,12 @@
 
 {% block content %}
 
-    <select>
+    <select id="genreID">
         {% for genre, genre2 in genres %}
-            <option class="option" value="{{genre2}}" onchange="changeGenre()">{{genre2}}</option>
+            <option class="option" value="{{genre2}}">{{genre2}}</option>
         {% endfor %}
     </select>
+    <button onclick="changeGenre()">Bytt sjanger</button>
 
 
 
@@ -14,36 +15,51 @@
 
     {% for concert in concerts %}
 
-    	<div class="{{ concert.genre }} con">
-    		{{concert.name}}
-    		{{concert.genre}}
+    	<div class="{{concert.genre}} con">
+    		<p>Konsert navn: {{concert.name}}</p>
+    		<p>Sjanger: {{concert.genre}}</p>
+    		<p>Festival: {{concert.festival}}</p>
+    		<p>Publikum: {{concert.audience}}</p>
+    		<p>Scene: {{concert.scene}}</p>
     	</div>
 
     {% endfor %}
 
+    {# denne koden er så og si ferdig (?) #}
 
 <script>
-
 	function changeGenre() {
-		var genre = document.getElementsByClassName(option);
-   	console.log(genre)
-    var concerts = document.getElementsByClassName(genre);	
-    if (genre == "ROCK") {
-    	c = document.getElementsByClassName("con")
-    	for (var i = c.length - 1; i >= 0; i--) {
-    		if (c[i].class === "ROCK") {
-    			c[i].display = "block";
-    		}
-    	}
-    }
-    if (genre == "POP") {
-    	c = document.getElementsByClassName("con")
-    	for (var i = c.length - 1; i >= 0; i--) {
-    		if (c[i].class === "POP") {
-    			c[i].display = "block";
-    		}
-    	}
-    }
+	var e = document.getElementById("genreID");
+	var genre = e.options[e.selectedIndex].value;
+    var concerts = document.getElementsByClassName(genre.toLowerCase());
+	    if (genre == "ROCK") {
+	    	c = document.getElementsByClassName("con");
+	    	for (var i = c.length - 1; i >= 0; i--) {
+	    		if (c[i].className == "rock con") {
+	    			c[i].style.display = "block";
+	    		}
+	    		else {c[i].style.display = "none";}
+	    	}
+	    }
+	    else if (genre == "POP") {
+	    	c = document.getElementsByClassName("con");
+	    	for (var i = c.length - 1; i >= 0; i--) {
+	    		if (c[i].className === "pop con") {
+	    			c[i].style.display = "block";
+	    		}
+	    		else {c[i].style.display = "none";}
+	    	}
+	    }
+	    else if (genre == "ELECTRIC") {
+	    	c = document.getElementsByClassName("con");
+	    	for (var i = c.length - 1; i >= 0; i--) {
+	    		if (c[i].className === "electric con") {
+	    			c[i].style.display = "block";
+	    		}
+	    		else {c[i].style.display = "none";}
+	    	}
+	    }
+
 	}
     
 </script>

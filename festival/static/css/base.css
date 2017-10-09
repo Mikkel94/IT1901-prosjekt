@@ -189,5 +189,17 @@ list-style-type: none;
 /*--------- Ferdig Concert Modal -------*/
 
 
+.con {
+    display: none;
+
+    position:relative;
+    padding: 5%;
+    flex-basis: 100%;
+    border-style: solid;
+    border-color: #666666;
+    margin:20px;
+    background-color: #9B9B9B;
+}
+
 /* ------------ Ferdig med content ------------------------- */
 

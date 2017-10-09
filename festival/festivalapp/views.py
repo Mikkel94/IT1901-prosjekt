@@ -79,8 +79,13 @@ def list_concert(request):
             elif emp.employee_status == 'arranger':
                 info['concerts'] = list(models.Concert.objects.all().order_by('date'))
             elif emp.employee_status == 'manager':
-                band = models.Band.objects.get(manager=emp)
-                info['concerts'] = list(models.Concert.objects.filter(band=band).order_by('date'))
+                try:
+                    band = models.band.objects.get(manager=emp)
+                    info['concerts'] = list(models.Concert.objects.filter(band=band).order_by('date'))
+                except:
+                    #HVIS DU IKKE ER MANAGER FOR NOEN BAND SÅ KOMMER DU INGEN STEDER
+                    return HttpResponseRedirect(reverse('festivalapp:index'))
+
                 # for con in info['concerts']:
                 #     con.soundWork=list(con.soundWork)
                 #     con.lightingWork=list(con.lightingWork)
@@ -109,7 +114,7 @@ def list_concert(request):
 @login_required
 def manager(request):
     manager = models.Employee.objects.get(user=request.user)
-    if models.Band.objects.get(manager=manager) != None:
+    try:
         band = models.Band.objects.get(manager=manager)
         if request.method == 'POST':
             band_needs = forms.BandNeedsForm(data=request.POST)
@@ -126,8 +131,11 @@ def manager(request):
         return render(request, 'festivalapp/manager.html', {
             'manager_form': band_needs,
             'band': band
+                      })
+    except:
+        #HVIS DU IKKE ER MANAGER FOR NOEN BAND SÅ KOMMER DU INGEN STEDER
+        return HttpResponseRedirect(reverse('festivalapp:index'))
 
-})
 
 @login_required
 def booking_responsible(request):
