@@ -28,7 +28,6 @@ class Employee(models.Model):
 
 
 class Scene(models.Model):
-    id = models.IntegerField(primary_key=True, default=0)
     name = models.CharField(max_length=50, default="Scene")
 
     def __str__(self):
