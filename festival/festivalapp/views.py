@@ -166,18 +166,18 @@ def book_band(request, pk):
             date = booking_form.cleaned_data['date']
             scene = booking_form.cleaned_data['scene']
             name = models.Band.name + ' models.Concert'
-            Concert = models.Concert.objects.get_or_create(
+            concert = models.Concert.objects.get_or_create(
                                                     name=name,
                                                     date=date,
                                                     scene=scene,
                                                     genre=genre,
                                                     band=band,
                                                 )
-            models.Band.is_booked = True
-            models.Concert.save()
+            band.is_booked = True
+            concert.save()
         else:
             print(booking_form.errors)
-        return reverse('index')
+        return HttpResponseRedirect(reverse('index'))
     else:
         booking_form = forms.BookBandForm()
         return render(request, 'festivalapp/booking_form.html', {
