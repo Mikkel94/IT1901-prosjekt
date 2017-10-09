@@ -126,6 +126,7 @@ def manager(request):
         return render(request, 'festivalapp/manager.html', {
             'manager_form': band_needs,
             'band': band
+
 })
 
 @login_required
@@ -180,7 +181,7 @@ def book_band(request, pk):
             concert.save()
         else:
             print(booking_form.errors)
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse('festivalapp:index'))
     else:
         booking_form = forms.BookBandForm()
         return render(request, 'festivalapp/booking_form.html', {
