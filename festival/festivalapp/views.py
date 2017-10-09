@@ -186,13 +186,13 @@ def book_band(request, pk):
 
 @login_required
 def show_previous_festivals(request):
-    festivals = models.Festival.objects.all()
+    festivals = []
     today = datetime.datetime.now()
-    for models.Festival in festivals:
-        if not ((models.Festival.end_date.day < today.day) and
-            (models.Festival.end_date.month <= today.month) and
-            (models.Festival.end_date.year <= today.year)):
-            festivals.delete(models.Festival)
+    for festival in models.Festival.objects.all():
+        if not ((festival.end_date.day >= today.day) and
+            (festival.end_date.month >= today.month) and
+            (festival.end_date.year >= today.year)):
+            festivals.append(festival)
     return render(request, 'festivalapp/old_festivals.html', {
         'festivals': festivals
     })
