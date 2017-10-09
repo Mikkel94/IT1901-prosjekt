@@ -47,6 +47,15 @@ class Band(models.Model):
         return self.name
 
 
+class Festival(models.Model):
+    name = models.CharField(max_length=32)
+    end_date = models.DateField()
+   # concerts = [concert for concert in Concert.objects.all()]
+   # total_audience = sum([concert.audience for concert in concerts])
+
+    def __str__(self):
+        return self.name
+
 
 class Concert(models.Model):
     name = models.CharField(max_length=50, default="Concert")
@@ -55,22 +64,15 @@ class Concert(models.Model):
     audience = models.IntegerField(default=0)
     date = models.DateField()
     scene = models.ForeignKey(Scene)
-    lighting_work = models.ManyToManyField(Employee, related_name="lighting")
-    sound_work = models.ManyToManyField(Employee, related_name="sound")
+    lighting_work = models.ManyToManyField(Employee, related_name="lighting", blank=True)
+    sound_work = models.ManyToManyField(Employee, related_name="sound", blank=True)
+    festival = models.ForeignKey(Festival, blank=True, default=None)
 
 
     def __str__(self):
         return self.name + " - " + self.band.name
 
 
-class Festival(models.Model):
-    name = models.CharField(max_length=32)
-    concerts = models.ManyToManyField(Concert)
-    end_date = models.DateField()
-    total_audience = sum([concert.audience for concert in concerts.all()])
-
-    def __str__(self):
-        return self.name
 
 
 # class OldFestival(models.Model):

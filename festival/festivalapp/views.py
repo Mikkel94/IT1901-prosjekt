@@ -24,7 +24,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return home(request) # HttpResponseRedirect(reverse('festivalapp:index'))
+                return index(request) # HttpResponseRedirect(reverse('festivalapp:index'))
             else:
                 return HttpResponse('ACCOUNT INACTIVE')
         else:
@@ -138,7 +138,7 @@ def booking_responsible(request):
             'sound_techs': sound_techs,
         })
     else:
-        return home(request)
+        return index(request)
 
 @login_required
 def assign_tech_to_concert(request, tech_pk, concert_pk):
@@ -148,13 +148,13 @@ def assign_tech_to_concert(request, tech_pk, concert_pk):
         models.Concert.lighting_work.add(tech)
     elif tech.employee_status == 'sound_technician':
         models.Concert.sound_work.add(tech)
-    return home(request)
+    return index(request)
 
 @login_required
 def delete_band(request, pk):
     # pk = models.Band.kwargs['pk'] #Might be this instead
     models.Band.objects.get(pk=pk).delete()
-    return home(request)
+    return index(request)
 
 @login_required
 def book_band(request, pk):
@@ -177,7 +177,7 @@ def book_band(request, pk):
             models.Concert.save()
         else:
             print(booking_form.errors)
-        return reverse('home')
+        return reverse('index')
     else:
         booking_form = forms.BookBandForm()
         return render(request, 'festivalapp/booking_form.html', {
