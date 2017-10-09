@@ -43,7 +43,7 @@
     {% if emp.employee_status == 'manager' %}
         <div class="menu box">
             <h1>
-                <a href="{% url 'festivalapp:manager' %}" style="text-decoration: none; Color: white;">Manager page</a>
+                <a href="{% url 'festivalapp:manager' %}" style="text-decoration: none; Color: white;">Manager side</a>
             </h1>    
          </div>
     {% endif %}
@@ -51,7 +51,7 @@
     {% if emp.employee_status == 'booking_responsible' %}
         <div class="menu box">
             <h1>
-                <a href="{% url 'festivalapp:booking_responsible' %}" style="text-decoration: none; Color: white;">Bookingansvarlig page</a>
+                <a href="{% url 'festivalapp:booking_responsible' %}" style="text-decoration: none; Color: white;">Bookingansvarlig side</a>
             </h1>
         </div>
     {% endif %}
@@ -59,11 +59,22 @@
     {% if emp.employee_status != None %}
          <div class="menu box">
             <h1>
-                <a href="{% url 'festivalapp:list_concert' %}" style="text-decoration: none; Color: white;">Concert list</a>
+                <a href="{% url 'festivalapp:list_concert' %}" style="text-decoration: none; Color: white;">Konsert liste</a>
             </h1>    
          </div>
          
     {% endif %}
+
+    {% if emp.employee_status == 'booking_responsible' %}
+        <div class="menu box">
+            <h1>
+                <a href="{% url 'festivalapp:old_festivals' %}" style="text-decoration: none; Color: white;">Gamle festivaler</a>
+            </h1>
+        </div>
+
+
+    {% endif %}
+
 
 </div>
 
