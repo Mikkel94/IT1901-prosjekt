@@ -2,9 +2,6 @@
 
 {%  block content %}
 
-        Du er logget inn som: {{ user }}</p>
-    <p>Status er: {{ emp.employee_status }}</p>
-
     {% if emp.employee_status == 'manager' %}
         <br>Ditt band sine konserter:
 
@@ -17,10 +14,11 @@
             <p>Dette er konsertene du skal jobbe med:</p>
             {% for concert in concerts  %}
                     <li class="concert_element">
-                        <p>{{ concert.name }}</p>
-                        <p>{{ concert.band }}</p>
-                        <p>{{ concert.date }}</p>
-                        <p>{{ concert.scene }}</p>
+                        <p>Konsertnavn: {{ concert.name }}</p>
+                        <p>Band: {{ concert.band }}</p>
+                        <p>Dato: {{ concert.date }}</p>
+                        <p>Scene: {{ concert.scene }}</p>
+                        <p>Festival: {{ concert.festival }}</p>
                         <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info</button>
 
                         <!-- The Modal -->
@@ -30,11 +28,11 @@
 	                        <div class="modal-content" >
 	                        <button onclick="myFunction({{ forloop.counter }})" class="close">&times;</button>
 
-		                        	<p>{{ concert.name }}</p>
-                                    <p>{{ concert.band }}</p>
-                                    <p>{{ concert.date }}</p>
-                                    <p>{{ concert.scene }}</p>
-		                        	<p>Mye mer info om konserten (info om bandet, teknisk hjelp, tekniske behov, billettpriser etc.)</p>
+		                        	<p>Konsertnavn: {{ concert.name }}</p>
+                                    <p>Band: {{ concert.band }}</p>
+                                    <p>Dato: {{ concert.date }}</p>
+                                    <p>Scene: {{ concert.scene }}</p>
+                                    <p>Festival: {{ concert.festival }}</p>
 	                        </div>
                         </div>
                     </li>
@@ -45,10 +43,11 @@
 
             {% for concert in concerts  %}
                     <li class="concert_element">
-                        <p>{{ concert.name }}</p>
-                        <p>{{ concert.band }}</p>
-                        <p>{{ concert.date }}</p>
-                        <p>{{ concert.scene }}</p>
+                        <p>Konsertnavn: {{ concert.name }}</p>
+                        <p>Band: {{ concert.band }}</p>
+                        <p>Dato: {{ concert.date }}</p>
+                        <p>Scene: {{ concert.scene }}</p>
+                        <p>Festival: {{ concert.festival }}</p>
 
                         <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info</button>
 
@@ -59,10 +58,11 @@
 	                        <div class="modal-content" >
 	                        <button onclick="myFunction({{ forloop.counter }})" class="close">&times;</button>
 
-		                        	<p>{{ concert.name }}</p>
-                                    <p>{{ concert.band }}</p>
-                                    <p>{{ concert.date }}</p>
-                                    <p>{{ concert.scene }}</p>
+		                        	<p>Konsertnavn: {{ concert.name }}</p>
+                                    <p>Band: {{ concert.band }}</p>
+                                    <p>Dato: {{ concert.date }}</p>
+                                    <p>Scene: {{ concert.scene }}</p>
+                                    <p>Festival: {{ concert.festival }}</p>
 
                                     <h3>LYS:</h3>
 
@@ -77,7 +77,6 @@
                                             <li><p>{{ lyd }}</p></li>
                                         {% endfor %}
                                     </ul>
-		                        	<p>Mye mer info om konserten (info om bandet, teknisk hjelp, tekniske behov, billettpriser etc.)</p>
 	                        </div>
                         </div>
                     </li>

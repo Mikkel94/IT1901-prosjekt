@@ -68,7 +68,7 @@ class Concert(models.Model):
     scene = models.ForeignKey(Scene)
     lighting_work = models.ManyToManyField(Employee, related_name="lighting", blank=True)
     sound_work = models.ManyToManyField(Employee, related_name="sound", blank=True)
-    festival = models.ForeignKey(Festival, blank=True, default=None)
+    festival = models.ForeignKey(Festival, blank=True, default=None, related_name="festival")
 
 
     def __str__(self):

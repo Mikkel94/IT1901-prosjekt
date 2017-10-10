@@ -71,16 +71,17 @@ def list_concert(request):
     info = {}
     emp = models.Employee.objects.get(user=request.user)
 
+
     if emp.employee_status == 'light_technician':
-        info['concerts'] = list(models.Concert.objects.filter(lighting_work=emp).order_by('date'))
+        info['concerts'] = list(models.Concert.objects.filter(lighting_work=emp).filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
     elif emp.employee_status == 'sound_technician':
-        info['concerts'] = list(models.Concert.objects.filter(sound_work=emp).order_by('date'))
+        info['concerts'] = list(models.Concert.objects.filter(sound_work=emp).filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
     elif emp.employee_status == 'arranger':
-        info['concerts'] = list(models.Concert.objects.all().order_by('date'))
+        info['concerts'] = list(models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
     elif emp.employee_status == 'manager':
         try:
             band = models.Band.objects.get(manager=emp)
-            info['concerts'] = list(models.Concert.objects.filter(band=band).order_by('date'))
+            info['concerts'] = list(models.Concert.objects.filter(band=band).filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
         except:
             #HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
             return HttpResponseRedirect(reverse('festivalapp:index'))
@@ -157,7 +158,6 @@ def book_band(request, pk):
             scene = booking_form.cleaned_data['scene']
             name = booking_form.cleaned_data['name']
             festival = booking_form.cleaned_data['festival']
-            print(band.manager)
             concert, created = models.Concert.objects.get_or_create(
                                                     name=name,
                                                     date=date,
@@ -183,6 +183,7 @@ def show_previous_festivals(request):
     festivals = []
     concerts = models.Concert.objects.all()
     today = datetime.datetime.now()
+
     for festival in models.Festival.objects.all():
         if not ((festival.end_date.day >= today.day) and
             (festival.end_date.month >= today.month) and
