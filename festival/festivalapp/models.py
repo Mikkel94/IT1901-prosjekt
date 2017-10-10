@@ -45,6 +45,9 @@ class Band(models.Model):
     def __str__(self):
         return self.name
 
+    def setTrue(self):
+        self.is_booked = True
+
 
 class Festival(models.Model):
     name = models.CharField(max_length=32)

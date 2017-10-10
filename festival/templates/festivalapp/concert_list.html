@@ -14,7 +14,7 @@
         {% if emp.employee_status == 'sound_technician' or emp.employee_status == 'light_technician' %}
 
         <ul id="list">
-            <p>Dette er konsertene du skal jobbe med</p>
+            <p>Dette er konsertene du skal jobbe med:</p>
             {% for concert in concerts  %}
                     <li class="concert_element">
                         <p>{{ concert.name }}</p>
@@ -63,16 +63,17 @@
                                     <p>{{ concert.band }}</p>
                                     <p>{{ concert.date }}</p>
                                     <p>{{ concert.scene }}</p>
+
                                     <h3>LYS:</h3>
 
                                     <ul>
-                                        {% for lys in concert.lightingWork.all %}
+                                        {% for lys in concert.lighting_work.all %}
                                             <li><p>{{ lys }}</p></li>
                                         {% endfor %}
                                     </ul>
                                     <h3>LYD:</h3>
                                     <ul>
-                                        {% for lyd in concert.soundWork.all %}
+                                        {% for lyd in concert.sound_work.all %}
                                             <li><p>{{ lyd }}</p></li>
                                         {% endfor %}
                                     </ul>

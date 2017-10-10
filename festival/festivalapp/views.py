@@ -80,10 +80,10 @@ def list_concert(request):
                 info['concerts'] = list(models.Concert.objects.all().order_by('date'))
             elif emp.employee_status == 'manager':
                 try:
-                    band = models.band.objects.get(manager=emp)
+                    band = models.Band.objects.get(manager=emp)
                     info['concerts'] = list(models.Concert.objects.filter(band=band).order_by('date'))
                 except:
-                    #HVIS DU IKKE ER MANAGER FOR NOEN BAND SÅ KOMMER DU INGEN STEDER
+                    #HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
                     return HttpResponseRedirect(reverse('festivalapp:index'))
 
                 # for con in info['concerts']:
@@ -133,7 +133,7 @@ def manager(request):
             'band': band
                       })
     except:
-        #HVIS DU IKKE ER MANAGER FOR NOEN BAND SÅ KOMMER DU INGEN STEDER
+        #HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
         return HttpResponseRedirect(reverse('festivalapp:index'))
 
 
@@ -171,14 +171,18 @@ def delete_band(request, pk):
 @login_required
 def book_band(request, pk):
     band = models.Band.objects.get(pk=pk)
+    print(band.pk)
+    print(pk)
+    print(band)
     if request.method == 'POST':
         booking_form = forms.BookBandForm(data=request.POST)
         if(booking_form.is_valid()):
+            print("riktig")
             genre = booking_form.cleaned_data['genre']
             date = booking_form.cleaned_data['date']
             scene = booking_form.cleaned_data['scene']
-            name = models.Band.name + ' models.Concert'
-            concert = models.Concert.objects.get_or_create(
+            name = booking_form.cleaned_data['name']
+            concert, created = models.Concert.objects.get_or_create(
                                                     name=name,
                                                     date=date,
                                                     scene=scene,
@@ -187,7 +191,9 @@ def book_band(request, pk):
                                                 )
             band.is_booked = True
             concert.save()
+            band.save()
         else:
+            print("fail")
             print(booking_form.errors)
         return HttpResponseRedirect(reverse('festivalapp:index'))
     else:
