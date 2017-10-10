@@ -47,6 +47,9 @@ class Band(models.Model):
     def __str__(self):
         return self.name
 
+    def setTrue(self):
+        self.is_booked = True
+
 
 class Festival(models.Model):
     name = models.CharField(max_length=32)
@@ -60,14 +63,14 @@ class Festival(models.Model):
 
 class Concert(models.Model):
     name = models.CharField(max_length=50, default="Concert")
-    band = models.ForeignKey(Band)
+    band = models.ForeignKey(Band, related_name="band")
     genre = models.CharField(max_length=32, choices=GENRES, default=None, null=True)
     audience = models.IntegerField(default=0)
     date = models.DateField()
     scene = models.ForeignKey(Scene)
     lighting_work = models.ManyToManyField(Employee, related_name="lighting", blank=True)
     sound_work = models.ManyToManyField(Employee, related_name="sound", blank=True)
-    festival = models.ForeignKey(Festival, blank=True, default=None)
+    festival = models.ForeignKey(Festival, blank=True, default=None, related_name="festival")
 
     def __str__(self):
         return self.name + " - " + self.band.name

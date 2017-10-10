@@ -9,11 +9,8 @@
     </select>
     <button onclick="changeGenre()">Bytt sjanger</button>
 
-
-
-
-
     {% for concert in concerts %}
+        {% if concert.festival in festivals %}
 
     	<div class="{{concert.genre}} con">
     		<p>Konsert navn: {{concert.name}}</p>
@@ -23,9 +20,10 @@
     		<p>Scene: {{concert.scene}}</p>
     	</div>
 
+    	{% endif %}
     {% endfor %}
 
-    {# denne koden er så og si ferdig (?) #}
+    
 
 <script>
 	function changeGenre() {

@@ -2,9 +2,11 @@
 {% load bootstrap3 %}
 {% block content %}
 
-    band: {{ band.name }}
+    Band: {{ band.name }}
     <br>
-    manager: {{ band.manager }}
+    Manager: {{ band.manager }}
+
+
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form manager_form %}

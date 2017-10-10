@@ -93,26 +93,6 @@ def list_concert(request):
                 #     con.lightingWork=list(con.lightingWork)
     return render(request, 'festivalapp/concert_list.html', info)
 
-
-# @login_required
-# def home(request):
-#     info = {}
-#     if request.user.is_authenticated():
-#         emp = models.Employee.objects.get(user=request.user)
-#         cons = []
-#         if emp.employee_status == 'light_technician':
-#             cons = list(models.Concert.objects.filter(lighting_work=emp))
-#         elif emp.employee_status == 'sound_technician':
-#             cons = list(models.Concert.objects.filter(sound_work=emp))
-#         elif emp.employee_status == 'arranger':
-#             cons = list(models.Concert.objects.all())
-#
-#         info = {
-#             'cons': cons
-#         }
-#         return render(request, 'festivalapp/index.html', info)
-#     return render(request, 'festivalapp/index.html')
-
 @login_required
 def manager(request):
     manager = models.Employee.objects.get(user=request.user)
@@ -135,7 +115,7 @@ def manager(request):
             'band': band
                       })
     except:
-        #HVIS DU IKKE ER MANAGER FOR NOEN BAND SÅ KOMMER DU INGEN STEDER
+        #HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
         return HttpResponseRedirect(reverse('festivalapp:index'))
 
 
@@ -176,32 +156,28 @@ def get_festival_now(festival_pk):
 @login_required
 def book_band(request, pk):
     band = models.Band.objects.get(pk=pk)
+    print(band)
     if request.method == 'POST':
         booking_form = forms.BookBandForm(data=request.POST)
         if(booking_form.is_valid()):
             genre = booking_form.cleaned_data['genre']
             date = booking_form.cleaned_data['date']
             scene = booking_form.cleaned_data['scene']
+            name = booking_form.cleaned_data['name']
             festival = booking_form.cleaned_data['festival']
-            name = band.name + ' concert'
-            print(genre)
-            print(date)
-            print(scene)
-            print(festival)
-            print(name)
-            concert = models.Concert.objects.get_or_create(
-                name=name,
-                date=date,
-                scene=scene,
-                genre=genre,
-                band=band,
-                festival=festival,
-                audience=0,
-            )
+            concert, created = models.Concert.objects.get_or_create(
+                                                    name=name,
+                                                    date=date,
+                                                    scene=scene,
+                                                    genre=genre,
+                                                    band=band,
+                                                    festival=festival)
             band.is_booked = True
+            concert.save()
             band.save()
         else:
             print(booking_form.errors)
+            return HttpResponse("Invalid Syntax")
         return HttpResponseRedirect(reverse('festivalapp:index'))
     else:
         booking_form = forms.BookBandForm()
@@ -214,6 +190,7 @@ def show_previous_festivals(request):
     festivals = []
     concerts = models.Concert.objects.all()
     today = datetime.datetime.now()
+
     for festival in models.Festival.objects.all():
         if not ((festival.end_date.day >= today.day) and
             (festival.end_date.month >= today.month) and

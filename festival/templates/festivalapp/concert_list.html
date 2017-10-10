@@ -54,6 +54,13 @@
 
                     <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info
                     </button>
+            {% for concert in concerts  %}
+                    <li class="concert_element">
+                        <p>Konsertnavn: {{ concert.name }}</p>
+                        <p>Band: {{ concert.band }}</p>
+                        <p>Dato: {{ concert.date }}</p>
+                        <p>Scene: {{ concert.scene }}</p>
+                        <p>Festival: {{ concert.festival }}</p>
 
                     <!-- The Modal -->
                     <div class="modal" id="modal_{{ forloop.counter }}">
@@ -130,6 +137,29 @@
                             </ul>
                             <p>Mye mer info om konserten (info om bandet, teknisk hjelp, tekniske behov, billettpriser
                                 etc.)</p>
+	                        <div class="modal-content" >
+	                        <button onclick="myFunction({{ forloop.counter }})" class="close">&times;</button>
+
+		                        	<p>Konsertnavn: {{ concert.name }}</p>
+                                    <p>Band: {{ concert.band }}</p>
+                                    <p>Dato: {{ concert.date }}</p>
+                                    <p>Scene: {{ concert.scene }}</p>
+                                    <p>Festival: {{ concert.festival }}</p>
+
+                                    <h3>LYS:</h3>
+
+                                    <ul>
+                                        {% for lys in concert.lighting_work.all %}
+                                            <li><p>{{ lys }}</p></li>
+                                        {% endfor %}
+                                    </ul>
+                                    <h3>LYD:</h3>
+                                    <ul>
+                                        {% for lyd in concert.sound_work.all %}
+                                            <li><p>{{ lyd }}</p></li>
+                                        {% endfor %}
+                                    </ul>
+	                        </div>
                         </div>
                     </div>
                 </li>
