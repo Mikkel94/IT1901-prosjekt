@@ -69,47 +69,24 @@ def user_logout(request):
 @login_required
 def list_concert(request):
     info = {}
-    if request.user.is_authenticated():
-            emp = models.Employee.objects.get(user=request.user)
+    emp = models.Employee.objects.get(user=request.user)
 
-            if emp.employee_status == 'light_technician':
-                info['concerts'] = list(models.Concert.objects.filter(lighting_work=emp).order_by('date'))
-            elif emp.employee_status == 'sound_technician':
-                info['concerts'] = list(models.Concert.objects.filter(soundWork=emp).order_by('date'))
-            elif emp.employee_status == 'arranger':
-                info['concerts'] = list(models.Concert.objects.all().order_by('date'))
-            elif emp.employee_status == 'manager':
-                try:
-                    band = models.Band.objects.get(manager=emp)
-                    info['concerts'] = list(models.Concert.objects.filter(band=band).order_by('date'))
-                except:
-                    #HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
-                    return HttpResponseRedirect(reverse('festivalapp:index'))
+    if emp.employee_status == 'light_technician':
+        info['concerts'] = list(models.Concert.objects.filter(lighting_work=emp).order_by('date'))
+    elif emp.employee_status == 'sound_technician':
+        info['concerts'] = list(models.Concert.objects.filter(sound_work=emp).order_by('date'))
+    elif emp.employee_status == 'arranger':
+        info['concerts'] = list(models.Concert.objects.all().order_by('date'))
+    elif emp.employee_status == 'manager':
+        try:
+            band = models.Band.objects.get(manager=emp)
+            info['concerts'] = list(models.Concert.objects.filter(band=band).order_by('date'))
+        except:
+            #HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
+            return HttpResponseRedirect(reverse('festivalapp:index'))
 
-                # for con in info['concerts']:
-                #     con.soundWork=list(con.soundWork)
-                #     con.lightingWork=list(con.lightingWork)
     return render(request, 'festivalapp/concert_list.html', info)
 
-
-# @login_required
-# def home(request):
-#     info = {}
-#     if request.user.is_authenticated():
-#         emp = models.Employee.objects.get(user=request.user)
-#         cons = []
-#         if emp.employee_status == 'light_technician':
-#             cons = list(models.Concert.objects.filter(lighting_work=emp))
-#         elif emp.employee_status == 'sound_technician':
-#             cons = list(models.Concert.objects.filter(sound_work=emp))
-#         elif emp.employee_status == 'arranger':
-#             cons = list(models.Concert.objects.all())
-#
-#         info = {
-#             'cons': cons
-#         }
-#         return render(request, 'festivalapp/index.html', info)
-#     return render(request, 'festivalapp/index.html')
 
 @login_required
 def manager(request):
@@ -175,7 +152,6 @@ def book_band(request, pk):
     if request.method == 'POST':
         booking_form = forms.BookBandForm(data=request.POST)
         if(booking_form.is_valid()):
-            print("riktig")
             genre = booking_form.cleaned_data['genre']
             date = booking_form.cleaned_data['date']
             scene = booking_form.cleaned_data['scene']
@@ -193,7 +169,6 @@ def book_band(request, pk):
             concert.save()
             band.save()
         else:
-            print("fail")
             print(booking_form.errors)
             return HttpResponse("Invalid Syntax")
         return HttpResponseRedirect(reverse('festivalapp:index'))
