@@ -61,7 +61,7 @@ class Festival(models.Model):
 
 class Concert(models.Model):
     name = models.CharField(max_length=50, default="Concert")
-    band = models.ForeignKey(Band)
+    band = models.ForeignKey(Band, related_name="band")
     genre = models.CharField(max_length=32, choices=GENRES, default=None, null=True)
     audience = models.IntegerField(default=0)
     date = models.DateField()

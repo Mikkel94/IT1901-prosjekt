@@ -171,8 +171,6 @@ def delete_band(request, pk):
 @login_required
 def book_band(request, pk):
     band = models.Band.objects.get(pk=pk)
-    print(band.pk)
-    print(pk)
     print(band)
     if request.method == 'POST':
         booking_form = forms.BookBandForm(data=request.POST)
@@ -182,19 +180,22 @@ def book_band(request, pk):
             date = booking_form.cleaned_data['date']
             scene = booking_form.cleaned_data['scene']
             name = booking_form.cleaned_data['name']
+            festival = booking_form.cleaned_data['festival']
+            print(band.manager)
             concert, created = models.Concert.objects.get_or_create(
                                                     name=name,
                                                     date=date,
                                                     scene=scene,
                                                     genre=genre,
                                                     band=band,
-                                                )
+                                                    festival=festival)
             band.is_booked = True
             concert.save()
             band.save()
         else:
             print("fail")
             print(booking_form.errors)
+            return HttpResponse("Invalid Syntax")
         return HttpResponseRedirect(reverse('festivalapp:index'))
     else:
         booking_form = forms.BookBandForm()
