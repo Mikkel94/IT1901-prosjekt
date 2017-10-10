@@ -56,7 +56,7 @@ def populate():
         band=band1,
         genre='rock',
         audience=100,
-        date=datetime.now(),
+        date='2017-12-03',
         scene=scene1,
         lighting_work=user2,
         sound_work=user3,

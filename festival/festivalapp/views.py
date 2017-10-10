@@ -85,6 +85,8 @@ def list_concert(request):
                 except:
                     #HVIS DU IKKE ER MANAGER FOR NOEN BAND SÅ KOMMER DU INGEN STEDER
                     return HttpResponseRedirect(reverse('festivalapp:index'))
+            elif emp.employee_status == 'booking_responsible':
+                info['concerts'] = models.Concert.objects.all()
 
                 # for con in info['concerts']:
                 #     con.soundWork=list(con.soundWork)
@@ -168,6 +170,9 @@ def delete_band(request, pk):
     models.Band.objects.get(pk=pk).delete()
     return index(request)
 
+def get_festival_now(festival_pk):
+    return models.Festival.objects.get(pk=festival_pk)
+
 @login_required
 def book_band(request, pk):
     band = models.Band.objects.get(pk=pk)
@@ -177,16 +182,24 @@ def book_band(request, pk):
             genre = booking_form.cleaned_data['genre']
             date = booking_form.cleaned_data['date']
             scene = booking_form.cleaned_data['scene']
-            name = models.Band.name + ' models.Concert'
+            festival = booking_form.cleaned_data['festival']
+            name = band.name + ' concert'
+            print(genre)
+            print(date)
+            print(scene)
+            print(festival)
+            print(name)
             concert = models.Concert.objects.get_or_create(
-                                                    name=name,
-                                                    date=date,
-                                                    scene=scene,
-                                                    genre=genre,
-                                                    band=band,
-                                                )
+                name=name,
+                date=date,
+                scene=scene,
+                genre=genre,
+                band=band,
+                festival=festival,
+                audience=0,
+            )
             band.is_booked = True
-            concert.save()
+            band.save()
         else:
             print(booking_form.errors)
         return HttpResponseRedirect(reverse('festivalapp:index'))
@@ -213,4 +226,22 @@ def show_previous_festivals(request):
         'concerts': concerts,
     })
 
+@login_required
+def set_audience(request, pk):
+    if request.method == 'POST':
+        audience = request.POST['audience']
+        concert = models.Concert.objects.get(pk=pk)
+        concert.audience = audience
+        concert.save()
+        return HttpResponseRedirect(reverse('festivalapp:index'))
 
+@login_required
+def set_albums_and_former_concerts(request, pk):
+    if request.method == 'POST':
+        albums_sold = request.POST['albums-sold']
+        former_concerts = request.POST['former-concerts']
+        band = models.Band.objects.get(pk=pk)
+        band.sold_albums = albums_sold
+        band.former_concerts = former_concerts
+        band.save()
+        return HttpResponseRedirect(reverse('festivalapp:index'))

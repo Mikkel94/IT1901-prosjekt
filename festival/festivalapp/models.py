@@ -41,6 +41,8 @@ class Band(models.Model):
     sound_needs = models.IntegerField(default=0)
     specific_needs = models.TextField(default=None)
     is_booked = models.BooleanField(default=False)
+    sold_albums = models.IntegerField(default=100) # Vi sier i senere kode at Antall spill per dag = sold albums/20
+    former_concerts = models.IntegerField(default=1)
 
     def __str__(self):
         return self.name
@@ -66,7 +68,6 @@ class Concert(models.Model):
     lighting_work = models.ManyToManyField(Employee, related_name="lighting", blank=True)
     sound_work = models.ManyToManyField(Employee, related_name="sound", blank=True)
     festival = models.ForeignKey(Festival, blank=True, default=None)
-
 
     def __str__(self):
         return self.name + " - " + self.band.name
