@@ -2,7 +2,6 @@
 
 {% block content %}
 
-    Du er logget inn som: {{ user }}</p>
     <p>Status er: {{ emp.employee_status }}</p>
 
     {% if emp.employee_status == 'manager' %}
@@ -47,20 +46,11 @@
 
             {% for concert in concerts %}
                 <li class="concert_element">
-                    <p>{{ concert.name }}</p>
-                    <p>{{ concert.band }}</p>
-                    <p>{{ concert.date }}</p>
-                    <p>{{ concert.scene }}</p>
-
-                    <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info
-                    </button>
-            {% for concert in concerts  %}
-                    <li class="concert_element">
-                        <p>Konsertnavn: {{ concert.name }}</p>
-                        <p>Band: {{ concert.band }}</p>
-                        <p>Dato: {{ concert.date }}</p>
-                        <p>Scene: {{ concert.scene }}</p>
-                        <p>Festival: {{ concert.festival }}</p>
+                    <p>Konsertnavn: {{ concert.name }}</p>
+                    <p>Band: {{ concert.band }}</p>
+                    <p>Dato: {{ concert.date }}</p>
+                    <p>Scene: {{ concert.scene }}</p>
+                    <p>Festival: {{ concert.festival }}</p>
 
                     <!-- The Modal -->
                     <div class="modal" id="modal_{{ forloop.counter }}">
@@ -92,7 +82,7 @@
                     </div>
                 </li>
             {% endfor %}
-        {% elif emp.employee_status == 'booking_responsible' %}
+            {% elif emp.employee_status == 'booking_responsible' %}
 
             {% for concert in concerts %}
                 <li class="concert_element">
@@ -137,29 +127,29 @@
                             </ul>
                             <p>Mye mer info om konserten (info om bandet, teknisk hjelp, tekniske behov, billettpriser
                                 etc.)</p>
-	                        <div class="modal-content" >
-	                        <button onclick="myFunction({{ forloop.counter }})" class="close">&times;</button>
+                            <div class="modal-content">
+                                <button onclick="myFunction({{ forloop.counter }})" class="close">&times;</button>
 
-		                        	<p>Konsertnavn: {{ concert.name }}</p>
-                                    <p>Band: {{ concert.band }}</p>
-                                    <p>Dato: {{ concert.date }}</p>
-                                    <p>Scene: {{ concert.scene }}</p>
-                                    <p>Festival: {{ concert.festival }}</p>
+                                <p>Konsertnavn: {{ concert.name }}</p>
+                                <p>Band: {{ concert.band }}</p>
+                                <p>Dato: {{ concert.date }}</p>
+                                <p>Scene: {{ concert.scene }}</p>
+                                <p>Festival: {{ concert.festival }}</p>
 
-                                    <h3>LYS:</h3>
+                                <h3>LYS:</h3>
 
-                                    <ul>
-                                        {% for lys in concert.lighting_work.all %}
-                                            <li><p>{{ lys }}</p></li>
-                                        {% endfor %}
-                                    </ul>
-                                    <h3>LYD:</h3>
-                                    <ul>
-                                        {% for lyd in concert.sound_work.all %}
-                                            <li><p>{{ lyd }}</p></li>
-                                        {% endfor %}
-                                    </ul>
-	                        </div>
+                                <ul>
+                                    {% for lys in concert.lighting_work.all %}
+                                        <li><p>{{ lys }}</p></li>
+                                    {% endfor %}
+                                </ul>
+                                <h3>LYD:</h3>
+                                <ul>
+                                    {% for lyd in concert.sound_work.all %}
+                                        <li><p>{{ lyd }}</p></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </li>

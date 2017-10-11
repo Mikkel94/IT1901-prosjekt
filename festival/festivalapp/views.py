@@ -69,29 +69,26 @@ def user_logout(request):
 @login_required
 def list_concert(request):
     info = {}
-    if request.user.is_authenticated():
-            emp = models.Employee.objects.get(user=request.user)
+    emp = models.Employee.objects.get(user=request.user)
 
-            if emp.employee_status == 'light_technician':
-                info['concerts'] = list(models.Concert.objects.filter(lighting_work=emp).order_by('date'))
-            elif emp.employee_status == 'sound_technician':
-                info['concerts'] = list(models.Concert.objects.filter(soundWork=emp).order_by('date'))
-            elif emp.employee_status == 'arranger':
-                info['concerts'] = list(models.Concert.objects.all().order_by('date'))
-            elif emp.employee_status == 'manager':
-                try:
-                    band = models.band.objects.get(manager=emp)
-                    info['concerts'] = list(models.Concert.objects.filter(band=band).order_by('date'))
-                except:
-                    #HVIS DU IKKE ER MANAGER FOR NOEN BAND SÅ KOMMER DU INGEN STEDER
-                    return HttpResponseRedirect(reverse('festivalapp:index'))
-            elif emp.employee_status == 'booking_responsible':
-                info['concerts'] = models.Concert.objects.all()
 
-                # for con in info['concerts']:
-                #     con.soundWork=list(con.soundWork)
-                #     con.lightingWork=list(con.lightingWork)
+    if emp.employee_status == 'light_technician':
+        info['concerts'] = list(models.Concert.objects.filter(lighting_work=emp).filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+    elif emp.employee_status == 'sound_technician':
+        info['concerts'] = list(models.Concert.objects.filter(sound_work=emp).filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+    elif emp.employee_status == 'arranger':
+        info['concerts'] = list(models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+    elif emp.employee_status == 'manager':
+        try:
+            band = models.Band.objects.get(manager=emp)
+            info['concerts'] = list(models.Concert.objects.filter(band=band).filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+        except:
+            #HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
+            return HttpResponseRedirect(reverse('festivalapp:index'))
+
     return render(request, 'festivalapp/concert_list.html', info)
+
+
 
 @login_required
 def manager(request):
@@ -164,7 +161,7 @@ def book_band(request, pk):
             date = booking_form.cleaned_data['date']
             scene = booking_form.cleaned_data['scene']
             name = booking_form.cleaned_data['name']
-            festival = booking_form.cleaned_data['festival']
+            festival = models.Festival.objects.get(end_date__gte=datetime.date.today())
             concert, created = models.Concert.objects.get_or_create(
                                                     name=name,
                                                     date=date,
@@ -215,8 +212,8 @@ def set_audience(request, pk):
 @login_required
 def set_albums_and_former_concerts(request, pk):
     if request.method == 'POST':
-        albums_sold = request.POST['albums-sold']
-        former_concerts = request.POST['former-concerts']
+        albums_sold = request.POST['sold_albums']
+        former_concerts = request.POST['former_concerts']
         band = models.Band.objects.get(pk=pk)
         band.sold_albums = albums_sold
         band.former_concerts = former_concerts
