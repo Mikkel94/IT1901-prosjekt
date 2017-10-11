@@ -52,6 +52,8 @@
                     <p>Scene: {{ concert.scene }}</p>
                     <p>Festival: {{ concert.festival }}</p>
 
+                    <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info</button>
+
                     <!-- The Modal -->
                     <div class="modal" id="modal_{{ forloop.counter }}">
 
@@ -66,13 +68,13 @@
                             <h3>LYS:</h3>
 
                             <ul>
-                                {% for lys in concert.lightingWork.all %}
+                                {% for lys in concert.lighting_work.all %}
                                     <li><p>{{ lys }}</p></li>
                                 {% endfor %}
                             </ul>
                             <h3>LYD:</h3>
                             <ul>
-                                {% for lyd in concert.soundWork.all %}
+                                {% for lyd in concert.sound_work.all %}
                                     <li><p>{{ lyd }}</p></li>
                                 {% endfor %}
                             </ul>
