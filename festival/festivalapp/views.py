@@ -219,3 +219,5 @@ def set_albums_and_former_concerts(request, pk):
         band.former_concerts = former_concerts
         band.save()
         return HttpResponseRedirect(reverse('festivalapp:index'))
+    else:
+        return index(request)
