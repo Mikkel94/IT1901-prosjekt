@@ -9,6 +9,7 @@ STATUS_CHOICES = (
     ('light_technician', 'LYSTEKNIKER'),
     ('manager', 'MANAGER'),
     ('booking_responsible', 'BOOKINGANSVARLIG'),
+    ('booking_boss', 'BOOKINGSJEF')
 )
 
 GENRES = (
@@ -21,7 +22,6 @@ GENRES = (
 class Employee(models.Model):
     user = models.OneToOneField(User, related_name='user')
     employee_status = models.CharField(max_length=32, choices=STATUS_CHOICES)
-
 
     def __str__(self):
         return self.user.username

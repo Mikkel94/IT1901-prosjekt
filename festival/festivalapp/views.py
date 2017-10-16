@@ -237,3 +237,6 @@ def search(request):
     else:
         return HttpResponseRedirect(reverse('festivalapp:index'))
 
+@login_required
+def generate_price(request):
+    price = 0
