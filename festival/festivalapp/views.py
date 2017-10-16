@@ -221,3 +221,8 @@ def set_albums_and_former_concerts(request, pk):
         return HttpResponseRedirect(reverse('festivalapp:index'))
     else:
         return index(request)
+
+
+@login_required
+def generate_price(request):
+    price = 0
