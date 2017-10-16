@@ -226,3 +226,6 @@ def set_albums_and_former_concerts(request, pk):
 @login_required
 def generate_price(request):
     price = 0
+
+
+

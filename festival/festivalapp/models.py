@@ -29,9 +29,12 @@ class Employee(models.Model):
 
 class Scene(models.Model):
     name = models.CharField(max_length=50, default="Scene")
+    capacity = models.IntegerField(default=100)
 
     def __str__(self):
         return self.name
+
+
 
 class Band(models.Model):
     name = models.CharField(max_length=60, null=True)
@@ -50,12 +53,18 @@ class Band(models.Model):
     def setTrue(self):
         self.is_booked = True
 
+    @property
+    def popularity(self):
+        y = int(str(self.sold_albums))
+        return y/20
+
+
 
 class Festival(models.Model):
     name = models.CharField(max_length=32)
     end_date = models.DateField()
-   # concerts = [concert for concert in Concert.objects.all()]
-   # total_audience = sum([concert.audience for concert in concerts])
+    # concerts = [concert for concert in Concert.objects.all()]
+    # total_audience = sum([concert.audience for concert in concerts])
 
     def __str__(self):
         return self.name

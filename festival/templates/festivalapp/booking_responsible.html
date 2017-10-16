@@ -15,6 +15,7 @@
                 <p>Specific needs: {{ band.specific_needs }}</p>
                 <p>Sold albums: {{ band.sold_albums }}</p>
                 <p>Number of concerts: {{ band.former_concerts }}</p>
+                <p>Popularity: {{ band.popularity }}</p>
                 <a href="{% url 'festivalapp:delete_band' pk=band.pk %}" type="button" class="button delete-button">Delete</a>
                 <a href="{% url 'festivalapp:booking' pk=band.pk %}" type="button" class="button add-button">Add</a>
 
