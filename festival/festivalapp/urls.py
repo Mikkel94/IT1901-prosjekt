@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^old_festivals/$', views.show_previous_festivals, name='old_festivals'),
     url(r'^set_audience/(?P<pk>\d+)/change', views.set_audience, name='set_audience'),
     url(r'^set_exp/(?P<pk>\d+)/change', views.set_albums_and_former_concerts, name='set_exp'),
-    url(r'^generate_price', views.generate_price, name="generate_price")
+    url(r'^generate_price/$', views.generate_price, name="generate_price"),
+    url(r'^generate_price/(?P<calc>\w+)/$', views.generate_price, name="generate_price")
 ]

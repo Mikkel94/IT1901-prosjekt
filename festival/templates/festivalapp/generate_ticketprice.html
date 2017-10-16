@@ -1,13 +1,31 @@
-{% extends base.html %}
+{% extends 'base.html' %}
 
 {% block content %}
 
     <div>
-        <button class="button">Generate ticketprice</button>
+        <a href="{% url 'festivalapp:generate_price' calc=True %}" type="button" class="button">
+                Generate ticketprice
+        </a>
     </div>
 
     <div>
+        {% if scenes %}
 
+            {% for scene in scenes %}
+                <br>
+                <br>
+                Scene: {{ scene.scene }}
+                <br>
+                Kapasitet: {{ scene.capacity }}
+                <br>
+                Pris: {{ scene.ticketprice }} kr
+                <br>
+            {% endfor %}
+
+
+
+
+        {% endif %}
     </div>
 
 

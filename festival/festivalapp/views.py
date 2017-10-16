@@ -224,8 +224,38 @@ def set_albums_and_former_concerts(request, pk):
 
 
 @login_required
-def generate_price(request):
-    price = 0
+def generate_price(request, calc=False):
+
+    if calc == "True":
+
+        # 1. regn ut kostnader (loennn + oppsett)
+        # 2. regn ut inntekter (80% av scenekapasitet)
+        # 3. generer en billettpris basert paa punkt 1 og 2
+        # 4. plusser paa et tall eps
+
+        scenes = models.Scene.objects.all()
+        scene_prices = []
+        for scene in scenes:
+            eps = 50
+            x = float(scene.capacity)
+            tickets_sold_ca = x * 0.8
+            loenn = 40000.0
+            oppsett = 20000.0
+            kostnader = loenn + oppsett
+            ticketprice = kostnader/tickets_sold_ca
+            ticketprice += eps
+            scene_prices.append({
+                'scene': scene,
+                'capacity': scene.capacity,
+                'ticketprice': ticketprice
+            })
+
+        return render(request, 'festivalapp/generate_ticketprice.html', {
+            'calc': calc,
+            'scenes': scene_prices
+        })
+    else:
+        return render(request, 'festivalapp/generate_ticketprice.html')
 
 
 

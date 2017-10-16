@@ -29,7 +29,7 @@ class Employee(models.Model):
 
 class Scene(models.Model):
     name = models.CharField(max_length=50, default="Scene")
-    capacity = models.IntegerField(default=100)
+    capacity = models.IntegerField(default=300)
 
     def __str__(self):
         return self.name
@@ -56,8 +56,7 @@ class Band(models.Model):
     @property
     def popularity(self):
         y = int(str(self.sold_albums))
-        return y/20
-
+        return (y/20)/100
 
 
 class Festival(models.Model):

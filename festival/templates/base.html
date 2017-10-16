@@ -75,6 +75,13 @@
 
     {% endif %}
 
+    {% if emp.employee_status == 'booking_boss' %}
+        <div class="menu box">
+            <h1>
+                <a href="{% url 'festivalapp:generate_price' %}" style="text-decoration: none; Color: white;">Generer billettpris</a>
+            </h1>
+        </div>
+    {% endif %}
 
 </div>
 
