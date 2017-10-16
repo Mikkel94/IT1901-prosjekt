@@ -3,16 +3,21 @@ Population script
 requires you to already have a superuser
 """
 
-import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE','festival.settings')
+
+from festival.festivalapp import models
+from django.contrib.auth.models import User
+from datetime import datetime
+
 
 import django
+
+
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'festival.settings')
+
 # Import settings
 django.setup()
 
-from festivalapp import models
-from django.contrib.auth.models import User
-from datetime import datetime
 
 def populate():
     user1 = User.objects.create_user('sound', password='heipaadeg24')
@@ -44,6 +49,7 @@ def populate():
         light_needs=1,
         sound_needs=1,
         specific_needs='None',
+        sold_albums=50,
         is_booked=False
     )[0]
     band1.save()
