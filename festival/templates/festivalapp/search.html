@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for concert in concerts %}
+        {% for value in concert %}
+            {{ value.band }}
+            {{ value }}
+        {% endfor %}
+    {% endfor %}
+
+{% endblock %}

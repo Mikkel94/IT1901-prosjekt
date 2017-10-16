@@ -54,6 +54,14 @@
                 <a href="{% url 'festivalapp:booking_responsible' %}" style="text-decoration: none; Color: white;">Bookingansvarlig side</a>
             </h1>
         </div>
+        <div>
+            <form action="{% url 'festivalapp:search' %}" method="post">
+                {% csrf_token %}
+                <input type="text" class="search" name="search">
+                <input type="submit" value="Search">
+
+            </form>
+        </div>
     {% endif %}
 
     {% if emp.employee_status != None %}

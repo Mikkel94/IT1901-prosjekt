@@ -15,6 +15,7 @@ def index(request):
     return render(request, 'festivalapp/index.html')
 
 
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -129,7 +130,7 @@ def booking_responsible(request):
             'sound_techs': sound_techs,
         })
     else:
-        return index(request)
+        return HttpResponseRedirect(reverse('festivalapp:index'))
 
 @login_required
 def assign_tech_to_concert(request, tech_pk, concert_pk):
@@ -221,3 +222,18 @@ def set_albums_and_former_concerts(request, pk):
         return HttpResponseRedirect(reverse('festivalapp:index'))
     else:
         return index(request)
+
+@login_required
+def search(request):
+    if request.method == 'POST':
+        search_input = request.POST['search']
+        bands = models.Band.objects.filter(name__contains=search_input)
+        concerts = []
+        for band in bands:
+            concerts.append(models.Concert.objects.filter(band__exact=band))
+        return render(request, 'festivalapp/search.html', context={
+            'concerts': concerts
+        })
+    else:
+        return HttpResponseRedirect(reverse('festivalapp:index'))
+

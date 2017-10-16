@@ -56,12 +56,12 @@ def populate():
         band=band1,
         genre='rock',
         audience=100,
-        date='2017-12-03',
+        date=datetime.now(),
         scene=scene1,
-        lighting_work=user2,
-        sound_work=user3,
+        lighting_work=emp1,
+        sound_work=emp2,
         festival=festival1
-    )
+    )[0]
     concert1.save()
 
 
