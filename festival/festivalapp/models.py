@@ -9,7 +9,10 @@ STATUS_CHOICES = (
     ('light_technician', 'LYSTEKNIKER'),
     ('manager', 'MANAGER'),
     ('booking_responsible', 'BOOKINGANSVARLIG'),
-    ('booking_boss', 'BOOKINGSJEF')
+    ('booking_boss', 'BOOKINGSJEF'),
+    ('pr_manager', 'PR-MANAGER'),
+    ('service_manager', 'SERVICE MANAGER'),
+    ('band_member', 'BAND MEMBER')
 )
 
 GENRES = (
