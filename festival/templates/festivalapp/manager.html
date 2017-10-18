@@ -14,8 +14,13 @@
     </form>
     
     <h1>SET EXPERIENCE</h1>
-    <form action="{% url 'festivalapp:set_exp' %}">
-
+    <form action="{% url 'festivalapp:set_exp' pk=band.pk %}" method="post">
+        {% csrf_token %}
+        <label for="sold_albums">Sold Albums: </label>
+        <input type="number" id="sold_albums" name="sold_albums">
+        <label for="former_concerts">Former Concerts: </label>
+        <input type="number" id="former_concerts" name="former_concerts">
+        <input type="submit" value="Submit">
     </form>
 
 {% endblock %}

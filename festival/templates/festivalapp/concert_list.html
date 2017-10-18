@@ -2,14 +2,6 @@
 
 {% block content %}
 
-    Du er logget inn som: {{ user }}</p>
-    <p>Status er: {{ emp.employee_status }}</p>
-
-    {% if emp.employee_status == 'manager' %}
-        <br>Ditt band sine konserter:
-
-        <h2>Konserter:</h2>
-    {% endif %}
 
     {% if emp.employee_status == 'sound_technician' or emp.employee_status == 'light_technician' %}
 
@@ -46,27 +38,20 @@
 
             {% for concert in concerts %}
                 <li class="concert_element">
-                    <p>{{ concert.name }}</p>
-                    <p>{{ concert.band }}</p>
-                    <p>{{ concert.date }}</p>
-                    <p>{{ concert.scene }}</p>
+                    <p>Konsertnavn: {{ concert.name }}</p>
+                    <p>Band: {{ concert.band }}</p>
+                    <p>Dato: {{ concert.date }}</p>
+                    <p>Scene: {{ concert.scene }}</p>
+                    <p>Festival: {{ concert.festival }}</p>
 
-                    <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info
-                    </button>
-            {% for concert in concerts  %}
-                    <li class="concert_element">
-                        <p>Konsertnavn: {{ concert.name }}</p>
-                        <p>Band: {{ concert.band }}</p>
-                        <p>Dato: {{ concert.date }}</p>
-                        <p>Scene: {{ concert.scene }}</p>
-                        <p>Festival: {{ concert.festival }}</p>
+                    <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info</button>
 
                     <!-- The Modal -->
                     <div class="modal" id="modal_{{ forloop.counter }}">
 
                         <!-- Modal content -->
                         <div class="modal-content">
-                            <button onclick="myFunction({{ forloop.counter }})" class="close">&times;</button>
+                            <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
 
                             <p>{{ concert.name }}</p>
                             <p>{{ concert.band }}</p>
@@ -75,23 +60,22 @@
                             <h3>LYS:</h3>
 
                             <ul>
-                                {% for lys in concert.lightingWork.all %}
+                                {% for lys in concert.lighting_work.all %}
                                     <li><p>{{ lys }}</p></li>
                                 {% endfor %}
                             </ul>
                             <h3>LYD:</h3>
                             <ul>
-                                {% for lyd in concert.soundWork.all %}
+                                {% for lyd in concert.sound_work.all %}
                                     <li><p>{{ lyd }}</p></li>
                                 {% endfor %}
                             </ul>
-                            <p>Mye mer info om konserten (info om bandet, teknisk hjelp, tekniske behov, billettpriser
-                                etc.)</p>
+
                         </div>
                     </div>
                 </li>
             {% endfor %}
-        {% elif emp.employee_status == 'booking_responsible' %}
+            {% elif emp.employee_status == 'booking_responsible' %}
 
             {% for concert in concerts %}
                 <li class="concert_element">
@@ -115,7 +99,7 @@
 
                         <!-- Modal content -->
                         <div class="modal-content">
-                            <button onclick="myFunction({{ forloop.counter }})" class="close">&times;</button>
+                            <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
 
                             <p>{{ concert.name }}</p>
                             <p>{{ concert.band }}</p>
@@ -134,10 +118,9 @@
                                     <li><p>{{ lyd }}</p></li>
                                 {% endfor %}
                             </ul>
-                            <p>Mye mer info om konserten (info om bandet, teknisk hjelp, tekniske behov, billettpriser
-                                etc.)</p>
+
 	                        <div class="modal-content" >
-	                        <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
+	                            <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
 
 		                        	<p>Konsertnavn: {{ concert.name }}</p>
                                     <p>Band: {{ concert.band }}</p>
@@ -163,6 +146,36 @@
                     </div>
                 </li>
             {% endfor %}
+
+            {% elif emp.employee_status == 'pr_manager' %}
+
+            {% for concert in concerts %}
+                <li class="concert_element">
+                    <p>Konsertnavn: {{ concert.name }}</p>
+                    <p>Band: {{ concert.band }}</p>
+                    <p>Dato: {{ concert.date }}</p>
+                    <p>Scene: {{ concert.scene }}</p>
+                    <p>Festival: {{ concert.festival }}</p>
+
+                    <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Bandinfo</button>
+
+                    <!-- The Modal -->
+                    <div class="modal" id="modal_{{ forloop.counter }}">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
+                            <h1>Bandinfo:<h1>
+                            <p>Bandnavn: {{ concert.band.name }}</p>
+                            <p>Solgte album: {{ concert.band.sold_albums }}</p>
+                            <p>Presseomtaler: {{ concert.links }}</p>
+                            <p>Kontaktinfo: {{ concert.band.contact_info }}</p>
+                            <p>Omtale: {{ concert.band.review }}</p>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+
         </ul>
 
     {% endif %}

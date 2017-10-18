@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+    </title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+
+<!-- BANNER START -->
+
+<div id="banner">
+
+    <div id="bannerbilde">
+        <a href="{% url 'festivalapp:index' %}"><img src="{% static 'img/Banner.png' %}" alt="Bannerbilde"></a>
+    </div>
+
+    {% if user %}
+        <div id="loggedin" class="box konto">
+            <h1>LOGGET INN SOM: {{ user }}</h1>
+            <h1>{{ emp.employee_status }}</h1>
+        </div>
+        <div class="box konto" id="logout">
+            <h1><a class="logout" href="{% url 'festivalapp:logout' %}" style="text-decoration: none;">Logg ut</a></h1>
+        </div>
+    {% else %}
+        <div class="box konto" id="login">
+            <h1><a href="{% url 'festivalapp:login' %}">Logg inn</a></h1>
+        </div>
+    {% endif %}
+
+
+</div>
+
+<!-- BANNER SLUTT -->
+
+<!-- MENY START -->
+
+<div id="meny">
+
+    {% if emp.employee_status == 'manager' %}
+        <div class="menu box">
+            <h1>
+                <a href="{% url 'festivalapp:manager' %}" style="text-decoration: none; Color: white;">Manager side</a>
+            </h1>    
+         </div>
+    {% endif %}
+
+    {% if emp.employee_status == 'booking_responsible' %}
+        <div class="menu box">
+            <h1>
+                <a href="{% url 'festivalapp:booking_responsible' %}" style="text-decoration: none; Color: white;">Bookingansvarlig side</a>
+            </h1>
+        </div>
+        <div>
+            <form action="{% url 'festivalapp:search' %}" method="post">
+                {% csrf_token %}
+                <input type="text" class="search" name="search">
+                <input type="submit" value="Search">
+
+            </form>
+        </div>
+    {% endif %}
+
+    {% if emp.employee_status != None %}
+         <div class="menu box">
+            <h1>
+                <a href="{% url 'festivalapp:list_concert' %}" style="text-decoration: none; Color: white;">Konsert liste</a>
+            </h1>    
+         </div>
+         
+    {% endif %}
+
+    {% if emp.employee_status == 'booking_responsible' %}
+        <div class="menu box">
+            <h1>
+                <a href="{% url 'festivalapp:old_festivals' %}" style="text-decoration: none; Color: white;">Gamle konserter</a>
+            </h1>
+        </div>
+
+
+    {% endif %}
+
+
+</div>
+
+<!-- MENY SLUTT -->
+
+<div class="container box" id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<script src="{% static 'js/base.js' %}"></script>
+</body>
+</html>
