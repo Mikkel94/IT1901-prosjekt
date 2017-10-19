@@ -50,8 +50,8 @@ class Band(models.Model):
     sold_albums = models.IntegerField(default=100) # Vi sier i senere kode at Antall spill per dag = sold albums/20
     former_concerts = models.IntegerField(default=1)
     review = models.TextField(default='No review yet')
-    links = models.CharField(max_length=128)
-    contact_info = models.CharField(max_length=50)
+    contact_info = models.EmailField(blank=True)
+    links = models.CharField(max_length=128, blank=True)
 
     def __str__(self):
         return self.name
