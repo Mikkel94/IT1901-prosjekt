@@ -46,6 +46,7 @@ class Band(models.Model):
     is_booked = models.BooleanField(default=False)
     sold_albums = models.IntegerField(default=100) # Vi sier i senere kode at Antall spill per dag = sold albums/20
     former_concerts = models.IntegerField(default=1)
+    review = models.TextField(default='No review yet')
 
     def __str__(self):
         return self.name

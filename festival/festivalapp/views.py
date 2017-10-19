@@ -157,7 +157,7 @@ def book_band(request, pk):
     print(band)
     if request.method == 'POST':
         booking_form = forms.BookBandForm(data=request.POST)
-        if(booking_form.is_valid()):
+        if booking_form.is_valid():
             genre = booking_form.cleaned_data['genre']
             date = booking_form.cleaned_data['date']
             scene = booking_form.cleaned_data['scene']
@@ -194,6 +194,8 @@ def show_previous_festivals(request):
             (festival.end_date.month >= today.month) and
             (festival.end_date.year >= today.year)):
             festivals.append(festival)
+    if len(festivals) < 1:
+        festivals.append('')
 
     return render(request, 'festivalapp/old_festivals.html', {
         'festivals': festivals,
@@ -230,13 +232,25 @@ def search(request):
         bands = models.Band.objects.filter(name__contains=search_input)
         concerts = []
         for band in bands:
-            concerts.append(models.Concert.objects.filter(band__exact=band))
+            concerts.append(models.Concert.objects.filter(band__exact=band).filter(date__lte=datetime.date.today()))
         return render(request, 'festivalapp/search.html', context={
             'concerts': concerts
         })
     else:
         return HttpResponseRedirect(reverse('festivalapp:index'))
 
+@login_required
+def add_review(request, pk):
+    band = models.Band.objects.get(pk=pk)
+    if request.method == 'POST':
+        review = request.POST['review']
+        print(review)
+        if len(review):
+            band.review = review
+            band.save()
+        return HttpResponseRedirect(reverse('festivalapp:index'))
+    else:
+        return index(request)
 @login_required
 def generate_price(request):
     price = 0

@@ -4,8 +4,9 @@
 
     {% for concert in concerts %}
         {% for value in concert %}
-            {{ value.band }}
-            {{ value }}
+            Band: {{ value.band }}
+            Concert: {{ value }}
+            Audience: {{ value.audience }}
         {% endfor %}
     {% endfor %}
 

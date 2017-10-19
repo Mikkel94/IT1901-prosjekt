@@ -23,6 +23,22 @@
 
         {% endif %}
     {% endfor %}
+    SET REVIEW
+    {% for band in bands %}
+        <li class="concert_element">
+            <p>Name: {{ band.name }}</p>
+            <p>Manager: {{ band.manager }}</p>
+            <p>Number of members: {{ band.members }}</p>
+            <p>Current review: {{ band.review }}</p>
+            <form action="{% url 'festivalapp:add_review' pk=band.pk %}" method="post" id="review-form">
+                {% csrf_token %}
+                <label for="review">New review here:</label>
+                <textarea name="review" id="review" cols="30" rows="10"></textarea>
+                <input type="submit" value="Submit">
+            </form>
+        </li>
+    {% endfor %}
+
 
 
 {% endblock %}
