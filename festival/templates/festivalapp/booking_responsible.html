@@ -13,8 +13,11 @@
                 <p>Light needs: {{ band.light_needs }}</p>
                 <p>Sound needs: {{ band.sound_needs }}</p>
                 <p>Specific needs: {{ band.specific_needs }}</p>
+<<<<<<< HEAD
+=======
                 <p>Sold albums: {{ band.sold_albums }}</p>
                 <p>Number of concerts: {{ band.former_concerts }}</p>
+>>>>>>> development
                 <a href="{% url 'festivalapp:delete_band' pk=band.pk %}" type="button" class="button delete-button">Delete</a>
                 <a href="{% url 'festivalapp:booking' pk=band.pk %}" type="button" class="button add-button">Add</a>
 
