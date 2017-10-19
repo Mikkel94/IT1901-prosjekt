@@ -9,7 +9,10 @@ STATUS_CHOICES = (
     ('light_technician', 'LYSTEKNIKER'),
     ('manager', 'MANAGER'),
     ('booking_responsible', 'BOOKINGANSVARLIG'),
-    ('booking_boss', 'BOOKINGSJEF')
+    ('booking_boss', 'BOOKINGSJEF'),
+    ('pr_manager', 'PR-MANAGER'),
+    ('service_manager', 'SERVICE MANAGER'),
+    ('band_member', 'BAND MEMBER')
 )
 
 GENRES = (
@@ -46,6 +49,9 @@ class Band(models.Model):
     is_booked = models.BooleanField(default=False)
     sold_albums = models.IntegerField(default=100) # Vi sier i senere kode at Antall spill per dag = sold albums/20
     former_concerts = models.IntegerField(default=1)
+    review = models.TextField(default='No review yet')
+    links = models.CharField(max_length=128)
+    contact_info = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
@@ -79,6 +85,7 @@ class Concert(models.Model):
     lighting_work = models.ManyToManyField(Employee, related_name="lighting", blank=True)
     sound_work = models.ManyToManyField(Employee, related_name="sound", blank=True)
     festival = models.ForeignKey(Festival, blank=True, default=None, related_name="festival")
+
 
     def __str__(self):
         return self.name + " - " + self.band.name

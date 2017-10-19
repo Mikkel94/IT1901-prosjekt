@@ -15,6 +15,7 @@ def index(request):
     return render(request, 'festivalapp/index.html')
 
 
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -85,6 +86,8 @@ def list_concert(request):
         except:
             #HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
             return HttpResponseRedirect(reverse('festivalapp:index'))
+    elif emp.employee_status == 'pr_manager':
+        info['concerts'] = list(models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
 
     return render(request, 'festivalapp/concert_list.html', info)
 
@@ -129,7 +132,7 @@ def booking_responsible(request):
             'sound_techs': sound_techs,
         })
     else:
-        return index(request)
+        return HttpResponseRedirect(reverse('festivalapp:index'))
 
 @login_required
 def assign_tech_to_concert(request, tech_pk, concert_pk):
@@ -156,7 +159,7 @@ def book_band(request, pk):
     print(band)
     if request.method == 'POST':
         booking_form = forms.BookBandForm(data=request.POST)
-        if(booking_form.is_valid()):
+        if booking_form.is_valid():
             genre = booking_form.cleaned_data['genre']
             date = booking_form.cleaned_data['date']
             scene = booking_form.cleaned_data['scene']
@@ -193,6 +196,8 @@ def show_previous_festivals(request):
             (festival.end_date.month >= today.month) and
             (festival.end_date.year >= today.year)):
             festivals.append(festival)
+    if len(festivals) < 1:
+        festivals.append('')
 
     return render(request, 'festivalapp/old_festivals.html', {
         'festivals': festivals,
@@ -222,6 +227,19 @@ def set_albums_and_former_concerts(request, pk):
     else:
         return index(request)
 
+@login_required
+def search(request):
+    if request.method == 'POST':
+        search_input = request.POST['search']
+        bands = models.Band.objects.filter(name__contains=search_input)
+        concerts = []
+        for band in bands:
+            concerts.append(models.Concert.objects.filter(band__exact=band).filter(date__lte=datetime.date.today()))
+        return render(request, 'festivalapp/search.html', context={
+            'concerts': concerts
+        })
+    else:
+        return HttpResponseRedirect(reverse('festivalapp:index'))
 
 @login_required
 def generate_price(request, calc=False):
@@ -257,5 +275,14 @@ def generate_price(request, calc=False):
     else:
         return render(request, 'festivalapp/generate_ticketprice.html')
 
-
-
+def add_review(request, pk):
+    band = models.Band.objects.get(pk=pk)
+    if request.method == 'POST':
+        review = request.POST['review']
+        print(review)
+        if len(review):
+            band.review = review
+            band.save()
+        return HttpResponseRedirect(reverse('festivalapp:index'))
+    else:
+        return index(request)

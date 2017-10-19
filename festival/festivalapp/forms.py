@@ -23,3 +23,4 @@ class BookBandForm(forms.ModelForm):
     class Meta:
         model = Concert
         fields = ('name', 'genre', 'date', 'scene')
+
