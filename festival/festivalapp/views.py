@@ -201,8 +201,18 @@ def book_band(request, pk):
 @login_required
 def booking_requests(request):
     concert_requests = models.ConcertRequest.objects.all()
+    concert_isbooked = models.Band.objects.filter(is_booked=True)
+    avail_num = 0
+    if models.Festival.objects.filter(end_date__gte=datetime.date.today()):
+        c = models.Concert.objects.filter(festival__end_date__gte=datetime.date.today())[0]
+        end_date = c.festival.end_date
+        avail_num = (end_date - datetime.date.today()).days
+        avail_num -= len(concert_isbooked)
+
     return render(request, 'festivalapp/booking_requests.html', {
-        'concerts': concert_requests
+        'concerts': concert_requests,
+        'concerts_isbooked': concert_isbooked,
+        'available_dates': avail_num
     })
 
 
@@ -218,9 +228,11 @@ def accept_booking_request(request, pk):
         festival=concert_request.festival,
         price=concert_request.price
     )[0]
-    concert.band.is_booked = True
-    concert.band.is_booking_req_sendt = False
+    band = models.Band.objects.get(pk=concert.band.pk)
     concert.save()
+    band.is_booked = True
+    band.is_booking_req_sendt = False
+    band.save()
     concert_request.delete()
     return HttpResponseRedirect(reverse('festivalapp:booking_requests'))
 
