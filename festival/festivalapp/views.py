@@ -209,6 +209,10 @@ def booking_requests(request):
 @login_required
 def accept_booking_request(request, pk):
     concert_request = models.ConcertRequest.objects.get(pk=pk)
+    all_concert = models.Concert.objects.all()
+    for concert in all_concert:
+        if concert.date == concert_request.date and concert.scene == concert_request.scene:
+            return HttpResponse('Date occupied')
     concert = models.Concert.objects.get_or_create(
         name=concert_request.name,
         date=concert_request.date,
