@@ -22,5 +22,5 @@ class BandNeedsForm(forms.ModelForm):
 class BookBandForm(forms.ModelForm):
     class Meta:
         model = Concert
-        fields = ('name', 'genre', 'date', 'scene')
+        fields = ('name', 'genre', 'date', 'scene', 'price')
 

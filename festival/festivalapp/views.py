@@ -15,7 +15,6 @@ def index(request):
     return render(request, 'festivalapp/index.html')
 
 
-
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -25,7 +24,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return index(request) # HttpResponseRedirect(reverse('festivalapp:index'))
+                return index(request)  # HttpResponseRedirect(reverse('festivalapp:index'))
             else:
                 return HttpResponse('ACCOUNT INACTIVE')
         else:
@@ -33,6 +32,7 @@ def user_login(request):
             return HttpResponse('INVALID CREDENTIALS')
     else:
         return render(request, 'loginsite.html')
+
 
 @login_required
 def register(request):
@@ -61,6 +61,7 @@ def register(request):
         'registered': registered
     })
 
+
 @login_required
 def user_logout(request):
     logout(request)
@@ -72,25 +73,29 @@ def list_concert(request):
     info = {}
     emp = models.Employee.objects.get(user=request.user)
 
-
     if emp.employee_status == 'light_technician':
-        info['concerts'] = list(models.Concert.objects.filter(lighting_work=emp).filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+        info['concerts'] = list(models.Concert.objects.filter(lighting_work=emp).filter(
+            festival__end_date__gte=datetime.date.today()).order_by('date'))
     elif emp.employee_status == 'sound_technician':
-        info['concerts'] = list(models.Concert.objects.filter(sound_work=emp).filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+        info['concerts'] = list(models.Concert.objects.filter(sound_work=emp).filter(
+            festival__end_date__gte=datetime.date.today()).order_by('date'))
     elif emp.employee_status == 'arranger':
-        info['concerts'] = list(models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+        info['concerts'] = list(
+            models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
     elif emp.employee_status == 'manager':
         try:
             band = models.Band.objects.get(manager=emp)
-            info['concerts'] = list(models.Concert.objects.filter(band=band).filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+            info['concerts'] = list(
+                models.Concert.objects.filter(band=band).filter(festival__end_date__gte=datetime.date.today()).order_by(
+                    'date'))
         except:
-            #HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
+            # HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
             return HttpResponseRedirect(reverse('festivalapp:index'))
     elif emp.employee_status == 'pr_manager':
-        info['concerts'] = list(models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+        info['concerts'] = list(
+            models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
 
     return render(request, 'festivalapp/concert_list.html', info)
-
 
 
 @login_required
@@ -113,16 +118,16 @@ def manager(request):
         return render(request, 'festivalapp/manager.html', {
             'manager_form': band_needs,
             'band': band
-                      })
+        })
     except:
-        #HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
+        # HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
         return HttpResponseRedirect(reverse('festivalapp:index'))
 
 
 @login_required
 def booking_responsible(request):
     if models.Employee.objects.filter(user=request.user, employee_status='booking_responsible'):
-        #booking_responsible = models.Employee.objects.get(user=request.user) # Trenger kanskje senere
+        # booking_responsible = models.Employee.objects.get(user=request.user) # Trenger kanskje senere
         bands = models.Band.objects.filter(is_booked=False)
         light_techs = models.Employee.objects.filter(employee_status='light_technician')
         sound_techs = models.Employee.objects.filter(employee_status='light_technician')
@@ -134,6 +139,7 @@ def booking_responsible(request):
     else:
         return HttpResponseRedirect(reverse('festivalapp:index'))
 
+
 @login_required
 def assign_tech_to_concert(request, tech_pk, concert_pk):
     tech = models.Employee.objects.get(pk=tech_pk)
@@ -144,14 +150,17 @@ def assign_tech_to_concert(request, tech_pk, concert_pk):
         concert.sound_work.add(tech)
     return index(request)
 
+
 @login_required
 def delete_band(request, pk):
     # pk = models.Band.kwargs['pk'] #Might be this instead
     models.Band.objects.get(pk=pk).delete()
     return index(request)
 
+
 def get_festival_now(festival_pk):
     return models.Festival.objects.get(pk=festival_pk)
+
 
 @login_required
 def book_band(request, pk):
@@ -164,16 +173,19 @@ def book_band(request, pk):
             date = booking_form.cleaned_data['date']
             scene = booking_form.cleaned_data['scene']
             name = booking_form.cleaned_data['name']
+            price = booking_form.cleaned_data['price']
             festival = models.Festival.objects.get(end_date__gte=datetime.date.today())
-            concert, created = models.Concert.objects.get_or_create(
-                                                    name=name,
-                                                    date=date,
-                                                    scene=scene,
-                                                    genre=genre,
-                                                    band=band,
-                                                    festival=festival)
-            band.is_booked = True
-            concert.save()
+            concert_request = models.ConcertRequest.objects.get_or_create(
+                name=name,
+                date=date,
+                scene=scene,
+                genre=genre,
+                band=band,
+                festival=festival,
+                price=price)[0]
+            concert_request.save()
+
+            band.is_booking_req_sendt = True
             band.save()
         else:
             print(booking_form.errors)
@@ -185,6 +197,42 @@ def book_band(request, pk):
             'booking_form': booking_form
         })
 
+
+@login_required
+def booking_requests(request):
+    concert_requests = models.ConcertRequest.objects.all()
+    return render(request, 'festivalapp/booking_requests.html', {
+        'concerts': concert_requests
+    })
+
+
+@login_required
+def accept_booking_request(request, pk):
+    concert_request = models.ConcertRequest.objects.get(pk=pk)
+    concert = models.Concert.objects.get_or_create(
+        name=concert_request.name,
+        date=concert_request.date,
+        scene=concert_request.scene,
+        genre=concert_request.genre,
+        band=concert_request.band,
+        festival=concert_request.festival,
+        price=concert_request.price
+    )[0]
+    concert.band.is_booked = True
+    concert.band.is_booking_req_sendt = False
+    concert.save()
+    concert_request.delete()
+    return HttpResponseRedirect(reverse('festivalapp:booking_requests'))
+
+@login_required
+def decline_booking_request(request, pk):
+    c = models.ConcertRequest.objects.get(pk=pk)
+    c.band.is_booking_req_sendt = False
+    c.delete()
+    return HttpResponseRedirect(reverse('festivalapp:booking_requests'))
+
+
+
 @login_required
 def show_previous_festivals(request):
     festivals = []
@@ -193,8 +241,8 @@ def show_previous_festivals(request):
 
     for festival in models.Festival.objects.all():
         if not ((festival.end_date.day >= today.day) and
-            (festival.end_date.month >= today.month) and
-            (festival.end_date.year >= today.year)):
+                    (festival.end_date.month >= today.month) and
+                    (festival.end_date.year >= today.year)):
             festivals.append(festival)
     if len(festivals) < 1:
         festivals.append('')
@@ -205,6 +253,7 @@ def show_previous_festivals(request):
         'concerts': concerts,
     })
 
+
 @login_required
 def set_audience(request, pk):
     if request.method == 'POST':
@@ -213,6 +262,7 @@ def set_audience(request, pk):
         concert.audience = audience
         concert.save()
         return HttpResponseRedirect(reverse('festivalapp:index'))
+
 
 @login_required
 def set_albums_and_former_concerts(request, pk):
@@ -226,6 +276,7 @@ def set_albums_and_former_concerts(request, pk):
         return HttpResponseRedirect(reverse('festivalapp:index'))
     else:
         return index(request)
+
 
 @login_required
 def search(request):
@@ -241,9 +292,9 @@ def search(request):
     else:
         return HttpResponseRedirect(reverse('festivalapp:index'))
 
+
 @login_required
 def generate_price(request, calc=False):
-
     if calc == "True":
 
         # 1. regn ut kostnader (loennn + oppsett)
@@ -260,7 +311,7 @@ def generate_price(request, calc=False):
             loenn = 40000.0
             oppsett = 20000.0
             kostnader = loenn + oppsett
-            ticketprice = kostnader/tickets_sold_ca
+            ticketprice = kostnader / tickets_sold_ca
             ticketprice += eps
             scene_prices.append({
                 'scene': scene,
@@ -274,6 +325,7 @@ def generate_price(request, calc=False):
         })
     else:
         return render(request, 'festivalapp/generate_ticketprice.html')
+
 
 def add_review(request, pk):
     band = models.Band.objects.get(pk=pk)
