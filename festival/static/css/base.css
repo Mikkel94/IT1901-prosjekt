@@ -105,10 +105,13 @@ div.konto {
 ul {
 list-style-type: none;
 }
+li {
+list-style-type: none;
+}
 
 .concert_element{
     position:relative;
-    padding: 5%;
+    padding: 4%;
     min-width:60%;
     border-style: solid;
     border-color: #666666;
@@ -122,6 +125,39 @@ list-style-type: none;
 }
 
 .concert_element > p :empty{
+    display: none;
+}
+
+.concertcontainer1 {
+    width: 50%;
+    float: left;
+
+}
+
+#submitreview {
+    margin-top: 20px;
+    display: inline-block;
+    width:105px;
+    cursor: pointer;
+}
+
+
+.concert_element2{
+    position:relative;
+    padding: 5%;
+    min-width:60%;
+    border-style: solid;
+    border-color: #666666;
+    margin:20px;
+    background-color: #9B9B9B;
+}
+
+.concert_element2 > p {
+    text-align: center;
+    min-height: 10px;
+}
+
+.concert_element2 > p :empty{
     display: none;
 }
 /*-- Ferdig med Concert_list --*/

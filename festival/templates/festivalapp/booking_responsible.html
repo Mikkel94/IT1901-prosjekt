@@ -2,14 +2,16 @@
 
 {% block content %}
 
+    <h2 style="width: 50%; float: left;">BAND OFFERS</h2>
+    <h2 style="width: 50%; float: left;">SET REVIEW</h2>
+
+    <div class="concertcontainer1">
     {% for band in bands %}
         {% if not band.is_booking_req_sendt %}
 
-
-
             <li class="concert_element">
 
-                <p>Name: {{ band.name }}</p>
+                <p style="font-size: 20px;":>Band: {{ band.name }}</p>
                 <p>Manager: {{ band.manager }}</p>
                 <p>Number of members: {{ band.members }}</p>
                 <p>Light needs: {{ band.light_needs }}</p>
@@ -21,26 +23,29 @@
                 <a href="{% url 'festivalapp:delete_band' pk=band.pk %}" type="button" class="button delete-button">Delete</a>
                 <a href="{% url 'festivalapp:booking' pk=band.pk %}" type="button" class="button add-button">Add</a>
 
-
             </li>
 
         {% endif %}
     {% endfor %}
-    SET REVIEW
+    </div>
+
+    <div class="concertcontainer1">
     {% for band in bands %}
-        <li class="concert_element">
-            <p>Name: {{ band.name }}</p>
+        <li class="concert_element2">
+            <p style="font-size: 20px;": >Band: {{ band.name }}</p>
             <p>Manager: {{ band.manager }}</p>
             <p>Number of members: {{ band.members }}</p>
             <p>Current review: {{ band.review }}</p>
             <form action="{% url 'festivalapp:add_review' pk=band.pk %}" method="post" id="review-form">
                 {% csrf_token %}
-                <label for="review">New review here:</label>
-                <textarea name="review" id="review" cols="30" rows="10"></textarea>
-                <input type="submit" value="Submit">
+                <p><label for="review">New review here:</label></p>
+                <textarea style="height: 110px; width: 230px; resize: none; background-color: #EFEFEF; border-radius: 8px;" name="review" id="review" cols="30" rows="10"></textarea>
+                </br>
+                <input id="submitreview" type="submit" value="Submit Review">
             </form>
         </li>
     {% endfor %}
+    </div>
 
 
 
