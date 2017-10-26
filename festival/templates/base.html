@@ -66,7 +66,7 @@
 
     {% endif %}
 
-    {% if emp.employee_status != None %}
+    {% if emp.employee_status != None or emp.employee_status == 'booking_boss' %}
          <div class="menu box">
             <h1>
                 <a href="{% url 'festivalapp:list_concert' %}" style="text-decoration: none; Color: white;">Konsert liste</a>

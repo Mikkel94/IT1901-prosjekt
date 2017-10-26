@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from time import  sleep
 
 
 # Create your views here.
@@ -29,7 +30,9 @@ def user_login(request):
                 return HttpResponse('ACCOUNT INACTIVE')
         else:
             print('Username: {} \nPassword: {}'.format(username, password))
-            return HttpResponse('INVALID CREDENTIALS')
+            return HttpResponse('<meta http-equiv="refresh" content="5;url=http://127.0.0.1:8000/festivalapp/login/">')
+            #return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
     else:
         return render(request, 'loginsite.html')
 
@@ -247,6 +250,17 @@ def decline_booking_request(request, pk):
     c.delete()
     return HttpResponseRedirect(reverse('festivalapp:booking_requests'))
 
+# If manager needs to accept/decline a booking in the system
+# @login_required
+# def manager_accept_or_decline_booking_request(request, pk, bool):
+#     concert = models.Concert.objects.get(pk=pk)
+#     band = models.Band.objects.get(pk=concert.band.pk)
+#     if not bool:
+#         band.is_booked = False
+#         band.save()
+#         concert.delete()
+#     return HttpResponse('<script>alert("Concert %s removed")</script>' % concert)
+#
 
 
 @login_required
