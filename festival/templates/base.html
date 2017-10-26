@@ -23,7 +23,7 @@
             <h1>{{ emp.employee_status }}</h1>
         </div>
         <div class="box konto" id="logout">
-            <h1><a class="logout" href="{% url 'festivalapp:logout' %}" style="text-decoration: none;">Logg ut</a></h1>
+            <h1><a class="logout atext" href="{% url 'festivalapp:logout' %}" >Logg ut</a></h1>
         </div>
     {% else %}
         <div class="box konto" id="login">
@@ -43,7 +43,7 @@
     {% if emp.employee_status == 'manager' %}
         <div class="menu box">
             <h1>
-                <a href="{% url 'festivalapp:manager' %}" style="text-decoration: none; Color: white;">Manager side</a>
+                <a href="{% url 'festivalapp:manager' %}" class="atext">Manager side</a>
             </h1>    
          </div>
     {% endif %}
@@ -51,7 +51,7 @@
     {% if emp.employee_status == 'booking_responsible' %}
         <div class="menu box">
             <h1>
-                <a href="{% url 'festivalapp:booking_responsible' %}" style="text-decoration: none; Color: white;">Bookingansvarlig side</a>
+                <a href="{% url 'festivalapp:booking_responsible' %}" class="atext">Bookingansvarlig side</a>
             </h1>
         </div>
 
@@ -67,35 +67,44 @@
     {% endif %}
 
     {% if emp.employee_status != None or emp.employee_status == 'booking_boss' %}
+
          <div class="menu box">
             <h1>
-                <a href="{% url 'festivalapp:list_concert' %}" style="text-decoration: none; Color: white;">Konsert liste</a>
+                <a href="{% url 'festivalapp:list_concert' %}" class="atext" >Konsert liste</a>
             </h1>    
          </div>
          
     {% endif %}
 
-    {% if emp.employee_status == 'booking_responsible' %}
-        <div class="menu box">
-            <h1>
-                <a href="{% url 'festivalapp:old_festivals' %}" style="text-decoration: none; Color: white;">Gamle konserter</a>
-            </h1>
-        </div>
-
-
-    {% endif %}
-
     {% if emp.employee_status == 'booking_boss' %}
         <div class="menu box">
             <h1>
-                <a href="{% url 'festivalapp:generate_price' calc=False %}" style="text-decoration: none; Color: white;">Generer billettpris</a>
+                <a href="{% url 'festivalapp:generate_price' calc=False %}" class="atext">Generer billettpris</a>
             </h1>
         </div>
         <div class="menu box">
             <h1>
-                <a href="{% url 'festivalapp:booking_requests' %}" style="text-decoration: none; Color: white;">Pending concerts</a>
+                <a href="{% url 'festivalapp:booking_requests' %}" class="atext">Pending concerts</a>
             </h1>
         </div>
+    {% endif %}
+
+    {% if emp.employee_status == 'booking_responsible' %}
+        <div class="menu box">
+            <h1>
+                <a href="{% url 'festivalapp:booking_responsible' %}" class="atext">Bookingansvarlig side</a>
+            </h1>
+        </div>
+
+        <div id="searchboks">
+            <form id="searchform" action="{% url 'festivalapp:search' %}" method="post">
+                {% csrf_token %}
+                <input id="searchgreie1" type="text" class="search" name="search">
+                <input id="searchknapp" type="submit" value="Search">
+
+            </form>
+        </div>
+
     {% endif %}
 
 </div>

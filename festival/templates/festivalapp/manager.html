@@ -2,26 +2,125 @@
 {% load bootstrap3 %}
 {% block content %}
 
-    Band: {{ band.name }}
-    <br>
-    Manager: {{ band.manager }}
+
+    <style>
+        .stylingselect2 input {
+            width: 135px;
+            font-size: 15px;
+            margin: 1px 0px 0px 0px;
+              font-family: "Roboto", sans-serif;
+              outline: 0;
+              background: #EEEEEE;
+              color: black;
+              padding: 4px;
+              box-sizing: border-box;
+        }
+         .stylingselect3 {
+            width: 135px;
+            font-size: 15px;
+            margin: 1px 0px 0px 0px;
+              font-family: "Roboto", sans-serif;
+              outline: 0;
+              background: #EEEEEE;
+              color: black;
+              padding: 4px;
+              box-sizing: border-box;
+        }
+
+        .labels123 {
+        width: 150px;
+        text-align: right;
+        margin-right: 6px;
+        font-size: 18px;
+
+        }
+
+        .textareastyling textarea{
+               background: #EEEEEE;
+               resize: none;
+               border-radius: 5px;
+               border: 1px inset;
+               width: 130px;
+               box-sizing: border-box;
+        }
+
+    </style>
 
 
-    <form method="post">
-        {% csrf_token %}
-        {% bootstrap_form manager_form %}
-        <input type="submit" value="Submit">
-    </form>
-    
-    <h1>SET EXPERIENCE</h1>
-    <form action="{% url 'festivalapp:set_exp' pk=band.pk %}" method="post">
-        {% csrf_token %}
-        <label for="sold_albums">Sold Albums: </label>
-        <input type="number" id="sold_albums" name="sold_albums">
-        <label for="former_concerts">Former Concerts: </label>
-        <input type="number" id="former_concerts" name="former_concerts">
-        <input type="submit" value="Submit">
-    </form>
+
+
+
+
+<div style=" display: flex;" >
+
+
+            <div style=" display: flex; margin-left:auto; margin-right: auto;">
+
+
+                    <div style="border-radius: 10px; border: 1px solid grey; height:auto;">
+                        <div style="MARGIN-bottom: -30px;"><h2>Set needs:</h2></div><br><hr>
+                        <div style="display: flex; width: 320px;">
+                        <div style="width: 160px;">
+
+                                <div class="labels123" style="margin-bottom: -10px; font-size: 20px;">Band:</div></br>
+                                <div class="labels123" style="font-size: 20px; margin-bottom: -10px;">Manager:</div></br><hr>
+                                <div class="labels123">Light needs:</div></br>
+                                <hr>
+                                <div class="labels123">Sound needs:</div></br>
+                                <hr>
+                                <div class="labels123" style="margin-bottom: 100px;">Specific needs:</div></br>
+                                <hr>
+                        </div>
+
+                        <div style="width: 160px; text-align: left;">
+                            <div class="stylingselect2" style="margin-bottom: 10px; font-size: 20px;"> {{ band.name }}</div>
+                            <div class="stylingselect2" style="margin-bottom: 14px; font-size: 20px;"> {{ band.manager }}</div><hr>
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="stylingselect2" style="margin-bottom: 18px;"> {{ manager_form.light_needs }}</div><hr>
+                                <div class="stylingselect2" style="margin-bottom: 18px;"> {{ manager_form.sound_needs }}</div><hr>
+                                <div class="textareastyling">{{ manager_form.specific_needs }}</div><hr style="margin-bottom: 15px;">
+                                <div class="stylingselect2" style="margin-left: -67.5px; margin-bottom: 20px;"> <input style="border-radius: 5px; " type="submit" value="Submit"> </div>
+                            </form>
+
+                        </div>
+
+                        </div>
+                    </div>
+
+                    <div style="width:80px;"></div>
+
+
+                     <div style="border-radius: 10px; border: 1px solid grey; height:270px;">
+
+                                <div style="margin-bottom: -4px;"><h2>Set experience:</h2></div><hr style="margin-bottom: 20px;">
+                                <div style="display: flex; width:320px;">
+                                            <form style="width:320px; display: flex;"action="{% url 'festivalapp:set_exp' pk=band.pk %}" method="post">
+                                            {% csrf_token %}
+                                                <div style="width:320px; display: flex;">
+                                                        <div style="width: 160px; text-align: right;">
+                                                            <div style="margin-bottom: 10px;"><label class="labels123" for="sold_albums">Sold Albums: </label></div><br><hr>
+                                                            <div style="margin-bottom: 0px;"> <label class="labels123" for="former_concerts">Former Concerts: </label></div><br><Hr>
+                                                        </div>
+
+                                                        <div style="width: 160px;">
+                                                            <div style="margin-bottom: 2px; text-align: left;"><input class="stylingselect3" type="number" id="sold_albums" name="sold_albums"></div><br><hr>
+                                                           <div style="margin-bottom: -8px; text-align: left;"> <input class="stylingselect3" type="number" id="former_concerts" name="former_concerts"></div><br><hr style="margin-bottom: 15px;">
+                                                           <div style="margin-left: -67.5px; text-align: left;" > <input style="border-radius: 5px; " class="stylingselect3" type="submit" value="Submit"></div>
+                                                        </div>
+                                                </div>
+                                            </form>
+                                </div>
+
+                    </div>
+        </div>
+
+</div>
+
+
+
+
+
 
     <h2>Accept concert</h2>
 
