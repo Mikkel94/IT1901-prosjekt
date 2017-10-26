@@ -1,0 +1,14 @@
+body {
+    background: rgb(67, 108, 173);
+}
+.container {
+    margin-top: 10rem;
+}
+
+.invalid {
+    margin: 5rem;
+}
+
+.timer {
+    font-size: 5rem;
+}

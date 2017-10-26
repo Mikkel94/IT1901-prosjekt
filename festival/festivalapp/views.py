@@ -30,7 +30,7 @@ def user_login(request):
                 return HttpResponse('ACCOUNT INACTIVE')
         else:
             print('Username: {} \nPassword: {}'.format(username, password))
-            return HttpResponse('<meta http-equiv="refresh" content="5;url=http://127.0.0.1:8000/festivalapp/login/">')
+            return render(request, 'invalid_credentials.html')
             #return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
     else:
