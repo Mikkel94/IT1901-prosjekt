@@ -87,6 +87,7 @@ class Concert(models.Model):
     sound_work = models.ManyToManyField(Employee, related_name="sound", blank=True)
     festival = models.ForeignKey(Festival, blank=True, default=None, related_name="festival")
     price = models.IntegerField(default=100)
+    ticket_sales = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name + " - " + self.band.name

@@ -48,23 +48,32 @@
          </div>
     {% endif %}
 
-    {% if emp.employee_status != None %}
+    {% if emp.employee_status == 'booking_responsible' %}
+        <div class="menu box">
+            <h1>
+                <a href="{% url 'festivalapp:booking_responsible' %}" class="atext">Bookingansvarlig side</a>
+            </h1>
+        </div>
+
+        <div style="padding:28px 25px 25px 25px;">
+            <form action="{% url 'festivalapp:search' %}" method="post">
+                {% csrf_token %}
+                <input style="border-radius:3px; height: 22px; width: 170px;" type="text" class="search" name="search">
+                <input style="font-size:50px; width: 60px;" type="submit" value="Search">
+
+            </form>
+        </div>
+
+    {% endif %}
+
+    {% if emp.employee_status != None or emp.employee_status == 'booking_boss' %}
+
          <div class="menu box">
             <h1>
                 <a href="{% url 'festivalapp:list_concert' %}" class="atext" >Konsert liste</a>
             </h1>    
          </div>
          
-    {% endif %}
-
-    {% if emp.employee_status == 'booking_responsible' %}
-        <div class="menu box">
-            <h1>
-                <a href="{% url 'festivalapp:old_festivals' %}" class="atext">Gamle konserter</a>
-            </h1>
-        </div>
-
-
     {% endif %}
 
     {% if emp.employee_status == 'booking_boss' %}
