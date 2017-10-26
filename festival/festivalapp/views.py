@@ -207,8 +207,8 @@ def booking_requests(request):
     concert_isbooked = models.Band.objects.filter(is_booked=True)
     avail_num = 0
     if models.Festival.objects.filter(end_date__gte=datetime.date.today()):
-        c = models.Concert.objects.filter(festival__end_date__gte=datetime.date.today())[0]
-        end_date = c.festival.end_date
+        f = models.Festival.objects.filter(end_date__gte=datetime.date.today())[0]
+        end_date = f.end_date
         avail_num = (end_date - datetime.date.today()).days
         avail_num -= len(concert_isbooked)
 
