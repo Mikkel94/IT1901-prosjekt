@@ -92,26 +92,28 @@ def list_concert(request):
 
 
 @login_required
-def manager(request):
+def manager(request, pk):
     manager = models.Employee.objects.get(user=request.user)
     try:
         band = models.Band.objects.get(manager=manager)
+        con = models.Concert.objects.get(pk=pk)
         if request.method == 'POST':
             band_needs = forms.BandNeedsForm(data=request.POST)
             if band_needs.is_valid():
                 print(band_needs)
-                band.sound_needs = band_needs.cleaned_data['sound_needs']
-                band.light_needs = band_needs.cleaned_data['light_needs']
-                band.specific_needs = band_needs.cleaned_data['specific_needs']
-                band.save()
+                con.sound_needs = band_needs.cleaned_data['sound_needs']
+                con.light_needs = band_needs.cleaned_data['light_needs']
+                con.specific_needs = band_needs.cleaned_data['specific_needs']
+                con.save()
             else:
                 print(band_needs.errors)
         else:
             band_needs = forms.BandNeedsForm()
         return render(request, 'festivalapp/manager.html', {
-            'manager_form': band_needs,
-            'band': band
-                      })
+                    'manager_form': band_needs,
+                    'band': band,
+                    'concert': con
+                })
     except:
         #HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
         return HttpResponseRedirect(reverse('festivalapp:index'))
@@ -121,7 +123,7 @@ def manager(request):
 def booking_responsible(request):
     if models.Employee.objects.filter(user=request.user, employee_status='booking_responsible'):
         #booking_responsible = models.Employee.objects.get(user=request.user) # Trenger kanskje senere
-        bands = models.Band.objects.filter(is_booked=False)
+        bands = models.Band.objects.all()
         light_techs = models.Employee.objects.filter(employee_status='light_technician')
         sound_techs = models.Employee.objects.filter(employee_status='light_technician')
         return render(request, 'festivalapp/booking_responsible.html', {

@@ -41,11 +41,7 @@
 <div id="meny">
 
     {% if emp.employee_status == 'manager' %}
-        <div class="menu box">
-            <h1>
-                <a href="{% url 'festivalapp:manager' %}" style="text-decoration: none; Color: white;">Manager side</a>
-            </h1>    
-         </div>
+
     {% endif %}
 
     {% if emp.employee_status == 'booking_responsible' %}
