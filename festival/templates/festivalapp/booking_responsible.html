@@ -2,12 +2,13 @@
 
 {% block content %}
 
-    <h2 style="width: 50%; float: left;">BAND OFFERS</h2>
-    <h2 style="width: 50%; float: left;">SET REVIEW</h2>
-
     <div class="concertcontainer1">
-    {% for band in bands %}
-        {% if not band.is_booking_req_sendt %}
+
+    <h2>BAND OFFERS</h2>
+
+        
+        {% for band in bands %}
+            {% if not band.is_booking_req_sendt %}
 
             <li class="concert_element">
 
@@ -25,11 +26,15 @@
 
             </li>
 
-        {% endif %}
-    {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+
     </div>
 
     <div class="concertcontainer1">
+       <h2>SET REVIEW</h2>
+
     {% for band in bands %}
         <li class="concert_element2">
             <p style="font-size: 20px;": >Band: {{ band.name }}</p>
