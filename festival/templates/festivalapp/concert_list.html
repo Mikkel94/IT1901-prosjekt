@@ -43,12 +43,19 @@
                     <p>Dato: {{ concert.date }}</p>
                     <p>Scene: {{ concert.scene }}</p>
                     <p>Festival: {{ concert.festival }}</p>
+                    <p>Billettpris: {{ concert.price }}kr</p>
+                    <p>Billettsalg:
+                        {% if concert.ticket_sales > concert.scene.capacity %}
+                            {{ concert.scene.capacity }}
+                        {% else %}
+                            {{ concert.ticket_sales }}
+                        {% endif %}
+                        av {{ concert.scene.capacity }}</p>
 
                     <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info</button>
 
                     <!-- The Modal -->
                     <div class="modal" id="modal_{{ forloop.counter }}">
-
                         <!-- Modal content -->
                         <div class="modal-content">
                             <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
@@ -57,17 +64,23 @@
                             <p>{{ concert.band }}</p>
                             <p>{{ concert.date }}</p>
                             <p>{{ concert.scene }}</p>
-                            <h3>LYS:</h3>
+                            <h3>Spesifikke krav:</h3>
+                            <p>{{ concert.band.specific_needs }}</p>
+                            <h3>Lys({{ concert.lighting_work.count }} av {{ concert.band.light_needs }}):</h3>
 
                             <ul>
                                 {% for lys in concert.lighting_work.all %}
                                     <li><p>{{ lys }}</p></li>
+                                    {% empty %}
+                                        <li>Ingen lysteknikere</li>
                                 {% endfor %}
                             </ul>
-                            <h3>LYD:</h3>
+                            <h3>Lyd({{ concert.sound_work.count }} av {{ concert.band.sound_needs }}):</h3>
                             <ul>
                                 {% for lyd in concert.sound_work.all %}
                                     <li><p>{{ lyd }}</p></li>
+                                    {% empty %}
+                                        <li>Ingen lydteknikere</li>
                                 {% endfor %}
                             </ul>
 
