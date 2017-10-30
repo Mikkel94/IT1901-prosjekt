@@ -97,7 +97,9 @@ def list_concert(request):
     elif emp.employee_status == 'pr_manager':
         info['concerts'] = list(
             models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
-
+    elif emp.employee_status == 'booking_responsible':
+        info['concerts'] = list(
+            models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
     return render(request, 'festivalapp/concert_list.html', info)
 
 
@@ -133,7 +135,7 @@ def booking_responsible(request):
         # booking_responsible = models.Employee.objects.get(user=request.user) # Trenger kanskje senere
         bands = models.Band.objects.filter(is_booked=False)
         light_techs = models.Employee.objects.filter(employee_status='light_technician')
-        sound_techs = models.Employee.objects.filter(employee_status='light_technician')
+        sound_techs = models.Employee.objects.filter(employee_status='sound_technician')
         return render(request, 'festivalapp/booking_responsible.html', {
             'bands': bands,
             'light_techs': light_techs,
