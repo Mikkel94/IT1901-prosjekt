@@ -7,6 +7,7 @@ body {
 
 .invalid {
     margin: 5rem;
+    font-family: "Andale Mono";
 }
 
 .timer {

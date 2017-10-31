@@ -25,7 +25,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return index(request)  # HttpResponseRedirect(reverse('festivalapp:index'))
+                return HttpResponseRedirect(reverse('festivalapp:index'))
             else:
                 return HttpResponse('ACCOUNT INACTIVE')
         else:
