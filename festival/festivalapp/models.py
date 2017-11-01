@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, User
-
+import random
 # Create your models here.
 
 STATUS_CHOICES = (
@@ -33,6 +33,12 @@ class Employee(models.Model):
 class Scene(models.Model):
     name = models.CharField(max_length=50, default="Scene")
     capacity = models.IntegerField(default=300)
+
+    @property
+    def calc_beverage_prices(self):
+        y = int(str(self.capacity))
+        x = random.randint(150, 220)
+        return y * x
 
     def __str__(self):
         return self.name
@@ -80,6 +86,9 @@ class Concert(models.Model):
     name = models.CharField(max_length=50, default="Concert")
     band = models.ForeignKey(Band, related_name="band")
     genre = models.CharField(max_length=32, choices=GENRES, default=None, null=True)
+    expected_audience = random.randint(0, 1000)
+    start_time = models.TimeField(null=True)
+    end_time = models.TimeField(null=True)
     audience = models.IntegerField(default=0)
     date = models.DateField()
     scene = models.ForeignKey(Scene)
@@ -98,6 +107,7 @@ class ConcertRequest(models.Model):
     band = models.ForeignKey(Band)
     genre = models.CharField(max_length=32, choices=GENRES, default=None, null=True)
     festival = models.ForeignKey(Festival, blank=True, default=None)
+
     price = models.IntegerField(default=100)
     date = models.DateField()
     scene = models.ForeignKey(Scene)
