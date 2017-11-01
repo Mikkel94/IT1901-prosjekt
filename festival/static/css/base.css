@@ -160,6 +160,27 @@ list-style-type: none;
 .concert_element2 > p :empty{
     display: none;
 }
+
+table {
+    min-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+tr {
+    font-size: 17px;
+    border-bottom: 1px solid black;
+}
+
+th, td{
+    padding: 10px;
+    width: 160px;
+}
+
+th{
+    font-size: 20px;
+}
 /*-- Ferdig med Concert_list --*/
 
 

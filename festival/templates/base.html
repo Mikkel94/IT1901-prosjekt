@@ -40,26 +40,26 @@
 
 <div id="meny">
 
-    {% if emp.employee_status == 'manager' %}
+    {% if emp.employee_status == 'MANAGER' %}
         <div class="menu box">
             <h1>
-                <a href="{% url 'festivalapp:manager' %}" class="atext">Manager side</a>
+                <a href="{% url 'festivalapp:manager' %}" class="atext">Bandside</a>
             </h1>    
          </div>
     {% endif %}
 
 
-    {% if emp.employee_status != None or emp.employee_status == 'booking_boss' %}
+    {% if emp.employee_status != None or emp.employee_status == 'BOOKINGANSVARLIG' %}
 
          <div class="menu box">
             <h1>
-                <a href="{% url 'festivalapp:list_concert' %}" class="atext" >Konsert liste</a>
+                <a href="{% url 'festivalapp:list_concert' %}" class="atext" >Konsertliste</a>
             </h1>    
          </div>
          
     {% endif %}
 
-    {% if emp.employee_status == 'booking_boss' %}
+    {% if emp.employee_status == 'BOOKINGSJEF' %}
         <div class="menu box">
             <h1>
                 <a href="{% url 'festivalapp:generate_price' calc=False %}" class="atext">Generer billettpris</a>
@@ -67,15 +67,15 @@
         </div>
         <div class="menu box">
             <h1>
-                <a href="{% url 'festivalapp:booking_requests' %}" class="atext">Pending concerts</a>
+                <a href="{% url 'festivalapp:booking_requests' %}" class="atext">Konsert-tilbud</a>
             </h1>
         </div>
     {% endif %}
 
-    {% if emp.employee_status == 'booking_responsible' %}
+    {% if emp.employee_status == 'BOOKINGANSVARLIG' %}
         <div class="menu box">
             <h1>
-                <a href="{% url 'festivalapp:booking_responsible' %}" class="atext">Bookingansvarlig side</a>
+                <a href="{% url 'festivalapp:booking_responsible' %}" class="atext">Konsert-tilbud</a>
             </h1>
         </div>
 
