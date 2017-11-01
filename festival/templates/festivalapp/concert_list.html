@@ -25,7 +25,7 @@
 
 
 
-    {% if emp.employee_status == 'sound_technician' or emp.employee_status == 'light_technician' %}
+    {% if emp.employee_status == 'LYDTEKNIKER' or emp.employee_status == 'LYSTEKNIKER' %}
         <table>
             <tr style="font-size: 20px;">
                 <th>Konsert dato:</th>
@@ -61,7 +61,7 @@
         </table>
 
 
-            {% elif emp.employee_status == 'arranger' or emp.employee_status == 'manager' %}
+            {% elif emp.employee_status == 'ARRANGER' or emp.employee_status == 'MANAGER' %}
 
             <table>
             <tr style="font-size: 20px;">
@@ -129,7 +129,7 @@
             </table>
 
 
-            {% elif emp.employee_status == 'booking_responsible' %}
+            {% elif emp.employee_status == 'BOOKINGANSVARLIG' %}
 
         <table>
             <tr style="font-size: 20px;">
@@ -189,7 +189,7 @@
             {% endfor %}
         </table>
 
-            {% elif emp.employee_status == 'pr_manager' %}
+            {% elif emp.employee_status == 'PR-MANAGER' %}
 
             <table>
             <tr style="font-size: 20px;">
@@ -222,6 +222,54 @@
                             <p>Presseomtaler: {{ concert.links }}</p>
                             <p>Kontaktinfo: {{ concert.band.contact_info }}</p>
                             <p>Omtale: {{ concert.band.review }}</p>
+                        </div>
+                    </div></th>
+
+            </tr>
+            {% endfor %}
+        </table>
+
+
+            {% elif emp.employee_status == 'SERVICE MANAGER' %}
+
+            <table>
+            <tr style="font-size: 20px;">
+                <th>Konsert dato:</th>
+                <th>Konsert navn:</th>
+                <th>Band navn:</th>
+                <th>Scene:</th>
+                <th>Se mer:</th>
+            </tr>
+
+            {% for concert in concerts %}
+
+            <tr>
+                <th>{{ concert.date }}</th>
+                <th>{{ concert.name }}</th>
+                <th>{{ concert.band }}</th>
+                <th>{{ concert.scene }}</th>
+                <th><button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Bandinfo
+                    </button>
+
+
+                    <div class="modal" id="modal_{{ forloop.counter }}">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
+
+                            <h1>Info:</h1>
+
+
+                            <p>Starttid: {{ concert.start_time }}</p>
+                            <p>Sluttid: {{ concert.end_time }}</p>
+                            <p>Forventet publikumstall: {{ concert.expected_audience }}</p>
+                            <p>Sjanger: {{ concert.genre }}</p>
+                            <p>Band: {{ concert.band }}</p>
+                            <p>Estimert innkjøp for bar til {{concert.scene}} : {{ concert.scene.calc_beverage_prices }} kr</p>
+                            <p>Scene: {{ concert.scene }}</p>
+
+
                         </div>
                     </div></th>
 
