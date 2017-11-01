@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^accept_booking/(?P<pk>\d+)/send', views.send_booking_request, name='send_booking_request'),
     url(r'^accept_booking/(?P<pk>\d+)/accept$', views.accept_booking_request, name='accept_booking_request'),
     url(r'^accept_booking/(?P<pk>\d+)/delete$', views.decline_booking_request, name='decline_booking_request'),
+    url(r'^booking_requests/(?P<pk>\d+)/cancel$', views.cancel_booking_request, name='cancel_booking_request'),
     url(r'^assign_tech/(?P<tech_pk>\d+)/(?P<concert_pk>\d+)/', views.assign_tech_to_concert, name='assign_tech'),
 ]
