@@ -27,7 +27,7 @@
                     </td>
                 </tr>
 
-                <div class="modal"  id="modal_{{ forloop.counter }}">
+                <div class="modal" id="modal_{{ forloop.counter }}">
 
                     <!-- Modal content -->
                     <div class="modal-content">
@@ -44,9 +44,7 @@
             </tbody>
         </table>
 
-
     {% elif emp.employee_status == 'ARRANGER' or emp.employee_status == 'MANAGER' %}
-
         <table>
             <thead>
             <tr>
@@ -117,7 +115,6 @@
             {% endfor %}
             </tbody>
         </table>
-
 
     {% elif emp.employee_status == 'BOOKINGANSVARLIG' %}
 
@@ -200,7 +197,6 @@
             </tr>
             </thead>
 
-
             <tbody>
             {% for concert in concerts %}
                 <tr>
@@ -208,18 +204,20 @@
                     <td>{{ concert.name }}</td>
                     <td>{{ concert.band }}</td>
                     <td>{{ concert.scene }}</td>
-                    <td><button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Bandinfo</button>
+                    <td>
+                        <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Bandinfo
+                        </button>
                         <div class="modal" id="modal_{{ forloop.counter }}">
 
                             <!-- Modal content -->
                             <div class="modal-content">
                                 <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
                                 <h1>Bandinfo:</h1>
-                                        <p>Bandnavn: {{ concert.band.name }}</p>
-                                        <p>Solgte album: {{ concert.band.sold_albums }}</p>
-                                        <p>Presseomtaler: {{ concert.links }}</p>
-                                        <p>Kontaktinfo: {{ concert.band.contact_info }}</p>
-                                        <p>Omtale: {{ concert.band.review }}</p>
+                                <p>Bandnavn: {{ concert.band.name }}</p>
+                                <p>Solgte album: {{ concert.band.sold_albums }}</p>
+                                <p>Presseomtaler: {{ concert.links }}</p>
+                                <p>Kontaktinfo: {{ concert.band.contact_info }}</p>
+                                <p>Omtale: {{ concert.band.review }}</p>
                             </div>
                         </div>
                     </td>
@@ -230,7 +228,58 @@
         </table>
 
 
-        </ul>
+    {% elif emp.employee_status == 'SERVICE MANAGER' %}
+
+        <table>
+            <thead>
+            <tr>
+                <th>Konsert dato:</th>
+                <th>Konsert navn:</th>
+                <th>Band navn:</th>
+                <th>Scene:</th>
+                <th>Se mer:</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+
+            {% for concert in concerts %}
+
+                <tr>
+                    <td>{{ concert.date }}</td>
+                    <td>{{ concert.name }}</td>
+                    <td>{{ concert.band }}</td>
+                    <td>{{ concert.scene }}</td>
+                    <td>
+                        <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Bandinfo
+                        </button>
+                    </td>
+
+                    <div class="modal" id="modal_{{ forloop.counter }}">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
+
+                            <h1>Info:</h1>
+
+                            <p>Starttid: {{ concert.start_time }}</p>
+                            <p>Sluttid: {{ concert.end_time }}</p>
+                            <p>Forventet publikumstall: {{ concert.expected_audience }}</p>
+                            <p>Sjanger: {{ concert.genre }}</p>
+                            <p>Band: {{ concert.band }}</p>
+                            <p>Estimert innkjøp for bar til {{ concert.scene }}
+                                : {{ concert.scene.calc_beverage_prices }} kr</p>
+                            <p>Scene: {{ concert.scene }}</p>
+
+                        </div>
+                    </div>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
     {% endif %}
 
