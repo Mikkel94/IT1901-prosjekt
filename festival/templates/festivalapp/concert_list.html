@@ -9,24 +9,17 @@
         margin-left: auto;
         margin-right: auto;
         border-collapse: collapse;
-
     }
 
     tr {
         font-size: 17px;
         border-bottom: 1px solid black;
-
     }
 
     th {
     padding: 10px;
     width: 160px;
-
-
-
-
     }
-
 
 </style>
 
@@ -48,24 +41,22 @@
                 <th>{{ concert.name }}</th>
                 <th>{{ concert.band }}</th>
                 <th>{{ concert.scene }}</th>
-                <th><button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info
-                    </button>
-
-
-                    <div class="modal" id="modal_{{ forloop.counter }}">
-
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                            <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
-
-                            <p>{{ concert.name }}</p>
-                            <p>{{ concert.band }}</p>
-                            <p>{{ concert.date }}</p>
-                            <p>{{ concert.scene }}</p>
-                        </div>
-                    </div></th>
-
+                <th><button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info</button></th>
             </tr>
+
+            <tr class="modal" id="modal_{{ forloop.counter }}">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
+
+                    <p>{{ concert.name }}</p>
+                    <p>{{ concert.band }}</p>
+                    <p>{{ concert.date }}</p>
+                    <p>{{ concert.scene }}</p>
+                </div>
+            </tr>
+
             {% endfor %}
         </table>
 
@@ -241,7 +232,6 @@
             </tr>
             {% endfor %}
         </table>
-
 
 
         </ul>

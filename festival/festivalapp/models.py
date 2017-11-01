@@ -44,7 +44,7 @@ class Band(models.Model):
     members = models.IntegerField(null=True, default=1)
     light_needs = models.IntegerField(default=0)
     sound_needs = models.IntegerField(default=0)
-    specific_needs = models.TextField(default=None)
+    specific_needs = models.TextField(default="No specific needs yet")
     is_booking_req_sendt = models.BooleanField(default=False)
     is_booked = models.BooleanField(default=False)
     sold_albums = models.IntegerField(default=100)  # Vi sier i senere kode at Antall spill per dag = sold albums/20
@@ -101,6 +101,7 @@ class ConcertRequest(models.Model):
     price = models.IntegerField(default=100)
     date = models.DateField()
     scene = models.ForeignKey(Scene)
+    is_sendt = models.BooleanField(default=False)
 
 
 

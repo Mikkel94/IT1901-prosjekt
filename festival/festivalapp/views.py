@@ -133,13 +133,17 @@ def manager(request):
 def booking_responsible(request):
     if models.Employee.objects.filter(user=request.user, employee_status='booking_responsible'):
         # booking_responsible = models.Employee.objects.get(user=request.user) # Trenger kanskje senere
-        bands = models.Band.objects.filter(is_booked=False)
+        bands = models.Band.objects.all()
         light_techs = models.Employee.objects.filter(employee_status='light_technician')
         sound_techs = models.Employee.objects.filter(employee_status='sound_technician')
+        concert_requests = {}
+        for band in bands:
+            concert_requests[band.name] = models.ConcertRequest.objects.filter(band=band)
         return render(request, 'festivalapp/booking_responsible.html', {
             'bands': bands,
             'light_techs': light_techs,
             'sound_techs': sound_techs,
+            'concert_requests': concert_requests
         })
     else:
         return HttpResponseRedirect(reverse('festivalapp:index'))
@@ -251,6 +255,11 @@ def decline_booking_request(request, pk):
     c.band.is_booking_req_sendt = False
     c.delete()
     return HttpResponseRedirect(reverse('festivalapp:booking_requests'))
+
+@login_required
+def cancel_booking_request(request, pk):
+    models.ConcertRequest.objects.get(pk=pk).delete()
+    return HttpResponseRedirect(reverse('festivalapp:booking_responsible'))
 
 # If manager needs to accept/decline a booking in the system
 # @login_required
