@@ -13,7 +13,8 @@ from time import  sleep
 # Create your views here.
 @login_required
 def index(request):
-    return render(request, 'festivalapp/index.html')
+    user = request.user
+    return HttpResponseRedirect(reverse('festivalapp:list_concert'))
 
 
 def user_login(request):
@@ -220,6 +221,11 @@ def booking_requests(request):
         'available_dates': avail_num
     })
 
+@login_required
+def send_booking_request(request, pk):
+    concert_request = models.Concert.objects.get(pk=pk)
+    concert_request.is_sendt = True
+    concert_request.save()
 
 @login_required
 def accept_booking_request(request, pk):
