@@ -34,7 +34,7 @@
 
             {% endfor %}
 
-            {% elif emp.employee_status == 'arranger' or emp.employee_status == 'manager' %}
+            {% elif emp.employee_status == 'arranger' or emp.employee_status == 'manager'  %}
 
             {% for concert in concerts %}
                 <li class="concert_element">
@@ -88,6 +88,72 @@
                     </div>
                 </li>
             {% endfor %}
+
+
+            {% elif emp.employee_status == 'service_manager' %}
+
+            {% for concert in concerts %}
+                <li class="concert_element">
+                    <p>Konsertnavn: {{ concert.name }}</p>
+                    <p>Band: {{ concert.band }}</p>
+                    <p>Dato: {{ concert.date }}</p>
+                    <p>Scene: {{ concert.scene }}</p>
+                    <p>Festival: {{ concert.festival }}</p>
+                    <p>Billettpris: {{ concert.price }}kr</p>
+                    <p>Estimert innkjøp for bar til {{concert.scene}} : {{ concert.scene.calc_beverage_prices }} kr</p>
+
+                    <p>Billettsalg:
+                        {% if concert.ticket_sales > concert.capacity %}
+                            {{ concert.scene.capacity }}
+                        {% else %}
+                            {{ concert.ticket_sales }}
+                        {% endif %}
+                        av {{ concert.scene.capacity }}</p>
+
+                    <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info</button>
+
+                    <!-- The Modal -->
+                    <div class="modal" id="modal_{{ forloop.counter }}">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
+
+                            <p>Konsert: {{ concert.name }}</p>
+                            <p>Starttid: {{ concert.start_time }}</p>
+                            <p>Sluttid: {{ concert.end_time }}</p>
+                            <p>Forventet publikumstall: {{ concert.expected_audience }}</p>
+                            <p>Sjanger: {{ concert.genre }}</p>
+                            <p>Band: {{ concert.band }}</p>
+                            <p>Dato: {{ concert.date }}</p>
+                            <p>Scene: {{ concert.scene }}</p>
+                            <h3>Spesifikke krav:</h3>
+                            <p>{{ concert.band.specific_needs }}</p>
+                            <h3>Lys({{ concert.lighting_work.count }} av {{ concert.band.light_needs }}):</h3>
+
+                            <ul>
+                                {% for lys in concert.lighting_work.all %}
+                                    <li><p>{{ lys }}</p></li>
+                                    {% empty %}
+                                        <li>Ingen lysteknikere</li>
+                                {% endfor %}
+                            </ul>
+                            <h3>Lyd({{ concert.sound_work.count }} av {{ concert.band.sound_needs }}):</h3>
+                            <ul>
+                                {% for lyd in concert.sound_work.all %}
+                                    <li><p>{{ lyd }}</p></li>
+                                    {% empty %}
+                                        <li>Ingen lydteknikere</li>
+                                {% endfor %}
+                            </ul>
+
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+
+
+
+
             {% elif emp.employee_status == 'booking_responsible' %}
 
             {% for concert in concerts %}

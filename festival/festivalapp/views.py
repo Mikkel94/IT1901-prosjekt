@@ -94,9 +94,15 @@ def list_concert(request):
         except:
             # HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
             return HttpResponseRedirect(reverse('festivalapp:index'))
+
     elif emp.employee_status == 'pr_manager':
         info['concerts'] = list(
             models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+
+    elif emp.employee_status == 'service_manager':
+        info['concerts'] = list(
+            models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+
 
     return render(request, 'festivalapp/concert_list.html', info)
 
