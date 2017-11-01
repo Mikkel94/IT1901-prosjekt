@@ -77,16 +77,16 @@ def list_concert(request):
     info = {}
     emp = models.Employee.objects.get(user=request.user)
 
-    if emp.employee_status == 'light_technician':
+    if emp.employee_status == 'LYSTEKNIKER':
         info['concerts'] = list(models.Concert.objects.filter(lighting_work=emp).filter(
             festival__end_date__gte=datetime.date.today()).order_by('date'))
-    elif emp.employee_status == 'sound_technician':
+    elif emp.employee_status == 'LYDTEKNIKER':
         info['concerts'] = list(models.Concert.objects.filter(sound_work=emp).filter(
             festival__end_date__gte=datetime.date.today()).order_by('date'))
-    elif emp.employee_status == 'arranger':
+    elif emp.employee_status == 'ARRANGER':
         info['concerts'] = list(
             models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
-    elif emp.employee_status == 'manager':
+    elif emp.employee_status == 'MANAGER':
         try:
             band = models.Band.objects.get(manager=emp)
             info['concerts'] = list(
@@ -95,10 +95,10 @@ def list_concert(request):
         except:
             # HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
             return HttpResponseRedirect(reverse('festivalapp:index'))
-    elif emp.employee_status == 'pr_manager':
+    elif emp.employee_status == 'PR-MANAGER':
         info['concerts'] = list(
             models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
-    elif emp.employee_status == 'booking_responsible':
+    elif emp.employee_status == 'BOOKINGANSVARLIG':
         info['concerts'] = list(
             models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
     return render(request, 'festivalapp/concert_list.html', info)
@@ -132,11 +132,11 @@ def manager(request):
 
 @login_required
 def booking_responsible(request):
-    if models.Employee.objects.filter(user=request.user, employee_status='booking_responsible'):
+    if models.Employee.objects.filter(user=request.user, employee_status='BOOKINGANSVARLIG'):
         # booking_responsible = models.Employee.objects.get(user=request.user) # Trenger kanskje senere
         bands = models.Band.objects.filter(is_booked=False)
-        light_techs = models.Employee.objects.filter(employee_status='light_technician')
-        sound_techs = models.Employee.objects.filter(employee_status='sound_technician')
+        light_techs = models.Employee.objects.filter(employee_status='LYSTEKNIKER')
+        sound_techs = models.Employee.objects.filter(employee_status='LYDTEKNIKER')
         return render(request, 'festivalapp/booking_responsible.html', {
             'bands': bands,
             'light_techs': light_techs,
@@ -150,9 +150,9 @@ def booking_responsible(request):
 def assign_tech_to_concert(request, tech_pk, concert_pk):
     tech = models.Employee.objects.get(pk=tech_pk)
     concert = models.Concert.objects.get(pk=concert_pk)
-    if tech.employee_status == 'light_technician':
+    if tech.employee_status == 'LYSTEKNIKER':
         concert.lighting_work.add(tech)
-    elif tech.employee_status == 'sound_technician':
+    elif tech.employee_status == 'LYDTEKNIKER':
         concert.sound_work.add(tech)
     return index(request)
 
@@ -160,7 +160,8 @@ def assign_tech_to_concert(request, tech_pk, concert_pk):
 @login_required
 def delete_band(request, pk):
     # pk = models.Band.kwargs['pk'] #Might be this instead
-    models.Band.objects.get(pk=pk).delete()
+    band = models.Band.objects.get(pk=pk)
+    concerts = models.ConcertRequest()
     return index(request)
 
 
