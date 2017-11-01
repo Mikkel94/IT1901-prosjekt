@@ -4,15 +4,15 @@ from django.contrib.auth.models import AbstractUser, User
 # Create your models here.
 
 STATUS_CHOICES = (
-    ('arranger', 'ARRANGER'),
-    ('sound_technician', 'LYDTEKNIKER'),
-    ('light_technician', 'LYSTEKNIKER'),
-    ('manager', 'MANAGER'),
-    ('booking_responsible', 'BOOKINGANSVARLIG'),
-    ('booking_boss', 'BOOKINGSJEF'),
-    ('pr_manager', 'PR-MANAGER'),
-    ('service_manager', 'SERVICE MANAGER'),
-    ('band_member', 'BAND MEMBER')
+    ('ARRANGER', 'ARRANGER'),
+    ('LYDTEKNIKER', 'LYDTEKNIKER'),
+    ('LYSTEKNIKER', 'LYSTEKNIKER'),
+    ('MANAGER', 'MANAGER'),
+    ('BOOKINGANSVARLIG', 'BOOKINGANSVARLIG'),
+    ('BOOKINGSJEF', 'BOOKINGSJEF'),
+    ('PR-MANAGER', 'PR-MANAGER'),
+    ('SERVICE MANAGER', 'SERVICE MANAGER'),
+    ('BAND MEMBER', 'BAND MEMBER')
 )
 
 GENRES = (
