@@ -13,11 +13,11 @@
 
     	<div class="{{concert.genre}} con">
             <h1>{{concert.name}}</h1>
-            <p>Band: {{concert.band}}</p>
-    		<p>Sjanger: {{concert.genre}}</p>
-    		<p>Festival: {{concert.festival}}</p>
-    		<p>Publikum: {{concert.audience}}</p>
-    		<p>Scene: {{concert.scene}}</p>
+            <p><b>Band</b>: {{concert.band}}</p>
+    		<p><b>Sjanger:</b> {{concert.genre}}</p>
+    		<p><b>Festival:</b> {{concert.festival}}</p>
+    		<p><b>Publikum:</b> {{concert.audience}}</p>
+            <p><b>Scene:</b> {{concert.scene}}</p>
     	</div>
 
     	{% endif %}
@@ -25,7 +25,6 @@
             <p>Det er ingen gamle konserter å vise</p>
     {% endfor %}
 
-    
 
 <script>
 	function changeGenre() {
@@ -61,9 +60,6 @@
 	    }
 
 	}
-    
 </script>
-    
-
 
 {% endblock %}
