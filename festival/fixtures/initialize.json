@@ -1,442 +1,5 @@
 [
   {
-    "model": "contenttypes.contenttype",
-    "pk": 1,
-    "fields": {
-      "app_label": "admin",
-      "model": "logentry"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 2,
-    "fields": {
-      "app_label": "auth",
-      "model": "permission"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 3,
-    "fields": {
-      "app_label": "auth",
-      "model": "user"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 4,
-    "fields": {
-      "app_label": "auth",
-      "model": "group"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 5,
-    "fields": {
-      "app_label": "contenttypes",
-      "model": "contenttype"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 6,
-    "fields": {
-      "app_label": "sessions",
-      "model": "session"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 7,
-    "fields": {
-      "app_label": "festivalapp",
-      "model": "band"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 8,
-    "fields": {
-      "app_label": "festivalapp",
-      "model": "concert"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 9,
-    "fields": {
-      "app_label": "festivalapp",
-      "model": "employee"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 10,
-    "fields": {
-      "app_label": "festivalapp",
-      "model": "festival"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 11,
-    "fields": {
-      "app_label": "festivalapp",
-      "model": "concertrequest"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 12,
-    "fields": {
-      "app_label": "festivalapp",
-      "model": "scene"
-    }
-  },
-  {
-    "model": "sessions.session",
-    "pk": "0hdfnx0f43d8h907ecn0yxe57cff8wdy",
-    "fields": {
-      "session_data": "ZWYyOTc0YTNiZDdjMjU4NTA2MDAxNjRiYjJlNjI3YTdmZDc3Mzg3Nzp7Il9hdXRoX3VzZXJfaWQiOiIxMiIsIl9hdXRoX3VzZXJfaGFzaCI6IjcwMzMzMmM0MDQ0YTBiYjA0ZGQ4MjNiYTNhYjQwYmIwNjU5ZWY4N2EiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCJ9",
-      "expire_date": "2017-11-16T10:21:19.240Z"
-    }
-  },
-  {
-    "model": "festivalapp.scene",
-    "pk": 1,
-    "fields": {
-      "name": "D\u00f8dens dal",
-      "capacity": 6000
-    }
-  },
-  {
-    "model": "festivalapp.scene",
-    "pk": 2,
-    "fields": {
-      "name": "Spektrum",
-      "capacity": 1500
-    }
-  },
-  {
-    "model": "festivalapp.scene",
-    "pk": 3,
-    "fields": {
-      "name": "Nidarosdomen",
-      "capacity": 1400
-    }
-  },
-  {
-    "model": "festivalapp.band",
-    "pk": 1,
-    "fields": {
-      "name": "Highasakite",
-      "manager": 10,
-      "members": 5,
-      "light_needs": 4,
-      "sound_needs": 4,
-      "specific_needs": "No specific needs yet",
-      "is_booking_req_sendt": false,
-      "is_booked": true,
-      "sold_albums": 50000,
-      "former_concerts": 3,
-      "review": "Veldig bra konsert",
-      "contact_info": "",
-      "links": ""
-    }
-  },
-  {
-    "model": "festivalapp.band",
-    "pk": 2,
-    "fields": {
-      "name": "Lorde",
-      "manager": 11,
-      "members": 1,
-      "light_needs": 0,
-      "sound_needs": 0,
-      "specific_needs": "No specific needs yet",
-      "is_booking_req_sendt": false,
-      "is_booked": false,
-      "sold_albums": 500000,
-      "former_concerts": 1,
-      "review": "No review yet",
-      "contact_info": "",
-      "links": ""
-    }
-  },
-  {
-    "model": "festivalapp.band",
-    "pk": 3,
-    "fields": {
-      "name": "DDE",
-      "manager": 14,
-      "members": 4,
-      "light_needs": 0,
-      "sound_needs": 0,
-      "specific_needs": "No specific needs yet",
-      "is_booking_req_sendt": false,
-      "is_booked": false,
-      "sold_albums": 100000,
-      "former_concerts": 1,
-      "review": "No review yet",
-      "contact_info": "",
-      "links": ""
-    }
-  },
-  {
-    "model": "festivalapp.band",
-    "pk": 4,
-    "fields": {
-      "name": "Marting Garrix",
-      "manager": 15,
-      "members": 1,
-      "light_needs": 0,
-      "sound_needs": 0,
-      "specific_needs": "No specific needs yet",
-      "is_booking_req_sendt": false,
-      "is_booked": false,
-      "sold_albums": 90000,
-      "former_concerts": 1,
-      "review": "No review yet",
-      "contact_info": "",
-      "links": ""
-    }
-  },
-  {
-    "model": "festivalapp.band",
-    "pk": 5,
-    "fields": {
-      "name": "Astrid S",
-      "manager": 16,
-      "members": 1,
-      "light_needs": 0,
-      "sound_needs": 0,
-      "specific_needs": "No specific needs yet",
-      "is_booking_req_sendt": false,
-      "is_booked": false,
-      "sold_albums": 10000,
-      "former_concerts": 1,
-      "review": "No review yet",
-      "contact_info": "",
-      "links": ""
-    }
-  },
-  {
-    "model": "festivalapp.band",
-    "pk": 6,
-    "fields": {
-      "name": "Maria Mena",
-      "manager": 17,
-      "members": 1,
-      "light_needs": 0,
-      "sound_needs": 0,
-      "specific_needs": "No specific needs yet",
-      "is_booking_req_sendt": false,
-      "is_booked": false,
-      "sold_albums": 10000,
-      "former_concerts": 1,
-      "review": "No review yet",
-      "contact_info": "",
-      "links": ""
-    }
-  },
-  {
-    "model": "festivalapp.band",
-    "pk": 7,
-    "fields": {
-      "name": "TKS",
-      "manager": 18,
-      "members": 100,
-      "light_needs": 0,
-      "sound_needs": 0,
-      "specific_needs": "No specific needs yet",
-      "is_booking_req_sendt": false,
-      "is_booked": false,
-      "sold_albums": 0,
-      "former_concerts": 4,
-      "review": "No review yet",
-      "contact_info": "",
-      "links": ""
-    }
-  },
-  {
-    "model": "festivalapp.festival",
-    "pk": 1,
-    "fields": {
-      "name": "UKA 17",
-      "end_date": "2017-10-29"
-    }
-  },
-  {
-    "model": "festivalapp.festival",
-    "pk": 2,
-    "fields": {
-      "name": "Fremtidig festival",
-      "end_date": "2018-01-02"
-    }
-  },
-  {
-    "model": "festivalapp.concert",
-    "pk": 1,
-    "fields": {
-      "name": "Highasakite",
-      "band": 1,
-      "genre": "pop",
-      "start_time": "19:00:00",
-      "end_time": "23:00:00",
-      "audience": 5000,
-      "date": "2017-10-12",
-      "scene": 1,
-      "festival": 1,
-      "price": 500,
-      "ticket_sales": 0,
-      "lighting_work": [
-        8
-      ],
-      "sound_work": [
-        9,
-        13
-      ]
-    }
-  },
-  {
-    "model": "festivalapp.concert",
-    "pk": 2,
-    "fields": {
-      "name": "Melodrama",
-      "band": 2,
-      "genre": "pop",
-      "start_time": "18:00:00",
-      "end_time": "23:00:00",
-      "audience": 6000,
-      "date": "2017-10-19",
-      "scene": 1,
-      "festival": 1,
-      "price": 600,
-      "ticket_sales": 0,
-      "lighting_work": [
-        7
-      ],
-      "sound_work": [
-        13
-      ]
-    }
-  },
-  {
-    "model": "festivalapp.concert",
-    "pk": 3,
-    "fields": {
-      "name": "Martin Garrix",
-      "band": 4,
-      "genre": "electric",
-      "start_time": "18:00:00",
-      "end_time": "23:00:00",
-      "audience": 6000,
-      "date": "2017-10-25",
-      "scene": 1,
-      "festival": 1,
-      "price": 500,
-      "ticket_sales": 0,
-      "lighting_work": [
-        8,
-        7
-      ],
-      "sound_work": [
-        6
-      ]
-    }
-  },
-  {
-    "model": "festivalapp.concert",
-    "pk": 4,
-    "fields": {
-      "name": "Kjempekul konsert",
-      "band": 3,
-      "genre": "rock",
-      "start_time": "18:00:00",
-      "end_time": "00:00:00",
-      "audience": 1400,
-      "date": "2017-12-26",
-      "scene": 2,
-      "festival": 2,
-      "price": 200,
-      "ticket_sales": 0,
-      "lighting_work": [
-        8
-      ],
-      "sound_work": [
-        9
-      ]
-    }
-  },
-  {
-    "model": "festivalapp.concert",
-    "pk": 5,
-    "fields": {
-      "name": "Fancy konsert",
-      "band": 6,
-      "genre": "pop",
-      "start_time": "18:00:00",
-      "end_time": "00:00:00",
-      "audience": 1000,
-      "date": "2017-12-28",
-      "scene": 2,
-      "festival": 2,
-      "price": 300,
-      "ticket_sales": 0,
-      "lighting_work": [
-        7
-      ],
-      "sound_work": [
-        6,
-        13
-      ]
-    }
-  },
-  {
-    "model": "festivalapp.concert",
-    "pk": 6,
-    "fields": {
-      "name": "Julekonsert",
-      "band": 7,
-      "genre": "pop",
-      "start_time": "12:00:00",
-      "end_time": "14:00:00",
-      "audience": 1000,
-      "date": "2017-12-24",
-      "scene": 3,
-      "festival": 2,
-      "price": 150,
-      "ticket_sales": 0,
-      "lighting_work": [
-        8
-      ],
-      "sound_work": [
-        6
-      ]
-    }
-  },
-  {
-    "model": "festivalapp.concert",
-    "pk": 7,
-    "fields": {
-      "name": "Concert",
-      "band": 1,
-      "genre": "rock",
-      "start_time": null,
-      "end_time": null,
-      "audience": 0,
-      "date": "2017-11-11",
-      "scene": 1,
-      "festival": 2,
-      "price": 100,
-      "ticket_sales": 0,
-      "lighting_work": [],
-      "sound_work": []
-    }
-  },
-  {
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -1085,6 +648,14 @@
     }
   },
   {
+    "model": "sessions.session",
+    "pk": "0hdfnx0f43d8h907ecn0yxe57cff8wdy",
+    "fields": {
+      "session_data": "ZWYyOTc0YTNiZDdjMjU4NTA2MDAxNjRiYjJlNjI3YTdmZDc3Mzg3Nzp7Il9hdXRoX3VzZXJfaWQiOiIxMiIsIl9hdXRoX3VzZXJfaGFzaCI6IjcwMzMzMmM0MDQ0YTBiYjA0ZGQ4MjNiYTNhYjQwYmIwNjU5ZWY4N2EiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCJ9",
+      "expire_date": "2017-11-16T10:21:19.240Z"
+    }
+  },
+  {
     "model": "festivalapp.employee",
     "pk": 1,
     "fields": {
@@ -1226,6 +797,339 @@
     "fields": {
       "user": 18,
       "employee_status": "MANAGER"
+    }
+  },
+  {
+    "model": "festivalapp.scene",
+    "pk": 1,
+    "fields": {
+      "name": "D\u00f8dens dal",
+      "capacity": 6000
+    }
+  },
+  {
+    "model": "festivalapp.scene",
+    "pk": 2,
+    "fields": {
+      "name": "Spektrum",
+      "capacity": 1500
+    }
+  },
+  {
+    "model": "festivalapp.scene",
+    "pk": 3,
+    "fields": {
+      "name": "Nidarosdomen",
+      "capacity": 1400
+    }
+  },
+  {
+    "model": "festivalapp.band",
+    "pk": 1,
+    "fields": {
+      "name": "Highasakite",
+      "manager": 10,
+      "members": 5,
+      "light_needs": 4,
+      "sound_needs": 4,
+      "specific_needs": "No specific needs yet",
+      "is_booking_req_sendt": false,
+      "is_booked": true,
+      "sold_albums": 50000,
+      "former_concerts": 3,
+      "review": "Veldig bra konsert",
+      "contact_info": "",
+      "links": ""
+    }
+  },
+  {
+    "model": "festivalapp.band",
+    "pk": 2,
+    "fields": {
+      "name": "Lorde",
+      "manager": 11,
+      "members": 1,
+      "light_needs": 0,
+      "sound_needs": 0,
+      "specific_needs": "No specific needs yet",
+      "is_booking_req_sendt": false,
+      "is_booked": false,
+      "sold_albums": 500000,
+      "former_concerts": 1,
+      "review": "No review yet",
+      "contact_info": "",
+      "links": ""
+    }
+  },
+  {
+    "model": "festivalapp.band",
+    "pk": 3,
+    "fields": {
+      "name": "DDE",
+      "manager": 14,
+      "members": 4,
+      "light_needs": 0,
+      "sound_needs": 0,
+      "specific_needs": "No specific needs yet",
+      "is_booking_req_sendt": false,
+      "is_booked": false,
+      "sold_albums": 100000,
+      "former_concerts": 1,
+      "review": "No review yet",
+      "contact_info": "",
+      "links": ""
+    }
+  },
+  {
+    "model": "festivalapp.band",
+    "pk": 4,
+    "fields": {
+      "name": "Marting Garrix",
+      "manager": 15,
+      "members": 1,
+      "light_needs": 0,
+      "sound_needs": 0,
+      "specific_needs": "No specific needs yet",
+      "is_booking_req_sendt": false,
+      "is_booked": false,
+      "sold_albums": 90000,
+      "former_concerts": 1,
+      "review": "No review yet",
+      "contact_info": "",
+      "links": ""
+    }
+  },
+  {
+    "model": "festivalapp.band",
+    "pk": 5,
+    "fields": {
+      "name": "Astrid S",
+      "manager": 16,
+      "members": 1,
+      "light_needs": 0,
+      "sound_needs": 0,
+      "specific_needs": "No specific needs yet",
+      "is_booking_req_sendt": false,
+      "is_booked": false,
+      "sold_albums": 10000,
+      "former_concerts": 1,
+      "review": "No review yet",
+      "contact_info": "",
+      "links": ""
+    }
+  },
+  {
+    "model": "festivalapp.band",
+    "pk": 6,
+    "fields": {
+      "name": "Maria Mena",
+      "manager": 17,
+      "members": 1,
+      "light_needs": 0,
+      "sound_needs": 0,
+      "specific_needs": "No specific needs yet",
+      "is_booking_req_sendt": false,
+      "is_booked": false,
+      "sold_albums": 10000,
+      "former_concerts": 1,
+      "review": "No review yet",
+      "contact_info": "",
+      "links": ""
+    }
+  },
+  {
+    "model": "festivalapp.band",
+    "pk": 7,
+    "fields": {
+      "name": "TKS",
+      "manager": 18,
+      "members": 100,
+      "light_needs": 0,
+      "sound_needs": 0,
+      "specific_needs": "No specific needs yet",
+      "is_booking_req_sendt": false,
+      "is_booked": false,
+      "sold_albums": 0,
+      "former_concerts": 4,
+      "review": "No review yet",
+      "contact_info": "",
+      "links": ""
+    }
+  },
+  {
+    "model": "festivalapp.festival",
+    "pk": 1,
+    "fields": {
+      "name": "UKA 17",
+      "end_date": "2017-10-29"
+    }
+  },
+  {
+    "model": "festivalapp.festival",
+    "pk": 2,
+    "fields": {
+      "name": "Fremtidig festival",
+      "end_date": "2018-01-02"
+    }
+  },
+  {
+    "model": "festivalapp.concert",
+    "pk": 1,
+    "fields": {
+      "name": "Highasakite",
+      "band": 1,
+      "genre": "pop",
+      "start_time": "19:00:00",
+      "end_time": "23:00:00",
+      "audience": 5000,
+      "date": "2017-10-12",
+      "scene": 1,
+      "festival": 1,
+      "price": 500,
+      "ticket_sales": 0,
+      "lighting_work": [
+        8
+      ],
+      "sound_work": [
+        9,
+        13
+      ]
+    }
+  },
+  {
+    "model": "festivalapp.concert",
+    "pk": 2,
+    "fields": {
+      "name": "Melodrama",
+      "band": 2,
+      "genre": "pop",
+      "start_time": "18:00:00",
+      "end_time": "23:00:00",
+      "audience": 6000,
+      "date": "2017-10-19",
+      "scene": 1,
+      "festival": 1,
+      "price": 600,
+      "ticket_sales": 0,
+      "lighting_work": [
+        7
+      ],
+      "sound_work": [
+        13
+      ]
+    }
+  },
+  {
+    "model": "festivalapp.concert",
+    "pk": 3,
+    "fields": {
+      "name": "Martin Garrix",
+      "band": 4,
+      "genre": "electric",
+      "start_time": "18:00:00",
+      "end_time": "23:00:00",
+      "audience": 6000,
+      "date": "2017-10-25",
+      "scene": 1,
+      "festival": 1,
+      "price": 500,
+      "ticket_sales": 0,
+      "lighting_work": [
+        8,
+        7
+      ],
+      "sound_work": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "festivalapp.concert",
+    "pk": 4,
+    "fields": {
+      "name": "Kjempekul konsert",
+      "band": 3,
+      "genre": "rock",
+      "start_time": "18:00:00",
+      "end_time": "00:00:00",
+      "audience": 1400,
+      "date": "2017-12-26",
+      "scene": 2,
+      "festival": 2,
+      "price": 200,
+      "ticket_sales": 0,
+      "lighting_work": [
+        8
+      ],
+      "sound_work": [
+        9
+      ]
+    }
+  },
+  {
+    "model": "festivalapp.concert",
+    "pk": 5,
+    "fields": {
+      "name": "Fancy konsert",
+      "band": 6,
+      "genre": "pop",
+      "start_time": "18:00:00",
+      "end_time": "00:00:00",
+      "audience": 1000,
+      "date": "2017-12-28",
+      "scene": 2,
+      "festival": 2,
+      "price": 300,
+      "ticket_sales": 0,
+      "lighting_work": [
+        7
+      ],
+      "sound_work": [
+        6,
+        13
+      ]
+    }
+  },
+  {
+    "model": "festivalapp.concert",
+    "pk": 6,
+    "fields": {
+      "name": "Julekonsert",
+      "band": 7,
+      "genre": "pop",
+      "start_time": "12:00:00",
+      "end_time": "14:00:00",
+      "audience": 1000,
+      "date": "2017-12-24",
+      "scene": 3,
+      "festival": 2,
+      "price": 150,
+      "ticket_sales": 0,
+      "lighting_work": [
+        8
+      ],
+      "sound_work": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "festivalapp.concert",
+    "pk": 7,
+    "fields": {
+      "name": "Concert",
+      "band": 1,
+      "genre": "rock",
+      "start_time": null,
+      "end_time": null,
+      "audience": 0,
+      "date": "2017-11-11",
+      "scene": 1,
+      "festival": 2,
+      "price": 100,
+      "ticket_sales": 0,
+      "lighting_work": [],
+      "sound_work": []
     }
   },
   {
