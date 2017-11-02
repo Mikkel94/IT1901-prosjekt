@@ -168,11 +168,11 @@
                                         <li><p>{{ lyd }}</p></li>
                                     {% endfor %}
                                 </ul>
-                                <form action="{% url 'festivalapp:set_audience' pk=concert.pk %}" metdod="POST">
+                                <form action="{% url 'festivalapp:set_audience' pk=concert.pk %}" method="POST">
                                     {% csrf_token %}
-                                    Set Audience:
+                                    Sett publikum:
                                     <input type="number" name="audience" id="audience">
-                                    <input type="submit" value="Set Audience">
+                                    <input type="submit" value="Sett publikum">
                                 </form>
                             </div>
                         </div>
