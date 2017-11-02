@@ -7,17 +7,17 @@ body {
 
 #meny {
     display: flex;
-    height:80px;
     flex-basis: 100%;
     background-color: #616161;
 }
 
 div.menu {
     box-sizing: border-box;
-	height: 80px;
+    height: 80px;
     min-width : 150px;
 	background-color: #616161;
-	flex-basis: 20%;
+	flex: 1;
+
 }
 
 div.menu.box:active {
@@ -29,10 +29,11 @@ div.box {
 }
 
 div.menu:hover {
-    box-sizing: border-box;
-    border:1px;
-    border-style: solid;
-    border-color: lightgrey;
+    background-color: #838383;
+}
+
+div.current {
+    background-color: #3e3e3e;
 }
 
 #tomboks {
@@ -115,12 +116,14 @@ list-style-type: none;
 }
 
 .concert_element{
+    box-sizing: border-box;
+    height: 440px;
     position:relative;
     padding: 4%;
     min-width:60%;
     border-style: solid;
     border-color: #666666;
-    margin:20px;
+    margin:20px 10px;
     background-color: #9B9B9B;
 }
 
@@ -148,12 +151,14 @@ list-style-type: none;
 
 
 .concert_element2{
+    box-sizing: border-box;
+    height: 440px;
     position:relative;
     padding: 5%;
     min-width:60%;
     border-style: solid;
     border-color: #666666;
-    margin:20px;
+    margin:20px 10px;
     background-color: #9B9B9B;
 }
 
@@ -194,7 +199,6 @@ th{
     display: none;
     position: fixed;
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -202,16 +206,22 @@ th{
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+     padding-bottom: 20px;
+
 }
 
 
 .modal-content {
     margin: 15px auto;
-    margin-top:10em;
+    margin-top:10%;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
 	background-color: #BDBDBD;
+    max-height: 80%;
+    overflow: auto;
+
+
 }
 
 
@@ -251,7 +261,8 @@ th{
 
 .atext {
 text-decoration: none;
-color: white
+color: white;
+
 }
 /*--------- Ferdig Concert Modal -------*/
 

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    BANDS
+    <b>Band:</b>
     {% for band in bands %}
         <li class="concert_element">
             Band name: {{ band.name }}
@@ -11,9 +11,11 @@
             Already booked?: {{ band.is_booked }}
             Manager: {{ band.manager }}
         </li>
+        {% empty %}
+        <p>Ingen band å vise</p>
     {% endfor %}
 
-    FORMER CONCERTS WITH SAID BANDS
+    <b>Tidligere konserter:</b>
     {% for concert in concerts %}
         {% for value in concert %}
             <li class="concert_element">
@@ -25,6 +27,8 @@
                 Date: {{ value.date }}
             </li>
         {% endfor %}
+        {% empty %}
+        <p>Ingen konserter å vise</p>
     {% endfor %}
 
 {% endblock %}

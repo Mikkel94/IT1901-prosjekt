@@ -74,13 +74,13 @@
                             <!-- Modal content -->
                             <div class="modal-content">
                                 <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
-                                <p>Konsertnavn: {{ concert.name }}</p>
-                                <p>Band: {{ concert.band }}</p>
-                                <p>Dato: {{ concert.date }}</p>
-                                <p>Scene: {{ concert.scene }}</p>
-                                <p>Festival: {{ concert.festival }}</p>
-                                <p>Billettpris: {{ concert.price }}kr</p>
-                                <p>Billettsalg:
+                                <p><b>Konsertnavn:</b> {{ concert.name }}</p>
+                                <p><b>Band:</b> {{ concert.band }}</p>
+                                <p><b>Dato:</b> {{ concert.date }}</p>
+                                <p><b>Scene:</b> {{ concert.scene }}</p>
+                                <p><b>Festival:</b> {{ concert.festival }}</p>
+                                <p><b>Billettpris:</b> {{ concert.price }}kr</p>
+                                <p><b>Billettsalg:</b>
                                     {% if concert.ticket_sales > concert.scene.capacity %}
                                         {{ concert.scene.capacity }}
                                     {% else %}
@@ -154,12 +154,12 @@
                             <div class="modal-content">
                                 <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
 
-                                <p>Konsertnavn: {{ concert.name }}</p>
-                                <p>Band: {{ concert.band }}</p>
-                                <p>Dato: {{ concert.date }}</p>
-                                <p>Scene: {{ concert.scene }}</p>
-                                <p>Festival: {{ concert.festival }}</p>
-                                <p>Publikumstall: {{ concert.audience }}</p>
+                                <p><b>Konsertnavn:</b> {{ concert.name }}</p>
+                                <p><b>Band:</b> {{ concert.band }}</p>
+                                <p><b>Dato:</b> {{ concert.date }}</p>
+                                <p><b>Scene:</b> {{ concert.scene }}</p>
+                                <p><b>Festival:</b> {{ concert.festival }}</p>
+                                <p><b>Publikumstall:</b> {{ concert.audience }}</p>
 
                                 <h3>LYS:</h3>
 
@@ -178,11 +178,11 @@
                                         Ingen lystekniker
                                     {% endfor %}
                                 </ul>
-                                <form action="{% url 'festivalapp:set_audience' pk=concert.pk %}" metdod="POST">
+                                <form action="{% url 'festivalapp:set_audience' pk=concert.pk %}" method="POST">
                                     {% csrf_token %}
-                                    Set Audience:
+                                    Sett publikum:
                                     <input type="number" name="audience" id="audience">
-                                    <input type="submit" value="Set Audience">
+                                    <input type="submit" value="Sett publikum">
                                 </form>
                             </div>
                         </div>
@@ -253,12 +253,9 @@
                 <th>Se mer:</th>
             </tr>
             </thead>
-
             <tbody>
 
-
             {% for concert in concerts %}
-
                 <tr>
                     <td>{{ concert.date }}</td>
                     <td>{{ concert.name }}</td>
@@ -277,14 +274,14 @@
 
                             <h1>Info:</h1>
 
-                            <p>Starttid: {{ concert.start_time }}</p>
-                            <p>Sluttid: {{ concert.end_time }}</p>
-                            <p>Forventet publikumstall: {{ concert.expected_audience }}</p>
-                            <p>Sjanger: {{ concert.genre }}</p>
-                            <p>Band: {{ concert.band }}</p>
-                            <p>Estimert innkjøp for bar til {{ concert.scene }}
-                                : {{ concert.scene.calc_beverage_prices }} kr</p>
-                            <p>Scene: {{ concert.scene }}</p>
+                            <p><b>Starttid:</b> {{ concert.start_time }}</p>
+                            <p><b>Sluttid:</b> {{ concert.end_time }}</p>
+                            <p><b>Forventet publikumstall:</b> {{ concert.expected_audience }}</p>
+                            <p><b>Sjanger:</b> {{ concert.genre }}</p>
+                            <p><b>Band:</b> {{ concert.band }}</p>
+                            <p><b>Estimert innkjøp for bar til {{ concert.scene }}
+                                :</b> {{ concert.scene.calc_beverage_prices }} kr</p>
+                            <p><b>Scene:</b> {{ concert.scene }}</p>
 
                         </div>
                     </div>
