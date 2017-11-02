@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <p>Antall tilbud sendt: {{ concerts | length }}</p>
+    <br>
+    <p>Antall konsertdatoer booket: {{ concerts_isbooked | length }}</p>
+    <br>
+    <p>Antall ledige datoer: {{ available_dates }}</p>
+
+
+    {% for concert in concerts %}
+        <li class="concert_element">
+            <p>Band: {{ concert.band }}</p>
+            <p>Concert: {{ concert.name }}</p>
+            <p>Genre: {{ concert.genre }}</p>
+            <p>Festival: {{ concert.festival }}</p>
+            <p>Price: {{ concert.price }}</p>
+            <p>Date: {{ concert.date }}</p>
+            <p>Scene: {{ concert.scene }}</p>
+            <a href="{% url 'festivalapp:accept_booking_request' pk=concert.pk %}" type="button"
+               class="button add-button">Accept</a>
+            <a href="{% url 'festivalapp:decline_booking_request' pk=concert.pk %}" type="button"
+               class="button delete-button">Decline</a>
+        </li>
+    {% endfor %}
+
+{% endblock %}

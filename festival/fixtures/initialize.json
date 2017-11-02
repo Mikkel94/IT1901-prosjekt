@@ -1,0 +1,604 @@
+[
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "auth",
+      "model": "user"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "app_label": "festivalapp",
+      "model": "band"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "app_label": "festivalapp",
+      "model": "concert"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+      "app_label": "festivalapp",
+      "model": "employee"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+      "app_label": "festivalapp",
+      "model": "festival"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+      "app_label": "festivalapp",
+      "model": "scene"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "0mccafsztcnz6gjus4k3s51fm14m8zp1",
+    "fields": {
+      "session_data": "Y2EyNGVhZDk5OTE1YjI0YTU2OGNlNTJlZTg4MTVlMmI1M2YwN2RiNDp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIzZjMxNDI4ODJiOTBmZGY3YTNjZTY3M2Y3NjkwM2NjZTNmNDE0YjM3In0=",
+      "expire_date": "2017-10-30T11:11:45.075Z"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 4,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 4,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 4,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 5,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 5,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 5,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 6,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 6,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 6,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can add band",
+      "content_type": 7,
+      "codename": "add_band"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can change band",
+      "content_type": 7,
+      "codename": "change_band"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can delete band",
+      "content_type": 7,
+      "codename": "delete_band"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can add concert",
+      "content_type": 8,
+      "codename": "add_concert"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can change concert",
+      "content_type": 8,
+      "codename": "change_concert"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can delete concert",
+      "content_type": 8,
+      "codename": "delete_concert"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add employee",
+      "content_type": 9,
+      "codename": "add_employee"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change employee",
+      "content_type": 9,
+      "codename": "change_employee"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete employee",
+      "content_type": 9,
+      "codename": "delete_employee"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can add festival",
+      "content_type": 10,
+      "codename": "add_festival"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can change festival",
+      "content_type": 10,
+      "codename": "change_festival"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can delete festival",
+      "content_type": 10,
+      "codename": "delete_festival"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can add scene",
+      "content_type": 11,
+      "codename": "add_scene"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can change scene",
+      "content_type": 11,
+      "codename": "change_scene"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can delete scene",
+      "content_type": 11,
+      "codename": "delete_scene"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$MnprWTNNMXlnVnlZ$o6yRQ5YMjItG14AIUEtwYg",
+      "last_login": "2017-10-16T11:11:45.062Z",
+      "is_superuser": true,
+      "username": "truls",
+      "first_name": "",
+      "last_name": "",
+      "email": "t@lol.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2017-10-16T11:11:32.316Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$Mk9BZkZvb0I0N2d3$dNidaui21gCPh17fCupzjQ",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "bork",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-10-16T11:13:13.100Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$NnRjdzd3ZWx4T1ZU$KGho6zsZRe30qORhhNj/zw",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "light",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-10-16T11:13:25.478Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$eDh0WEphMkVEODVv$inWKmdCS100ViwCbtqR9ug",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "sound",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-10-16T11:13:59.061Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$VVBIbHZFVUJvRE1w$PEboUpf5XRq5TcgFi7gdiw",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "manager",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-10-16T11:14:24.853Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 6,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$cERRVHpUMHhXTG1l$dCjZXdl3PeijtLgwENXqZw",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "bookingboss",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-10-16T11:14:35.966Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 7,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$TmsyT3F1NUZVTk5u$R9LfD8SrChg8kynV1OfNFw",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "booking_responsible",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-10-16T11:14:51.081Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "employee_status": "arranger"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2017-10-16T11:12:54.980Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "1",
+      "object_repr": "truls",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2017-10-16T11:13:13.108Z",
+      "user": 1,
+      "content_type": 4,
+      "object_id": "2",
+      "object_repr": "bork",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2017-10-16T11:13:25.482Z",
+      "user": 1,
+      "content_type": 4,
+      "object_id": "3",
+      "object_repr": "light",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2017-10-16T11:13:59.064Z",
+      "user": 1,
+      "content_type": 4,
+      "object_id": "4",
+      "object_repr": "sound",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2017-10-16T11:14:24.857Z",
+      "user": 1,
+      "content_type": 4,
+      "object_id": "5",
+      "object_repr": "manager",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2017-10-16T11:14:35.970Z",
+      "user": 1,
+      "content_type": 4,
+      "object_id": "6",
+      "object_repr": "bookingboss",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+      "action_time": "2017-10-16T11:14:51.083Z",
+      "user": 1,
+      "content_type": 4,
+      "object_id": "7",
+      "object_repr": "booking_responsible",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  }
+]

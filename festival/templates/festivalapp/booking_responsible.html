@@ -2,25 +2,82 @@
 
 {% block content %}
 
-    {% for band in bands %}
-        {% if not band.is_booked %}
+    <div class="concertcontainer1">
+
+        <h2>BAND OFFERS</h2>
+
+
+        {% for band in bands %}
 
             <li class="concert_element">
 
-                <p>Name: {{ band.name }}</p>
+                <p style="font-size: 20px;" :>Band: {{ band.name }}</p>
                 <p>Manager: {{ band.manager }}</p>
                 <p>Number of members: {{ band.members }}</p>
                 <p>Light needs: {{ band.light_needs }}</p>
                 <p>Sound needs: {{ band.sound_needs }}</p>
                 <p>Specific needs: {{ band.specific_needs }}</p>
-                <a href="{% url 'festivalapp:delete_band' pk=band.pk %}" type="button" class="button delete-button">Delete</a>
+                <p>Sold albums: {{ band.sold_albums }}</p>
+                <p>Number of concerts: {{ band.former_concerts }}</p>
+                <p>Popularity: {{ band.popularity }}</p>
+                <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Tilbud
+                </button>
                 <a href="{% url 'festivalapp:booking' pk=band.pk %}" type="button" class="button add-button">Add</a>
 
 
+                <div class="modal" id="modal_{{ forloop.counter }}">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
+                        {% for b, cs in concert_requests.items %}
+                            {% if b == band.name %}
+                                <p> <b>Concert requests for {{ b }}:</b></p>
+                                {% for c in cs %}
+                                    <div>
+                                        {{ c.name }}
+                                        {{ c.date }}
+                                        <a href="{% url 'festivalapp:cancel_booking_request' pk=c.pk %}" type="button"
+                                           class="button add-button">Cancel request</a>
+                                    </div>
+                                    {% empty %}
+                                    <p>No requests</p>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+
+                    </div>
+                </div>
+
             </li>
 
-        {% endif %}
-    {% endfor %}
+        {% endfor %}
+
+
+    </div>
+
+    <div class="concertcontainer1">
+        <h2>SET REVIEW</h2>
+
+        {% for band in bands %}
+            <li class="concert_element2">
+                <p style="font-size: 20px;" :>Band: {{ band.name }}</p>
+                <p>Manager: {{ band.manager }}</p>
+                <p>Number of members: {{ band.members }}</p>
+                <p>Current review: {{ band.review }}</p>
+                <form action="{% url 'festivalapp:add_review' pk=band.pk %}" method="post" id="review-form">
+                    {% csrf_token %}
+                    <p><label for="review">New review here:</label></p>
+                    <textarea
+                            style="height: 110px; width: 230px; resize: none; background-color: #EFEFEF; border-radius: 8px;"
+                            name="review" id="review" cols="30" rows="10"></textarea>
+                    </br>
+                    <input id="submitreview" type="submit" value="Submit Review">
+                </form>
+            </li>
+        {% endfor %}
+    </div>
+
 
 
 {% endblock %}
