@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <b>Band:</b>
+    {% for band in bands %}
+        <li class="concert_element">
+            Band name: {{ band.name }}
+            Band rating: {{ band.popularity }}
+            Number of former concerts: {{ band.former_concerts }}
+            Already booked?: {{ band.is_booked }}
+            Manager: {{ band.manager }}
+        </li>
+        {% empty %}
+        <p>Ingen band å vise</p>
+    {% endfor %}
+
+    <b>Tidligere konserter:</b>
+    {% for concert in concerts %}
+        {% for value in concert %}
+            <li class="concert_element">
+                Concert - Band: {{ value }}
+                Audience: {{ value.audience }}
+                Genre: {{ value.genre }}
+                Festival: {{ value.festival }}
+                Scene: {{ value.scene }}
+                Date: {{ value.date }}
+            </li>
+        {% endfor %}
+        {% empty %}
+        <p>Ingen konserter å vise</p>
+    {% endfor %}
+
+{% endblock %}

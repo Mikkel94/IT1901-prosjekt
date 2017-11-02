@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <select id="genreID">
+        {% for genre, genre2 in genres %}
+            <option class="option" value="{{genre2}}">{{genre2}}</option>
+        {% endfor %}
+    </select>
+    <button onclick="changeGenre()">Bytt sjanger</button>
+
+    {% for concert in concerts %}
+        {% if concert.festival in festivals %}
+
+    	<div class="{{concert.genre}} con">
+            <h1>{{concert.name}}</h1>
+            <p><b>Band</b>: {{concert.band}}</p>
+    		<p><b>Sjanger:</b> {{concert.genre}}</p>
+    		<p><b>Festival:</b> {{concert.festival}}</p>
+    		<p><b>Publikum:</b> {{concert.audience}}</p>
+            <p><b>Scene:</b> {{concert.scene}}</p>
+    	</div>
+
+    	{% endif %}
+        {% empty %}
+            <p>Det er ingen gamle konserter å vise</p>
+    {% endfor %}
+
+
+<script>
+	function changeGenre() {
+	var e = document.getElementById("genreID");
+	var genre = e.options[e.selectedIndex].value;
+    var concerts = document.getElementsByClassName(genre.toLowerCase());
+	    if (genre == "ROCK") {
+	    	c = document.getElementsByClassName("con");
+	    	for (var i = c.length - 1; i >= 0; i--) {
+	    		if (c[i].className == "rock con") {
+	    			c[i].style.display = "block";
+	    		}
+	    		else {c[i].style.display = "none";}
+	    	}
+	    }
+	    else if (genre == "POP") {
+	    	c = document.getElementsByClassName("con");
+	    	for (var i = c.length - 1; i >= 0; i--) {
+	    		if (c[i].className === "pop con") {
+	    			c[i].style.display = "block";
+	    		}
+	    		else {c[i].style.display = "none";}
+	    	}
+	    }
+	    else if (genre == "ELECTRIC") {
+	    	c = document.getElementsByClassName("con");
+	    	for (var i = c.length - 1; i >= 0; i--) {
+	    		if (c[i].className === "electric con") {
+	    			c[i].style.display = "block";
+	    		}
+	    		else {c[i].style.display = "none";}
+	    	}
+	    }
+
+	}
+</script>
+
+{% endblock %}

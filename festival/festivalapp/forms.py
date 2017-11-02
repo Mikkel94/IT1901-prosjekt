@@ -17,9 +17,10 @@ class ExtraInfoEmployeeForm(forms.ModelForm):
 class BandNeedsForm(forms.ModelForm):
     class Meta:
         model = Band
-        fields = ('light_needs', 'sound_needs')
+        fields = ('light_needs', 'sound_needs', 'specific_needs')
 
 class BookBandForm(forms.ModelForm):
     class Meta:
         model = Concert
-        fields = ('genre', 'date', 'scene')
+        fields = ('name', 'genre', 'date', 'scene', 'price')
+
