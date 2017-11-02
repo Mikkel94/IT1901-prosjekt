@@ -16,7 +16,7 @@ div.menu {
     height: 80px;
     min-width : 150px;
 	background-color: #616161;
-	flex-basis: 20%;
+	flex: 1;
 
 }
 
@@ -25,10 +25,11 @@ div.box {
 }
 
 div.menu:hover {
-    box-sizing: border-box;
-    border:1px;
-    border-style: solid;
-    border-color: lightgrey;
+    background-color: #838383;
+}
+
+div.current {
+    background-color: #3e3e3e;
 }
 
 #tomboks {
@@ -110,12 +111,14 @@ list-style-type: none;
 }
 
 .concert_element{
+    box-sizing: border-box;
+    height: 440px;
     position:relative;
     padding: 4%;
     min-width:60%;
     border-style: solid;
     border-color: #666666;
-    margin:20px;
+    margin:20px 10px;
     background-color: #9B9B9B;
 }
 
@@ -143,12 +146,14 @@ list-style-type: none;
 
 
 .concert_element2{
+    box-sizing: border-box;
+    height: 440px;
     position:relative;
     padding: 5%;
     min-width:60%;
     border-style: solid;
     border-color: #666666;
-    margin:20px;
+    margin:20px 10px;
     background-color: #9B9B9B;
 }
 
