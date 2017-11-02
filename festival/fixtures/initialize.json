@@ -9,10 +9,26 @@
   },
   {
     "model": "contenttypes.contenttype",
-    "pk": 4,
+    "pk": 2,
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
     "fields": {
       "app_label": "auth",
       "model": "user"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
     }
   },
   {
@@ -68,15 +84,356 @@
     "pk": 11,
     "fields": {
       "app_label": "festivalapp",
+      "model": "concertrequest"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+      "app_label": "festivalapp",
       "model": "scene"
     }
   },
   {
     "model": "sessions.session",
-    "pk": "0mccafsztcnz6gjus4k3s51fm14m8zp1",
+    "pk": "0hdfnx0f43d8h907ecn0yxe57cff8wdy",
     "fields": {
-      "session_data": "Y2EyNGVhZDk5OTE1YjI0YTU2OGNlNTJlZTg4MTVlMmI1M2YwN2RiNDp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIzZjMxNDI4ODJiOTBmZGY3YTNjZTY3M2Y3NjkwM2NjZTNmNDE0YjM3In0=",
-      "expire_date": "2017-10-30T11:11:45.075Z"
+      "session_data": "ZWYyOTc0YTNiZDdjMjU4NTA2MDAxNjRiYjJlNjI3YTdmZDc3Mzg3Nzp7Il9hdXRoX3VzZXJfaWQiOiIxMiIsIl9hdXRoX3VzZXJfaGFzaCI6IjcwMzMzMmM0MDQ0YTBiYjA0ZGQ4MjNiYTNhYjQwYmIwNjU5ZWY4N2EiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCJ9",
+      "expire_date": "2017-11-16T10:21:19.240Z"
+    }
+  },
+  {
+    "model": "festivalapp.scene",
+    "pk": 1,
+    "fields": {
+      "name": "D\u00f8dens dal",
+      "capacity": 6000
+    }
+  },
+  {
+    "model": "festivalapp.scene",
+    "pk": 2,
+    "fields": {
+      "name": "Spektrum",
+      "capacity": 1500
+    }
+  },
+  {
+    "model": "festivalapp.scene",
+    "pk": 3,
+    "fields": {
+      "name": "Nidarosdomen",
+      "capacity": 1400
+    }
+  },
+  {
+    "model": "festivalapp.band",
+    "pk": 1,
+    "fields": {
+      "name": "Highasakite",
+      "manager": 10,
+      "members": 5,
+      "light_needs": 4,
+      "sound_needs": 4,
+      "specific_needs": "No specific needs yet",
+      "is_booking_req_sendt": false,
+      "is_booked": true,
+      "sold_albums": 50000,
+      "former_concerts": 3,
+      "review": "Veldig bra konsert",
+      "contact_info": "",
+      "links": ""
+    }
+  },
+  {
+    "model": "festivalapp.band",
+    "pk": 2,
+    "fields": {
+      "name": "Lorde",
+      "manager": 11,
+      "members": 1,
+      "light_needs": 0,
+      "sound_needs": 0,
+      "specific_needs": "No specific needs yet",
+      "is_booking_req_sendt": false,
+      "is_booked": false,
+      "sold_albums": 500000,
+      "former_concerts": 1,
+      "review": "No review yet",
+      "contact_info": "",
+      "links": ""
+    }
+  },
+  {
+    "model": "festivalapp.band",
+    "pk": 3,
+    "fields": {
+      "name": "DDE",
+      "manager": 14,
+      "members": 4,
+      "light_needs": 0,
+      "sound_needs": 0,
+      "specific_needs": "No specific needs yet",
+      "is_booking_req_sendt": false,
+      "is_booked": false,
+      "sold_albums": 100000,
+      "former_concerts": 1,
+      "review": "No review yet",
+      "contact_info": "",
+      "links": ""
+    }
+  },
+  {
+    "model": "festivalapp.band",
+    "pk": 4,
+    "fields": {
+      "name": "Marting Garrix",
+      "manager": 15,
+      "members": 1,
+      "light_needs": 0,
+      "sound_needs": 0,
+      "specific_needs": "No specific needs yet",
+      "is_booking_req_sendt": false,
+      "is_booked": false,
+      "sold_albums": 90000,
+      "former_concerts": 1,
+      "review": "No review yet",
+      "contact_info": "",
+      "links": ""
+    }
+  },
+  {
+    "model": "festivalapp.band",
+    "pk": 5,
+    "fields": {
+      "name": "Astrid S",
+      "manager": 16,
+      "members": 1,
+      "light_needs": 0,
+      "sound_needs": 0,
+      "specific_needs": "No specific needs yet",
+      "is_booking_req_sendt": false,
+      "is_booked": false,
+      "sold_albums": 10000,
+      "former_concerts": 1,
+      "review": "No review yet",
+      "contact_info": "",
+      "links": ""
+    }
+  },
+  {
+    "model": "festivalapp.band",
+    "pk": 6,
+    "fields": {
+      "name": "Maria Mena",
+      "manager": 17,
+      "members": 1,
+      "light_needs": 0,
+      "sound_needs": 0,
+      "specific_needs": "No specific needs yet",
+      "is_booking_req_sendt": false,
+      "is_booked": false,
+      "sold_albums": 10000,
+      "former_concerts": 1,
+      "review": "No review yet",
+      "contact_info": "",
+      "links": ""
+    }
+  },
+  {
+    "model": "festivalapp.band",
+    "pk": 7,
+    "fields": {
+      "name": "TKS",
+      "manager": 18,
+      "members": 100,
+      "light_needs": 0,
+      "sound_needs": 0,
+      "specific_needs": "No specific needs yet",
+      "is_booking_req_sendt": false,
+      "is_booked": false,
+      "sold_albums": 0,
+      "former_concerts": 4,
+      "review": "No review yet",
+      "contact_info": "",
+      "links": ""
+    }
+  },
+  {
+    "model": "festivalapp.festival",
+    "pk": 1,
+    "fields": {
+      "name": "UKA 17",
+      "end_date": "2017-10-29"
+    }
+  },
+  {
+    "model": "festivalapp.festival",
+    "pk": 2,
+    "fields": {
+      "name": "Fremtidig festival",
+      "end_date": "2018-01-02"
+    }
+  },
+  {
+    "model": "festivalapp.concert",
+    "pk": 1,
+    "fields": {
+      "name": "Highasakite",
+      "band": 1,
+      "genre": "pop",
+      "start_time": "19:00:00",
+      "end_time": "23:00:00",
+      "audience": 5000,
+      "date": "2017-10-12",
+      "scene": 1,
+      "festival": 1,
+      "price": 500,
+      "ticket_sales": 0,
+      "lighting_work": [
+        8
+      ],
+      "sound_work": [
+        9,
+        13
+      ]
+    }
+  },
+  {
+    "model": "festivalapp.concert",
+    "pk": 2,
+    "fields": {
+      "name": "Melodrama",
+      "band": 2,
+      "genre": "pop",
+      "start_time": "18:00:00",
+      "end_time": "23:00:00",
+      "audience": 6000,
+      "date": "2017-10-19",
+      "scene": 1,
+      "festival": 1,
+      "price": 600,
+      "ticket_sales": 0,
+      "lighting_work": [
+        7
+      ],
+      "sound_work": [
+        13
+      ]
+    }
+  },
+  {
+    "model": "festivalapp.concert",
+    "pk": 3,
+    "fields": {
+      "name": "Martin Garrix",
+      "band": 4,
+      "genre": "electric",
+      "start_time": "18:00:00",
+      "end_time": "23:00:00",
+      "audience": 6000,
+      "date": "2017-10-25",
+      "scene": 1,
+      "festival": 1,
+      "price": 500,
+      "ticket_sales": 0,
+      "lighting_work": [
+        8,
+        7
+      ],
+      "sound_work": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "festivalapp.concert",
+    "pk": 4,
+    "fields": {
+      "name": "Kjempekul konsert",
+      "band": 3,
+      "genre": "rock",
+      "start_time": "18:00:00",
+      "end_time": "00:00:00",
+      "audience": 1400,
+      "date": "2017-12-26",
+      "scene": 2,
+      "festival": 2,
+      "price": 200,
+      "ticket_sales": 0,
+      "lighting_work": [
+        8
+      ],
+      "sound_work": [
+        9
+      ]
+    }
+  },
+  {
+    "model": "festivalapp.concert",
+    "pk": 5,
+    "fields": {
+      "name": "Fancy konsert",
+      "band": 6,
+      "genre": "pop",
+      "start_time": "18:00:00",
+      "end_time": "00:00:00",
+      "audience": 1000,
+      "date": "2017-12-28",
+      "scene": 2,
+      "festival": 2,
+      "price": 300,
+      "ticket_sales": 0,
+      "lighting_work": [
+        7
+      ],
+      "sound_work": [
+        6,
+        13
+      ]
+    }
+  },
+  {
+    "model": "festivalapp.concert",
+    "pk": 6,
+    "fields": {
+      "name": "Julekonsert",
+      "band": 7,
+      "genre": "pop",
+      "start_time": "12:00:00",
+      "end_time": "14:00:00",
+      "audience": 1000,
+      "date": "2017-12-24",
+      "scene": 3,
+      "festival": 2,
+      "price": 150,
+      "ticket_sales": 0,
+      "lighting_work": [
+        8
+      ],
+      "sound_work": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "festivalapp.concert",
+    "pk": 7,
+    "fields": {
+      "name": "Concert",
+      "band": 1,
+      "genre": "rock",
+      "start_time": null,
+      "end_time": null,
+      "audience": 0,
+      "date": "2017-11-11",
+      "scene": 1,
+      "festival": 2,
+      "price": 100,
+      "ticket_sales": 0,
+      "lighting_work": [],
+      "sound_work": []
     }
   },
   {
@@ -137,54 +494,54 @@
     "model": "auth.permission",
     "pk": 7,
     "fields": {
-      "name": "Can add group",
+      "name": "Can add user",
       "content_type": 3,
-      "codename": "add_group"
+      "codename": "add_user"
     }
   },
   {
     "model": "auth.permission",
     "pk": 8,
     "fields": {
-      "name": "Can change group",
+      "name": "Can change user",
       "content_type": 3,
-      "codename": "change_group"
+      "codename": "change_user"
     }
   },
   {
     "model": "auth.permission",
     "pk": 9,
     "fields": {
-      "name": "Can delete group",
+      "name": "Can delete user",
       "content_type": 3,
-      "codename": "delete_group"
+      "codename": "delete_user"
     }
   },
   {
     "model": "auth.permission",
     "pk": 10,
     "fields": {
-      "name": "Can add user",
+      "name": "Can add group",
       "content_type": 4,
-      "codename": "add_user"
+      "codename": "add_group"
     }
   },
   {
     "model": "auth.permission",
     "pk": 11,
     "fields": {
-      "name": "Can change user",
+      "name": "Can change group",
       "content_type": 4,
-      "codename": "change_user"
+      "codename": "change_group"
     }
   },
   {
     "model": "auth.permission",
     "pk": 12,
     "fields": {
-      "name": "Can delete user",
+      "name": "Can delete group",
       "content_type": 4,
-      "codename": "delete_user"
+      "codename": "delete_group"
     }
   },
   {
@@ -353,26 +710,53 @@
     "model": "auth.permission",
     "pk": 31,
     "fields": {
-      "name": "Can add scene",
+      "name": "Can add concert request",
       "content_type": 11,
-      "codename": "add_scene"
+      "codename": "add_concertrequest"
     }
   },
   {
     "model": "auth.permission",
     "pk": 32,
     "fields": {
-      "name": "Can change scene",
+      "name": "Can change concert request",
       "content_type": 11,
-      "codename": "change_scene"
+      "codename": "change_concertrequest"
     }
   },
   {
     "model": "auth.permission",
     "pk": 33,
     "fields": {
-      "name": "Can delete scene",
+      "name": "Can delete concert request",
       "content_type": 11,
+      "codename": "delete_concertrequest"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can add scene",
+      "content_type": 12,
+      "codename": "add_scene"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can change scene",
+      "content_type": 12,
+      "codename": "change_scene"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can delete scene",
+      "content_type": 12,
       "codename": "delete_scene"
     }
   },
@@ -380,16 +764,16 @@
     "model": "auth.user",
     "pk": 1,
     "fields": {
-      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$MnprWTNNMXlnVnlZ$o6yRQ5YMjItG14AIUEtwYg",
-      "last_login": "2017-10-16T11:11:45.062Z",
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$RkxWdlhPQlZNckx4$QHGamhtpqsEnhweDZygrfw",
+      "last_login": "2017-11-01T23:55:44.729Z",
       "is_superuser": true,
-      "username": "truls",
+      "username": "Admin",
       "first_name": "",
       "last_name": "",
-      "email": "t@lol.com",
+      "email": "ad@ad.ad",
       "is_staff": true,
       "is_active": true,
-      "date_joined": "2017-10-16T11:11:32.316Z",
+      "date_joined": "2017-11-01T17:00:59.086Z",
       "groups": [],
       "user_permissions": []
     }
@@ -398,16 +782,16 @@
     "model": "auth.user",
     "pk": 2,
     "fields": {
-      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$Mk9BZkZvb0I0N2d3$dNidaui21gCPh17fCupzjQ",
-      "last_login": null,
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$cldJTjRGd1pXMEQy$8JQDVL+nZ2wFfaIWY8HDGw",
+      "last_login": "2017-11-02T09:49:20.014Z",
       "is_superuser": false,
-      "username": "bork",
+      "username": "Service",
       "first_name": "",
       "last_name": "",
       "email": "",
       "is_staff": false,
       "is_active": true,
-      "date_joined": "2017-10-16T11:13:13.100Z",
+      "date_joined": "2017-11-01T17:13:05.978Z",
       "groups": [],
       "user_permissions": []
     }
@@ -416,16 +800,16 @@
     "model": "auth.user",
     "pk": 3,
     "fields": {
-      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$NnRjdzd3ZWx4T1ZU$KGho6zsZRe30qORhhNj/zw",
-      "last_login": null,
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$VXZ0TDFDS2I5dTFN$Gn9rAqsS3UsVAvSV+Vg5uQ",
+      "last_login": "2017-11-02T10:21:04.331Z",
       "is_superuser": false,
-      "username": "light",
+      "username": "Bookingansvarlig",
       "first_name": "",
       "last_name": "",
       "email": "",
       "is_staff": false,
       "is_active": true,
-      "date_joined": "2017-10-16T11:13:25.478Z",
+      "date_joined": "2017-11-01T19:53:21.673Z",
       "groups": [],
       "user_permissions": []
     }
@@ -434,16 +818,16 @@
     "model": "auth.user",
     "pk": 4,
     "fields": {
-      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$eDh0WEphMkVEODVv$inWKmdCS100ViwCbtqR9ug",
-      "last_login": null,
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$R3lycjJjUk1kd1kz$bsucLPMa4wlv7oL7BkVB0w",
+      "last_login": "2017-11-02T09:40:24.374Z",
       "is_superuser": false,
-      "username": "sound",
+      "username": "Bookingsjef",
       "first_name": "",
       "last_name": "",
       "email": "",
       "is_staff": false,
       "is_active": true,
-      "date_joined": "2017-10-16T11:13:59.061Z",
+      "date_joined": "2017-11-01T19:54:31.198Z",
       "groups": [],
       "user_permissions": []
     }
@@ -452,16 +836,16 @@
     "model": "auth.user",
     "pk": 5,
     "fields": {
-      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$VVBIbHZFVUJvRE1w$PEboUpf5XRq5TcgFi7gdiw",
-      "last_login": null,
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$Q2dZSmNyZUxPYnM3$6dKXZStNI0TUjCeMqg3MEA",
+      "last_login": "2017-11-02T09:47:20.370Z",
       "is_superuser": false,
-      "username": "manager",
+      "username": "Arranger",
       "first_name": "",
       "last_name": "",
       "email": "",
       "is_staff": false,
       "is_active": true,
-      "date_joined": "2017-10-16T11:14:24.853Z",
+      "date_joined": "2017-11-01T19:55:09.247Z",
       "groups": [],
       "user_permissions": []
     }
@@ -470,16 +854,16 @@
     "model": "auth.user",
     "pk": 6,
     "fields": {
-      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$cERRVHpUMHhXTG1l$dCjZXdl3PeijtLgwENXqZw",
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$akdHUVpzV1NJTUhq$PaPxUmbKNkPETICJGxbqJQ",
       "last_login": null,
       "is_superuser": false,
-      "username": "bookingboss",
+      "username": "Sound",
       "first_name": "",
       "last_name": "",
       "email": "",
       "is_staff": false,
       "is_active": true,
-      "date_joined": "2017-10-16T11:14:35.966Z",
+      "date_joined": "2017-11-01T19:55:22.665Z",
       "groups": [],
       "user_permissions": []
     }
@@ -488,16 +872,214 @@
     "model": "auth.user",
     "pk": 7,
     "fields": {
-      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$TmsyT3F1NUZVTk5u$R9LfD8SrChg8kynV1OfNFw",
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$WlNkdk5qVTJzSFVH$alu7N3UQV3hOQCaOLlgexQ",
       "last_login": null,
       "is_superuser": false,
-      "username": "booking_responsible",
+      "username": "Light",
       "first_name": "",
       "last_name": "",
       "email": "",
       "is_staff": false,
       "is_active": true,
-      "date_joined": "2017-10-16T11:14:51.081Z",
+      "date_joined": "2017-11-01T19:55:32.301Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 8,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$ZGxkVWZRMlBuUUY2$2PI06WUFHO52KN89vCNLPA",
+      "last_login": "2017-11-02T09:48:28.030Z",
+      "is_superuser": false,
+      "username": "Light2",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-11-01T19:55:51.764Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 9,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$ZnkzUHFGbWp1czVY$ZJLpNXBhNTea+6/hidPUcA",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "Sound2",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-11-01T19:56:08.688Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 10,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$dW1qbUZEWWVmS3BN$2jJzYUWp+kFzqTvwiIxnBA",
+      "last_login": "2017-11-02T09:44:45.327Z",
+      "is_superuser": false,
+      "username": "Manager1",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-11-01T19:56:27.821Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 11,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$dGthckhuT29VRjM0$B1oF8K8mq3V5Wjv3wdUI7g",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "Manager2",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-11-01T19:56:38.377Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 12,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$aXR6UlZ1RDVRaUJo$zgK0Tlt3di1wQ5NQ8z2bhw",
+      "last_login": "2017-11-02T10:21:19.236Z",
+      "is_superuser": false,
+      "username": "PRmanager",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-11-01T19:56:56.384Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 13,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$Q080Vk95eHFWbTZ4$k9sLp9aU8K2WVEO4fGWPUw",
+      "last_login": "2017-11-02T09:48:11.997Z",
+      "is_superuser": false,
+      "username": "Sound3",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-11-01T19:57:38.853Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 14,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$WlJ2V1p0SDQ4WG42$RJYX26Ci2jthhDEq32OOwQ",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "Manager3",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-11-01T20:08:06.048Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 15,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$R2NMZ081Y2dPWEx5$TdaeB2RQk9WLB+GiYjSF8A",
+      "last_login": "2017-11-02T09:44:31.321Z",
+      "is_superuser": false,
+      "username": "Manager4",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-11-01T20:09:06.344Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 16,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$Ull1NlZMb1VPZUFr$d2sdFbX1yPmxtgjBcfsG9w",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "Manager5",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-11-01T20:10:00.190Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 17,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$bnFHa2wycHhBOU8w$+wx+77vcLUGhGS6alpCGxQ",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "Manager6",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-11-01T23:59:38.540Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 18,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$ZkxsQkZzc0RuVlI0$shpk782DfTCgbEqL2pKYPw",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "Manager7",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-11-02T00:25:02.675Z",
       "groups": [],
       "user_permissions": []
     }
@@ -507,18 +1089,154 @@
     "pk": 1,
     "fields": {
       "user": 1,
-      "employee_status": "arranger"
+      "employee_status": "BOOKINGANSVARLIG"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "employee_status": "SERVICE MANAGER"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "employee_status": "BOOKINGANSVARLIG"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 4,
+    "fields": {
+      "user": 4,
+      "employee_status": "BOOKINGSJEF"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 5,
+    "fields": {
+      "user": 5,
+      "employee_status": "ARRANGER"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 6,
+    "fields": {
+      "user": 6,
+      "employee_status": "LYDTEKNIKER"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 7,
+    "fields": {
+      "user": 7,
+      "employee_status": "LYSTEKNIKER"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 8,
+    "fields": {
+      "user": 8,
+      "employee_status": "LYSTEKNIKER"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 9,
+    "fields": {
+      "user": 9,
+      "employee_status": "LYDTEKNIKER"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 10,
+    "fields": {
+      "user": 10,
+      "employee_status": "MANAGER"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 11,
+    "fields": {
+      "user": 11,
+      "employee_status": "MANAGER"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 12,
+    "fields": {
+      "user": 12,
+      "employee_status": "PR-MANAGER"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 13,
+    "fields": {
+      "user": 13,
+      "employee_status": "LYDTEKNIKER"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 14,
+    "fields": {
+      "user": 14,
+      "employee_status": "MANAGER"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 15,
+    "fields": {
+      "user": 15,
+      "employee_status": "MANAGER"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 16,
+    "fields": {
+      "user": 16,
+      "employee_status": "MANAGER"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 17,
+    "fields": {
+      "user": 17,
+      "employee_status": "MANAGER"
+    }
+  },
+  {
+    "model": "festivalapp.employee",
+    "pk": 18,
+    "fields": {
+      "user": 18,
+      "employee_status": "MANAGER"
     }
   },
   {
     "model": "admin.logentry",
     "pk": 1,
     "fields": {
-      "action_time": "2017-10-16T11:12:54.980Z",
+      "action_time": "2017-11-01T17:01:32.705Z",
       "user": 1,
       "content_type": 9,
       "object_id": "1",
-      "object_repr": "truls",
+      "object_repr": "Admin",
       "action_flag": 1,
       "change_message": "[{\"added\": {}}]"
     }
@@ -527,11 +1245,11 @@
     "model": "admin.logentry",
     "pk": 2,
     "fields": {
-      "action_time": "2017-10-16T11:13:13.108Z",
+      "action_time": "2017-11-01T17:13:05.982Z",
       "user": 1,
-      "content_type": 4,
+      "content_type": 3,
       "object_id": "2",
-      "object_repr": "bork",
+      "object_repr": "Service",
       "action_flag": 1,
       "change_message": "[{\"added\": {}}]"
     }
@@ -540,11 +1258,11 @@
     "model": "admin.logentry",
     "pk": 3,
     "fields": {
-      "action_time": "2017-10-16T11:13:25.482Z",
+      "action_time": "2017-11-01T17:13:11.313Z",
       "user": 1,
-      "content_type": 4,
-      "object_id": "3",
-      "object_repr": "light",
+      "content_type": 9,
+      "object_id": "2",
+      "object_repr": "Service",
       "action_flag": 1,
       "change_message": "[{\"added\": {}}]"
     }
@@ -553,11 +1271,11 @@
     "model": "admin.logentry",
     "pk": 4,
     "fields": {
-      "action_time": "2017-10-16T11:13:59.064Z",
+      "action_time": "2017-11-01T19:53:21.677Z",
       "user": 1,
-      "content_type": 4,
-      "object_id": "4",
-      "object_repr": "sound",
+      "content_type": 3,
+      "object_id": "3",
+      "object_repr": "Bookingansvarlig",
       "action_flag": 1,
       "change_message": "[{\"added\": {}}]"
     }
@@ -566,11 +1284,11 @@
     "model": "admin.logentry",
     "pk": 5,
     "fields": {
-      "action_time": "2017-10-16T11:14:24.857Z",
+      "action_time": "2017-11-01T19:53:39.835Z",
       "user": 1,
-      "content_type": 4,
-      "object_id": "5",
-      "object_repr": "manager",
+      "content_type": 9,
+      "object_id": "3",
+      "object_repr": "Bookingansvarlig",
       "action_flag": 1,
       "change_message": "[{\"added\": {}}]"
     }
@@ -579,11 +1297,11 @@
     "model": "admin.logentry",
     "pk": 6,
     "fields": {
-      "action_time": "2017-10-16T11:14:35.970Z",
+      "action_time": "2017-11-01T19:54:31.201Z",
       "user": 1,
-      "content_type": 4,
-      "object_id": "6",
-      "object_repr": "bookingboss",
+      "content_type": 3,
+      "object_id": "4",
+      "object_repr": "Bookingsjef",
       "action_flag": 1,
       "change_message": "[{\"added\": {}}]"
     }
@@ -592,13 +1310,793 @@
     "model": "admin.logentry",
     "pk": 7,
     "fields": {
-      "action_time": "2017-10-16T11:14:51.083Z",
+      "action_time": "2017-11-01T19:54:52.545Z",
       "user": 1,
-      "content_type": 4,
-      "object_id": "7",
-      "object_repr": "booking_responsible",
+      "content_type": 9,
+      "object_id": "4",
+      "object_repr": "Bookingsjef",
       "action_flag": 1,
       "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+      "action_time": "2017-11-01T19:55:09.250Z",
+      "user": 1,
+      "content_type": 3,
+      "object_id": "5",
+      "object_repr": "Arranger",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+      "action_time": "2017-11-01T19:55:10.336Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "5",
+      "object_repr": "Arranger",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+      "action_time": "2017-11-01T19:55:22.669Z",
+      "user": 1,
+      "content_type": 3,
+      "object_id": "6",
+      "object_repr": "Sound",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+      "action_time": "2017-11-01T19:55:23.630Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "6",
+      "object_repr": "Sound",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+      "action_time": "2017-11-01T19:55:32.305Z",
+      "user": 1,
+      "content_type": 3,
+      "object_id": "7",
+      "object_repr": "Light",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+      "action_time": "2017-11-01T19:55:37.630Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "7",
+      "object_repr": "Light",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+      "action_time": "2017-11-01T19:55:51.768Z",
+      "user": 1,
+      "content_type": 3,
+      "object_id": "8",
+      "object_repr": "Light2",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+      "action_time": "2017-11-01T19:55:58.045Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "8",
+      "object_repr": "Light2",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+      "action_time": "2017-11-01T19:56:08.692Z",
+      "user": 1,
+      "content_type": 3,
+      "object_id": "9",
+      "object_repr": "Sound2",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+      "action_time": "2017-11-01T19:56:14.869Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "9",
+      "object_repr": "Sound2",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+      "action_time": "2017-11-01T19:56:27.826Z",
+      "user": 1,
+      "content_type": 3,
+      "object_id": "10",
+      "object_repr": "Manager1",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+      "action_time": "2017-11-01T19:56:28.934Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "10",
+      "object_repr": "Manager1",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+      "action_time": "2017-11-01T19:56:38.380Z",
+      "user": 1,
+      "content_type": 3,
+      "object_id": "11",
+      "object_repr": "Manager2",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+      "action_time": "2017-11-01T19:56:42.998Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "11",
+      "object_repr": "Manager2",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+      "action_time": "2017-11-01T19:56:56.388Z",
+      "user": 1,
+      "content_type": 3,
+      "object_id": "12",
+      "object_repr": "PRmanager",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+      "action_time": "2017-11-01T19:57:01.219Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "12",
+      "object_repr": "PRmanager",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+      "action_time": "2017-11-01T19:57:38.857Z",
+      "user": 1,
+      "content_type": 3,
+      "object_id": "13",
+      "object_repr": "Sound3",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+      "action_time": "2017-11-01T19:57:41.876Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "13",
+      "object_repr": "Sound3",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+      "action_time": "2017-11-01T20:03:09.700Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "1",
+      "object_repr": "Highasakite",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+      "action_time": "2017-11-01T20:06:32.715Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "2",
+      "object_repr": "Lorde",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+      "action_time": "2017-11-01T20:08:06.053Z",
+      "user": 1,
+      "content_type": 3,
+      "object_id": "14",
+      "object_repr": "Manager3",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+      "action_time": "2017-11-01T20:08:10.822Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "14",
+      "object_repr": "Manager3",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+      "action_time": "2017-11-01T20:08:27.308Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "3",
+      "object_repr": "DDE",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+      "action_time": "2017-11-01T20:09:06.350Z",
+      "user": 1,
+      "content_type": 3,
+      "object_id": "15",
+      "object_repr": "Manager4",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+      "action_time": "2017-11-01T20:09:11.856Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "15",
+      "object_repr": "Manager4",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+      "action_time": "2017-11-01T20:09:29.962Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "4",
+      "object_repr": "Marting Garrix",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+      "action_time": "2017-11-01T20:10:00.195Z",
+      "user": 1,
+      "content_type": 3,
+      "object_id": "16",
+      "object_repr": "Manager5",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+      "action_time": "2017-11-01T20:10:13.841Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "16",
+      "object_repr": "Manager5",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+      "action_time": "2017-11-01T20:10:21.705Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "5",
+      "object_repr": "Astrid S",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+      "action_time": "2017-11-01T20:13:20.388Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "1",
+      "object_repr": "UKA 17",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+      "action_time": "2017-11-01T20:13:49.392Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "1",
+      "object_repr": "D\u00f8dens dal",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+      "action_time": "2017-11-01T20:13:51.563Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "1",
+      "object_repr": "Highasakite - Highasakite",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+      "action_time": "2017-11-01T20:16:32.701Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "2",
+      "object_repr": "Melodrama - Lorde",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+      "action_time": "2017-11-01T20:18:36.568Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "3",
+      "object_repr": "Martin Garrix - Marting Garrix",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+      "action_time": "2017-11-01T23:56:42.315Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "2",
+      "object_repr": "Fremtidig festival",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+      "action_time": "2017-11-01T23:57:12.701Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "2",
+      "object_repr": "Spektrum",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+      "action_time": "2017-11-01T23:58:35.410Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "4",
+      "object_repr": "Kjempekul konsert - DDE",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+      "action_time": "2017-11-01T23:59:38.548Z",
+      "user": 1,
+      "content_type": 3,
+      "object_id": "17",
+      "object_repr": "Manager6",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+      "action_time": "2017-11-01T23:59:43.982Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "17",
+      "object_repr": "Manager6",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+      "action_time": "2017-11-01T23:59:54.628Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "6",
+      "object_repr": "Maria Mena",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+      "action_time": "2017-11-02T00:00:35.797Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "5",
+      "object_repr": "Fancy konsert - Maria Mena",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+      "action_time": "2017-11-02T00:02:17.605Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "5",
+      "object_repr": "Fancy konsert - Maria Mena",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"date\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+      "action_time": "2017-11-02T00:05:32.171Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "5",
+      "object_repr": "Fancy konsert - Maria Mena",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"start_time\", \"end_time\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+      "action_time": "2017-11-02T00:13:16.998Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "5",
+      "object_repr": "Fancy konsert - Maria Mena",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"date\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 52,
+    "fields": {
+      "action_time": "2017-11-02T00:13:25.678Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "4",
+      "object_repr": "Kjempekul konsert - DDE",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"date\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 53,
+    "fields": {
+      "action_time": "2017-11-02T00:13:37.727Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "2",
+      "object_repr": "Fremtidig festival",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"end_date\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 54,
+    "fields": {
+      "action_time": "2017-11-02T00:17:56.571Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "2",
+      "object_repr": "Fremtidig festival",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"end_date\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 55,
+    "fields": {
+      "action_time": "2017-11-02T00:18:49.904Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "5",
+      "object_repr": "Fancy konsert - Maria Mena",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"date\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 56,
+    "fields": {
+      "action_time": "2017-11-02T00:23:19.113Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "5",
+      "object_repr": "Fancy konsert - Maria Mena",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"date\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 57,
+    "fields": {
+      "action_time": "2017-11-02T00:23:32.284Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "2",
+      "object_repr": "Fremtidig festival",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"end_date\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 58,
+    "fields": {
+      "action_time": "2017-11-02T00:25:02.729Z",
+      "user": 1,
+      "content_type": 3,
+      "object_id": "18",
+      "object_repr": "Manager7",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 59,
+    "fields": {
+      "action_time": "2017-11-02T00:25:08.574Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "18",
+      "object_repr": "Manager7",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 60,
+    "fields": {
+      "action_time": "2017-11-02T00:25:24.459Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "7",
+      "object_repr": "TKS",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 61,
+    "fields": {
+      "action_time": "2017-11-02T00:26:12.561Z",
+      "user": 1,
+      "content_type": 12,
+      "object_id": "3",
+      "object_repr": "Nidarosdomen",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 62,
+    "fields": {
+      "action_time": "2017-11-02T00:26:27.860Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "6",
+      "object_repr": "Julekonsert - TKS",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 63,
+    "fields": {
+      "action_time": "2017-11-02T00:28:20.693Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "2",
+      "object_repr": "Fremtidig festival",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"end_date\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 64,
+    "fields": {
+      "action_time": "2017-11-02T00:28:40.791Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "5",
+      "object_repr": "Fancy konsert - Maria Mena",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"date\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 65,
+    "fields": {
+      "action_time": "2017-11-02T00:32:33.116Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "5",
+      "object_repr": "Fancy konsert - Maria Mena",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"date\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 66,
+    "fields": {
+      "action_time": "2017-11-02T00:32:44.437Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "2",
+      "object_repr": "Fremtidig festival",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"end_date\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 67,
+    "fields": {
+      "action_time": "2017-11-02T00:41:40.061Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "2",
+      "object_repr": "Fremtidig festival",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"end_date\"]}}]"
     }
   }
 ]
