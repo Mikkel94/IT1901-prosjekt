@@ -22,7 +22,8 @@
                     <td>{{ concert.band }}</td>
                     <td>{{ concert.scene }}</td>
                     <td>
-                        <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info</button>
+                        <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info
+                        </button>
                     </td>
                 </tr>
 
@@ -125,6 +126,7 @@
                 <th>Konsert:</th>
                 <th>Bandnavn:</th>
                 <th>Scene:</th>
+                <th>Legg til teknikere</th>
                 <th>Se mer:</th>
             </tr>
             </thead>
@@ -137,6 +139,10 @@
                     <td>{{ concert.name }}</td>
                     <td>{{ concert.band }}</td>
                     <td>{{ concert.scene }}</td>
+                    <td>
+                        <a href="{% url 'festivalapp:assign_tech' pk=concert.pk %}" type="button"
+                           class="button add-button">Legg til</a>
+                    </td>
                     <td>
                         <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info
                         </button>
@@ -160,12 +166,16 @@
                                 <ul>
                                     {% for lys in concert.lighting_work.all %}
                                         <li><p>{{ lys }}</p></li>
+                                        {% empty %}
+                                        Ingen lystekniker
                                     {% endfor %}
                                 </ul>
                                 <h3>LYD:</h3>
                                 <ul>
                                     {% for lyd in concert.sound_work.all %}
                                         <li><p>{{ lyd }}</p></li>
+                                        {% empty %}
+                                        Ingen lystekniker
                                     {% endfor %}
                                 </ul>
                                 <form action="{% url 'festivalapp:set_audience' pk=concert.pk %}" metdod="POST">
@@ -216,7 +226,11 @@
                                 <p>Solgte album: {{ concert.band.sold_albums }}</p>
                                 <p>Presseomtaler: {{ concert.links }}</p>
                                 <p>Kontaktinfo: {{ concert.band.contact_info }}</p>
-                                <p>Omtale: {{ concert.band.review }}</p>
+                                {% if concert.band.review %}
+                                    <p>Omtale: {{ concert.band.review }}</p>
+                                {% else %}
+                                    <p>Omtale: Ingen omtale ennå</p>
+                                {% endif %}
                             </div>
                         </div>
                     </td>

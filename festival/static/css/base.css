@@ -20,6 +20,10 @@ div.menu {
 	flex-basis: 20%;
 }
 
+div.menu.box:active {
+    background-color: #4CAF50;
+}
+
 div.box {
   text-align: center;
 }
@@ -38,6 +42,7 @@ div.menu:hover {
     background-color: #616161;
     flex-basis: 20%;
 }
+
 
 /* ------------ MENY FERDIG-------------------------------- */
 

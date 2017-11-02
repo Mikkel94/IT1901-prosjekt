@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <p>Band: {{ band }}</p>
+        <p>Concert: {{ concert }}</p>
+    </div>
+
+    <div class="concertcontainer1">
+        <h2>Lysteknikere</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Legg til</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for light_tech in light_techs %}
+                <tr>
+                    <td>{{ light_tech }}</td>
+                    <td>
+                        <a href="{% url 'festivalapp:assign_light_tech' concert_pk=concert.pk pk=light_tech.pk %}" type="button"
+                           class="button add-button">Legg til</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="concertcontainer1">
+        <h2>Lydteknikere</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Legg til</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for sound_tech in sound_techs %}
+                <tr>
+                    <td>{{ sound_tech }}</td>
+                    <td>
+                        <a href="{% url 'festivalapp:assign_sound_tech' concert_pk=concert.pk pk=sound_tech.pk %}" type="button"
+                           class="button add-button">Legg til</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
