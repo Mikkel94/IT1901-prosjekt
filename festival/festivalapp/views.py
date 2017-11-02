@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from . import forms
 from . import models
+from datetime import date
 import datetime
 # Login / Logout
 from django.http import HttpResponseRedirect, HttpResponse
@@ -286,12 +287,9 @@ def cancel_booking_request(request, pk):
 def show_previous_festivals(request):
     festivals = []
     concerts = models.Concert.objects.all()
-    today = datetime.datetime.now()
 
     for festival in models.Festival.objects.all():
-        if not ((festival.end_date.day >= today.day) and
-                    (festival.end_date.month >= today.month) and
-                    (festival.end_date.year >= today.year)):
+        if (festival.end_date <= date.today()):
             festivals.append(festival)
     if len(festivals) < 1:
         festivals.append('')
