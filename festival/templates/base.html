@@ -48,17 +48,6 @@
          </div>
     {% endif %}
 
-
-    {% if emp.employee_status != None or emp.employee_status == 'BOOKINGANSVARLIG' %}
-
-         <div class="menu box">
-            <h1>
-                <a href="{% url 'festivalapp:list_concert' %}" class="atext" >Konsertliste</a>
-            </h1>    
-         </div>
-         
-    {% endif %}
-
     {% if emp.employee_status == 'BOOKINGSJEF' %}
         <div class="menu box">
             <h1>
