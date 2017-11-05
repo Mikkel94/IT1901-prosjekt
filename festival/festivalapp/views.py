@@ -369,17 +369,18 @@ def add_review(request, pk):
 
 # BEGIN assign tech
 @login_required  # For bookingansvarlig
-def assign_new_tech(request, pk):
-    concert = models.Concert.objects.get(pk=pk)
-    band = concert.band
-    remaining_needs = 0
+def assign_new_tech(request, pk, last_added_or_removed=""):
     user = models.Employee.objects.get(user=request.user)
 
-    available_light_workers = models.Employee.objects.filter(employee_status='LYSTEKNIKER')
-    available_sound_workers = models.Employee.objects.filter(employee_status='LYDTEKNIKER')
-
     if user.employee_status == 'BOOKINGANSVARLIG':
-        pass # TODO put rest of method in here, else redirect to index?
+        concert = models.Concert.objects.get(pk=pk)
+        band = concert.band
+        remaining_needs = 0
+
+        available_light_workers = models.Employee.objects.filter(employee_status='LYSTEKNIKER')
+        available_sound_workers = models.Employee.objects.filter(employee_status='LYDTEKNIKER')
+    else:
+        return index(request)
 
     return render(request, 'festivalapp/assign_techs.html',
                   {
@@ -387,29 +388,43 @@ def assign_new_tech(request, pk):
                       'band': band,
                       'concert': concert,
                       'light_techs': available_light_workers,
-                      'sound_techs': available_sound_workers
+                      'sound_techs': available_sound_workers,
+                      'last_added_or_removed': last_added_or_removed
                   })
 
 @login_required  # Også for Bookingansvarlig
 def assign_light_tech(request, concert_pk, pk):
     concert = models.Concert.objects.get(pk=concert_pk)
-    remaining_needs = len(concert.lighting_work) - concert.band.light_needs
+    c = models.Concert.objects.annotate(num_light=Count('lighting_work')).get(pk=concert_pk)
+    remaining_needs = concert.band.light_needs - c.num_light
     worker = models.Employee.objects.get(pk=pk)
-    if remaining_needs and worker not in concert.lighting_work:
+    if remaining_needs > 0 and worker not in concert.lighting_work.all():
         concert.lighting_work.add(worker)
         concert.save()
-    return assign_new_tech(request, concert.pk)
+        last_added_or_removed = "Lystekniker " + worker.__str__() + " lagt til i konsert: " + concert.__str__()
+    elif worker in concert.lighting_work.all():
+        concert.lighting_work.remove(worker)
+        last_added_or_removed = "Lystekniker " + worker.__str__() + " fjernet fra konsert: " + concert.__str__()
+    else:
+        last_added_or_removed = "Ingenting skjedde"
+    return assign_new_tech(request, concert.pk, last_added_or_removed)
 
 @login_required  # Også for Bookingansvarlig
 def assign_sound_tech(request, concert_pk, pk):
     concert = models.Concert.objects.get(pk=concert_pk)
     c = models.Concert.objects.annotate(num_sound=Count('sound_work')).get(pk=concert_pk)
-    remaining_needs = c.num_sound - concert.band.sound_needs
+    remaining_needs = concert.band.sound_needs - c.num_sound
     worker = models.Employee.objects.get(pk=pk)
     if remaining_needs > 0 and worker not in concert.sound_work.all():
         concert.sound_work.add(worker)
         concert.save()
-    return assign_new_tech(request, concert.pk)
+        last_added_or_removed = "Lydtekniker " + worker.__str__() + " lagt til i konsert: " + concert.__str__()
+    elif worker in concert.sound_work.all():
+        concert.sound_work.remove(worker)
+        last_added_or_removed = "Lydtekniker " + worker.__str__() + " fjernet fra konsert: " + concert.__str__()
+    else:
+        last_added_or_removed = "Ingenting skjedde"
+    return assign_new_tech(request, concert.pk, last_added_or_removed)
 
 
 # DEPRECATED
