@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from . import forms
 from . import models
-from datetime import date
-import datetime
+from datetime import date, time
 # Login / Logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
@@ -81,28 +80,28 @@ def list_concert(request):
 
     if emp.employee_status == 'LYSTEKNIKER':
         info['concerts'] = list(models.Concert.objects.filter(lighting_work=emp).filter(
-            festival__end_date__gte=datetime.date.today()).order_by('date'))
+            festival__end_date__gte=date.today()).order_by('date'))
     elif emp.employee_status == 'LYDTEKNIKER':
         info['concerts'] = list(models.Concert.objects.filter(sound_work=emp).filter(
-            festival__end_date__gte=datetime.date.today()).order_by('date'))
+            festival__end_date__gte=date.today()).order_by('date'))
     elif emp.employee_status == 'ARRANGER':
         info['concerts'] = list(
-            models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+            models.Concert.objects.filter(festival__end_date__gte=date.today()).order_by('date'))
     elif emp.employee_status == 'MANAGER':
         try:
             band = models.Band.objects.get(manager=emp)
             info['concerts'] = list(
-                models.Concert.objects.filter(band=band).filter(festival__end_date__gte=datetime.date.today()).order_by(
+                models.Concert.objects.filter(band=band).filter(festival__end_date__gte=date.today()).order_by(
                     'date'))
         except:
             # HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
             return HttpResponseRedirect(reverse('festivalapp:index'))
     elif emp.employee_status == 'PR-MANAGER':
         info['concerts'] = list(
-            models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+            models.Concert.objects.filter(festival__end_date__gte=date.today()).order_by('date'))
     elif emp.employee_status == 'BOOKINGANSVARLIG' or emp.employee_status == 'SERVICE MANAGER':
         info['concerts'] = list(
-            models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+            models.Concert.objects.filter(festival__end_date__gte=date.today()).order_by('date'))
 
     return render(request, 'festivalapp/concert_list.html', info)
 
@@ -174,7 +173,7 @@ def book_band(request, pk):
             scene = booking_form.cleaned_data['scene']
             name = booking_form.cleaned_data['name']
             price = booking_form.cleaned_data['price']
-            festival = models.Festival.objects.get(end_date__gte=datetime.date.today())
+            festival = models.Festival.objects.get(end_date__gte=date.today())
             concert_request = models.ConcertRequest.objects.get_or_create(
                 name=name,
                 date=date,
@@ -202,10 +201,10 @@ def booking_requests(request):
     concert_requests = models.ConcertRequest.objects.all()
     concert_isbooked = models.Band.objects.filter(is_booked=True)
     avail_num = 0
-    if models.Festival.objects.filter(end_date__gte=datetime.date.today()):
-        f = models.Festival.objects.filter(end_date__gte=datetime.date.today())[0]
+    if models.Festival.objects.filter(end_date__gte=date.today()):
+        f = models.Festival.objects.filter(end_date__gte=date.today())[0]
         end_date = f.end_date
-        avail_num = (end_date - datetime.date.today()).days
+        avail_num = (end_date - date.today()).days
         avail_num -= len(concert_isbooked)
 
     return render(request, 'festivalapp/booking_requests.html', {
@@ -314,7 +313,7 @@ def search(request):
         bands = models.Band.objects.filter(name__contains=search_input)
         concerts = []
         for band in bands:
-            concerts.append(models.Concert.objects.filter(band__exact=band).filter(date__lte=datetime.date.today()))
+            concerts.append(models.Concert.objects.filter(band__exact=band).filter(date__lte=date.today()))
         return render(request, 'festivalapp/search.html', context={
             'concerts': concerts
         })
@@ -377,8 +376,15 @@ def assign_new_tech(request, pk, last_added_or_removed=""):
         band = concert.band
         remaining_needs = 0
 
-        available_light_workers = models.Employee.objects.filter(employee_status='LYSTEKNIKER')
-        available_sound_workers = models.Employee.objects.filter(employee_status='LYDTEKNIKER')
+        available_light_workers = list()
+        available_sound_workers = list()
+        for worker in models.Employee.objects.filter(employee_status='LYDTEKNIKER'):
+            if is_tech_available(worker, concert):
+                available_sound_workers.append(worker)
+        for worker in models.Employee.objects.filter(employee_status='LYSTEKNIKER'):
+            if is_tech_available(worker, concert):
+                available_light_workers.append(worker)
+
     else:
         return index(request)
 
@@ -426,6 +432,25 @@ def assign_sound_tech(request, concert_pk, pk):
         last_added_or_removed = "Ingenting skjedde"
     return assign_new_tech(request, concert.pk, last_added_or_removed)
 
+@login_required
+def is_tech_available(tech, concert):
+    concerts = list()
+
+    for c in models.Concert.objects.filter(date__exact=concert.date):
+        if tech in c.sound_work.all() or tech in c.lighting_work.all():
+            concerts.append(c)
+    if len(concerts) >= 1:
+        for c in concerts:
+            if not (change_time(c.end_time) < change_time(concert.start_time)
+                    or change_time(c.start_time) > change_time(concert.end_time)):
+                return False
+    return True
+
+def change_time(in_time):
+    if in_time < time(00, 00, 1):
+        return time(23, 59, 59)
+    else:
+        return in_time
 
 # DEPRECATED
 # @login_required
