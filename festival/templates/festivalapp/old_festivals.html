@@ -1,12 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <select id="genreID">
-        {% for genre, genre2 in genres %}
-            <option class="option" value="{{genre2}}">{{genre2}}</option>
-        {% endfor %}
-    </select>
-    <button onclick="changeGenre()">Bytt sjanger</button>
+
+<style>
+
+    .knappasd {
+            font-size: 14px;
+            width: 90px;
+            height: 30px;
+            border-radius: 4px;
+            border: 1px solid;
+            border-color: grey;
+            background-color: #EEEEEE;
+            padding: 5px;
+    }
+</style>
+
+<div style="display: flex;">
+    <div style=" display: flex; width: auto; margin-left: auto; margin-right: auto;">
+
+    <div style="flex: 1; width: auto;">
+        <button class="knappasd" onclick="changeGenre1()" value="ROCK">ROCK</button>
+    </div>
+
+    <div style="flex: 1; width: auto;">
+         <button class="knappasd" onclick="changeGenre2()" value="POP">POP</button>
+    </div>
+
+    <div style="flex: 1; width: auto;">
+         <button class="knappasd" onclick="changeGenre3()" value="ELECTRIC">ELECTRIC</button>
+    </div>
+
+    </div>
+</div>
+
 
     {% for concert in concerts %}
         {% if concert.festival in festivals %}
@@ -26,12 +53,10 @@
     {% endfor %}
 
 
+
+
 <script>
-	function changeGenre() {
-	var e = document.getElementById("genreID");
-	var genre = e.options[e.selectedIndex].value;
-    var concerts = document.getElementsByClassName(genre.toLowerCase());
-	    if (genre == "ROCK") {
+	function changeGenre1() {
 	    	c = document.getElementsByClassName("con");
 	    	for (var i = c.length - 1; i >= 0; i--) {
 	    		if (c[i].className == "rock con") {
@@ -39,27 +64,30 @@
 	    		}
 	    		else {c[i].style.display = "none";}
 	    	}
-	    }
-	    else if (genre == "POP") {
-	    	c = document.getElementsByClassName("con");
-	    	for (var i = c.length - 1; i >= 0; i--) {
-	    		if (c[i].className === "pop con") {
-	    			c[i].style.display = "block";
-	    		}
-	    		else {c[i].style.display = "none";}
-	    	}
-	    }
-	    else if (genre == "ELECTRIC") {
-	    	c = document.getElementsByClassName("con");
-	    	for (var i = c.length - 1; i >= 0; i--) {
-	    		if (c[i].className === "electric con") {
-	    			c[i].style.display = "block";
-	    		}
-	    		else {c[i].style.display = "none";}
-	    	}
-	    }
-
 	}
+
+		function changeGenre2() {
+	    	c = document.getElementsByClassName("con");
+	    	for (var i = c.length - 1; i >= 0; i--) {
+	    		if (c[i].className == "pop con") {
+	    			c[i].style.display = "block";
+	    		}
+	    		else {c[i].style.display = "none";}
+	    	}
+	}
+
+		function changeGenre3() {
+	    	c = document.getElementsByClassName("con");
+	    	for (var i = c.length - 1; i >= 0; i--) {
+	    		if (c[i].className == "electric con") {
+	    			c[i].style.display = "block";
+	    		}
+	    		else {c[i].style.display = "none";}
+	    	}
+	}
+
+
+
 </script>
 
 {% endblock %}
