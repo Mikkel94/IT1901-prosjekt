@@ -65,7 +65,9 @@
                     <td>{{ concert.name }}</td>
                     <td>{{ concert.band }}</td>
                     <td>{{ concert.scene }}</td>
-                    <td><button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info</button>
+                    <td>
+                        <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info
+                        </button>
 
                         <div class="modal" id="modal_{{ forloop.counter }}">
 
@@ -278,7 +280,7 @@
                             <p><b>Sjanger:</b> {{ concert.genre }}</p>
                             <p><b>Band:</b> {{ concert.band }}</p>
                             <p><b>Estimert innkjøp for bar til {{ concert.scene }}:<br>
-                                </b> {{ concert.scene.calc_beverage }} drikkeenheter, og
+                            </b> {{ concert.scene.calc_beverage }} drikkeenheter, og
                                 </b> {{ concert.scene.calc_food }} matenheter</p>
                             <p><b>Scene:</b> {{ concert.scene }}</p>
 
@@ -290,6 +292,83 @@
             </tbody>
         </table>
 
-    {% endif %}
+    {% elif emp.employee_status == 'BOOKINGSJEF' %}
 
+
+        <div style="display: flex;">
+            <div style=" display: flex; width: auto; margin-left: auto; margin-right: auto;">
+
+                {% for scene in scenes %}
+                    <div style="flex: 1; width: auto;">
+                        <button class="button" onclick="changeScene('{{ scene.name }}')"> {{ scene.name }} </button>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <table>
+            <thead>
+            <tr>
+                <th>Dato</th>
+                <th>Konsert</th>
+                <th>Bandnavn</th>
+                <th>Scene</th>
+                <th>Se mer</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for concert in concerts %}
+                <tr class="{{ concert.scene.name }} boss" ) class="boss2">
+                    <td>{{ concert.date }}</td>
+                    <td>{{ concert.name }}</td>
+                    <td>{{ concert.band }}</td>
+                    <td>{{ concert.scene }}</td>
+                    <td>
+                        <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer
+                            info
+                        </button>
+
+                        <div class="modal" id="modal_{{ forloop.counter }}">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
+
+                                <p><b>Konsertnavn:</b> {{ concert.name }}</p>
+                                <p><b>Band:</b> {{ concert.band }}</p>
+                                <p><b>Dato:</b> {{ concert.date }}</p>
+                                <p><b>Scene:</b> {{ concert.scene }}</p>
+                                <p><b>Festival:</b> {{ concert.festival }}</p>
+                                <p><b>Publikumstall:</b> {{ concert.audience }}</p>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+                {% empty %}
+                <tr>Ingen konserter å vise</tr>
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+
+        <script>
+            function changeScene(s) {
+                c = document.querySelectorAll(".boss");
+                for (var i = c.length - 1; i >= 0; i--) {
+
+                    if (c[i].className.indexOf(s) !== -1) {
+                        c[i].style.visibility = "visible";
+                    }
+                    else {
+                        c[i].style.visibility = "hidden";
+                    }
+                }
+            }
+        </script>
+
+    {% endif %}
 {% endblock %}

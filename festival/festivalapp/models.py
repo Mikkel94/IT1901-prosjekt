@@ -16,9 +16,9 @@ STATUS_CHOICES = (
 )
 
 GENRES = (
-    ('rock', 'ROCK'),
-    ('pop', 'POP'),
-    ('electric', 'ELECTRIC'),
+    ('Rock', 'ROCK'),
+    ('Pop', 'POP'),
+    ('Electric', 'ELECTRIC'),
 )
 
 
