@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <h1>Konserter:</h1>
 
     {% if emp.employee_status == 'LYDTEKNIKER' or emp.employee_status == 'LYSTEKNIKER' %}
         <table>
             <thead>
             <tr>
-                <th>Dato:</th>
-                <th>Konsert:</th>
-                <th>Bandnavn:</th>
-                <th>Scene:</th>
-                <th>Se mer:</th>
+                <th>Dato</th>
+                <th>Konsert</th>
+                <th>Bandnavn</th>
+                <th>Scene</th>
+                <th>Se mer</th>
             </tr>
             </thead>
 
@@ -48,11 +49,11 @@
         <table>
             <thead>
             <tr>
-                <th>Dato:</th>
-                <th>Konsert:</th>
-                <th>Bandnavn:</th>
-                <th>Scene:</th>
-                <th>Se mer:</th>
+                <th>Dato</th>
+                <th>Konsert</th>
+                <th>Bandnavn</th>
+                <th>Scene</th>
+                <th>Se mer</th>
             </tr>
             </thead>
 
@@ -122,12 +123,12 @@
             <thead>
 
             <tr>
-                <th>Dato:</th>
-                <th>Konsert:</th>
-                <th>Bandnavn:</th>
-                <th>Scene:</th>
+                <th>Dato</th>
+                <th>Konsert</th>
+                <th>Bandnavn</th>
+                <th>Scene</th>
                 <th>Legg til teknikere</th>
-                <th>Se mer:</th>
+                <th>Se mer</th>
             </tr>
             </thead>
 
@@ -161,7 +162,7 @@
                                 <p><b>Festival:</b> {{ concert.festival }}</p>
                                 <p><b>Publikumstall:</b> {{ concert.audience }}</p>
 
-                                <h3>LYS:</h3>
+                                <h3>Lydteknikere:</h3>
 
                                 <ul>
                                     {% for lys in concert.lighting_work.all %}
@@ -170,7 +171,7 @@
                                         Ingen lystekniker
                                     {% endfor %}
                                 </ul>
-                                <h3>LYD:</h3>
+                                <h3>Lysteknikere:</h3>
                                 <ul>
                                     {% for lyd in concert.sound_work.all %}
                                         <li><p>{{ lyd }}</p></li>
@@ -198,11 +199,11 @@
         <table>
             <thead>
             <tr>
-                <th>Dato:</th>
-                <th>Konsert:</th>
-                <th>Bandnavn:</th>
-                <th>Scene:</th>
-                <th>Se mer:</th>
+                <th>Dato</th>
+                <th>Konsert</th>
+                <th>Bandnavn</th>
+                <th>Scene</th>
+                <th>Se mer</th>
             </tr>
             </thead>
 
@@ -222,14 +223,14 @@
                             <div class="modal-content">
                                 <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
                                 <h1>Bandinfo:</h1>
-                                <p>Bandnavn: {{ concert.band.name }}</p>
-                                <p>Solgte album: {{ concert.band.sold_albums }}</p>
-                                <p>Presseomtaler: {{ concert.links }}</p>
-                                <p>Kontaktinfo: {{ concert.band.contact_info }}</p>
+                                <p><b>Bandnavn:</b> {{ concert.band.name }}</p>
+                                <p><b>Solgte album:</b> {{ concert.band.sold_albums }}</p>
+                                <p><b>Presseomtaler:</b> {{ concert.links }}</p>
+                                <p><b>Kontaktinfo:</b> {{ concert.band.contact_info }}</p>
                                 {% if concert.band.review %}
-                                    <p>Omtale: {{ concert.band.review }}</p>
+                                    <p><b>Omtale:</b> {{ concert.band.review }}</p>
                                 {% else %}
-                                    <p>Omtale: Ingen omtale ennå</p>
+                                    <p><b>Omtale:</b> Ingen omtale ennå</p>
                                 {% endif %}
                             </div>
                         </div>
@@ -246,11 +247,11 @@
         <table>
             <thead>
             <tr>
-                <th>Dato:</th>
-                <th>Konsert:</th>
-                <th>Bandnavn:</th>
-                <th>Scene:</th>
-                <th>Se mer:</th>
+                <th>Dato</th>
+                <th>Konsert</th>
+                <th>Bandnavn</th>
+                <th>Scene</th>
+                <th>Se mer</th>
             </tr>
             </thead>
             <tbody>

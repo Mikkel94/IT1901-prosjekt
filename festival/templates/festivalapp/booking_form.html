@@ -2,41 +2,10 @@
 {% load bootstrap3 %}
 {% block content %}
 
-    <style>
-        .stylingselect1 select {
-            width: 135px;
-            font-size: 18px;
-            margin: 0px 0px 1px 0px;
-            background: #EEEEEE;
-        }
-        .stylingselect2 input {
-            width: 135px;
-            font-size: 18px;
-            margin: 1px 0px 0px 0px;
-              font-family: "Roboto", sans-serif;
-              outline: 0;
-              background: #EEEEEE;
-              color: black;
-              padding: 4px;
-              box-sizing: border-box;
-              font-size: 16px;
-        }
-
-        .labels123 {
-        width: 150px;
-        text-align: right;
-        margin-right: 6px;
-        font-size: 25px;
-
-        }
-
-    </style>
-
-
     <div style=" display: flex;">
     <div style=" display: flex; margin-left:auto; margin-right: auto;">
         <div style="width: 160px;">
-            <div class="labels123">Konsert navn:</div></br>
+            <div class="labels123">Konsert:</div></br>
             <hr>
             <div class="labels123">Sjanger:</div></br>
             <hr>
@@ -46,7 +15,6 @@
             <hr>
             <div class="labels123">Pris:</div></br>
             <hr>
-
         </div>
 
 
@@ -54,13 +22,13 @@
             <form method="post" class="form">
             {% csrf_token %}
 
-            <div class="stylingselect2" style="height: 29px;"> {{ booking_form.name }}  </div></br><hr>
+            <div class="stylingselect2"> {{ booking_form.name }}  </div></br><hr>
 
-            <div class="stylingselect1"  style="margin-bottom: 2px;"> {{ booking_form.genre }} </div></br><hr>
-            <div class="stylingselect2"  style="height: 29px;"> {{ booking_form.date }}  </div></br><hr>
-            <div class="stylingselect1" style="margin-bottom: 2px;"> {{ booking_form.scene }} </div></br><hr>
-            <div class="stylingselect2" style="height: 29px;"> {{ booking_form.price }} </div></br><hr>
-            <div class="stylingselect2 "> <input type="submit" value="Registrer konsert"> </div>
+            <div class="stylingselect1" > {{ booking_form.genre }} </div></br><hr>
+            <div class="stylingselect2" > {{ booking_form.date }}  </div></br><hr>
+            <div class="stylingselect1" > {{ booking_form.scene }} </div></br><hr>
+            <div class="stylingselect2" > {{ booking_form.price }} </div></br><hr>
+            <div class="stylingselect3 "> <input type="submit" value="Registrer konserttilbud"> </div>
 
             </form>
         </div>
