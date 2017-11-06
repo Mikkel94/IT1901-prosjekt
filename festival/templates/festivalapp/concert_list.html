@@ -34,10 +34,10 @@
                     <div class="modal-content">
                         <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
 
-                        <p>{{ concert.name }}</p>
-                        <p>{{ concert.band }}</p>
-                        <p>{{ concert.date }}</p>
-                        <p>{{ concert.scene }}</p>
+                        <p><b>Konsertnavn:</b> {{ concert.name }}</p>
+                        <p><b>Band:</b> {{ concert.band }}</p>
+                        <p><b>Dato:</b> {{ concert.date }}</p>
+                        <p><b>Scene:</b> {{ concert.scene }}</p>
                     </div>
                 </div>
 
@@ -364,7 +364,6 @@
                     else {
                         c[i].style.visibility = "hidden";
                         c[i].style.display = "none";
-
                     }
                 }
             }
