@@ -35,10 +35,15 @@ class Scene(models.Model):
     capacity = models.IntegerField(default=300)
 
     @property
-    def calc_beverage_prices(self):
-        y = int(str(self.capacity))
-        x = random.randint(150, 220)
-        return y * x
+    def calc_beverage(self):
+        y = 0.9 * (int(str(self.capacity)))
+        drinks = 1.5*y
+        return int(drinks)
+
+    def calc_food(self):
+        y = 0.9 * (int(str(self.capacity)))
+        food = y/2
+        return int(food)
 
     def __str__(self):
         return self.name

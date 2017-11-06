@@ -65,10 +65,7 @@
                     <td>{{ concert.name }}</td>
                     <td>{{ concert.band }}</td>
                     <td>{{ concert.scene }}</td>
-                    <td>
-                        <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info
-                        </button>
-
+                    <td><button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info</button>
 
                         <div class="modal" id="modal_{{ forloop.counter }}">
 
@@ -280,8 +277,9 @@
                             <p><b>Forventet publikumstall:</b> {{ concert.expected_audience }}</p>
                             <p><b>Sjanger:</b> {{ concert.genre }}</p>
                             <p><b>Band:</b> {{ concert.band }}</p>
-                            <p><b>Estimert innkjøp for bar til {{ concert.scene }}
-                                :</b> {{ concert.scene.calc_beverage_prices }} kr</p>
+                            <p><b>Estimert innkjøp for bar til {{ concert.scene }}:<br>
+                                </b> {{ concert.scene.calc_beverage }} drikkeenheter, og
+                                </b> {{ concert.scene.calc_food }} matenheter</p>
                             <p><b>Scene:</b> {{ concert.scene }}</p>
 
                         </div>
