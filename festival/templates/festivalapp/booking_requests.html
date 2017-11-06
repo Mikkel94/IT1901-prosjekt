@@ -6,10 +6,11 @@
     <p>Antall konsertdatoer booket: {{ concerts_isbooked | length }}</p>
     <br>
 
+<div class="row card-container">
 
     {% for concert in concerts %}
-        <div class="row">
-            <li class="card">
+        <div class="">
+            <li class="card gray-card">
                 <p><strong>Band:</strong> {{ concert.band }}</p>
                 <p><strong>konsert:</strong> {{ concert.name }}</p>
                 <p><strong>Sjanger: </strong>{{ concert.genre }}</p>
@@ -24,6 +25,8 @@
             </li>
         </div>
     {% endfor %}
+</div>
+
     <hr>
 <p><strong>Ledige datoer og hvilke scener som er ledige disse datoene</strong></p>
     <div class="">
