@@ -314,21 +314,19 @@
                 <th>Konsert</th>
                 <th>Bandnavn</th>
                 <th>Scene</th>
-                <th>Se mer</th>
+                <th>Rapport</th>
             </tr>
             </thead>
             <tbody>
 
             {% for concert in concerts %}
-                <tr class="{{ concert.scene.name }} boss" ) class="boss2">
+                <tr class="{{ concert.scene.name }} boss" )>
                     <td>{{ concert.date }}</td>
                     <td>{{ concert.name }}</td>
                     <td>{{ concert.band }}</td>
                     <td>{{ concert.scene }}</td>
                     <td>
-                        <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer
-                            info
-                        </button>
+                        <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Se rapport</button>
 
                         <div class="modal" id="modal_{{ forloop.counter }}">
                             <!-- Modal content -->
@@ -352,8 +350,6 @@
 
             </tbody>
         </table>
-
-
 
         <script>
             function changeScene(s) {
