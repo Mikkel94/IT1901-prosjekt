@@ -1,6 +1,6 @@
 body {
-	background-color: #BDBDBD;
-	margin: 0;
+    background-color: #BDBDBD;
+    margin: 0;
 }
 
 /* ------------ MENY START ------------------------------- */
@@ -25,10 +25,14 @@ div.menu.box:active {
 }
 
 div.box {
-  text-align: center;
+    text-align: center;
 }
 
 div.menu:hover {
+    box-sizing: border-box;
+    border: 1px;
+    border-style: solid;
+    border-color: lightgrey;
     background-color: #838383;
 }
 
@@ -39,7 +43,7 @@ div.current {
 #tomboks {
     box-sizing: border-box;
     height: 80px;
-    min-width : 150px;
+    min-width: 150px;
     background-color: #616161;
     flex-basis: 20%;
 }
@@ -47,17 +51,14 @@ div.current {
 
 /* ------------ MENY FERDIG-------------------------------- */
 
-
-
 /* ------------ Start av banner --------------------------- */
 #banner {
-	background-color: #000000;
+    background-color: #000000;
     height: 100px;
-	padding: 15px;
+    padding: 15px;
     display: flex;
 
 }
-
 
 #bannerbilde {
     flex-basis: 65%;
@@ -71,17 +72,18 @@ div.current {
     font-size: 0.75em;
 
 }
+
 #login {
-    margin-right:10px;
+    margin-right: 10px;
     margin-left: 10px;
 }
 
 div.konto {
     flex-basis: 10%;
-    min-height : 70px;
+    min-height: 70px;
     color: white;
-    min-width : 150px;
-    background-color:#323232;
+    min-width: 150px;
+    background-color: #323232;
     border-radius: 10px;
 }
 
@@ -99,9 +101,8 @@ div.konto {
 
 /* ------------ Start med content ------------------------- */
 
-#content
-{
-	margin: 15px auto;
+#content {
+    margin: 15px auto;
     height: auto;
     max-width: 60em;
 }
@@ -109,67 +110,21 @@ div.konto {
 /*-- content: Concert_list --*/
 
 ul {
-list-style-type: none;
+    list-style-type: none;
 }
+
 li {
-list-style-type: none;
+    list-style-type: none;
 }
 
-.concert_element{
-    box-sizing: border-box;
-    height: 440px;
-    position:relative;
-    padding: 4%;
-    min-width:60%;
-    border-style: solid;
-    border-color: #666666;
-    margin:20px 10px;
-    background-color: #9B9B9B;
-}
-
-.concert_element > p {
-    text-align: center;
-    min-height: 10px;
-}
-
-.concert_element > p :empty{
-    display: none;
-}
-
-.concertcontainer1 {
-    width: 50%;
-    float: left;
-
-}
 
 #submitreview {
     margin-top: 20px;
     display: inline-block;
-    width:105px;
+    width: 105px;
     cursor: pointer;
 }
 
-
-.concert_element2{
-    box-sizing: border-box;
-    height: 440px;
-    position:relative;
-    padding: 5%;
-    min-width:60%;
-    border-style: solid;
-    border-color: #666666;
-    margin:20px 10px;
-    background-color: #9B9B9B;
-}
-
-.concert_element2 > p {
-    text-align: center;
-    min-height: 10px;
-}
-
-.concert_element2 > p :empty{
-    display: none;
-}
 
 table {
     min-width: 800px;
@@ -183,19 +138,19 @@ tr {
     border-bottom: 1px solid black;
 }
 
-th, td{
+th, td {
     padding: 10px;
     width: 160px;
 }
 
-th{
+th {
     font-size: 20px;
 }
+
 /*-- Ferdig med Concert_list --*/
 
-
 /*--------- Concert Modal -------*/
- .modal {
+.modal {
     display: none;
     position: fixed;
     z-index: 1; /* Sit on top */
@@ -204,26 +159,23 @@ th{
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-     padding-bottom: 20px;
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    padding-bottom: 20px;
 
 }
-
 
 .modal-content {
     margin: 15px auto;
-    margin-top:10%;
+    margin-top: 10%;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-	background-color: #BDBDBD;
+    width: 70%;
+    background-color: #BDBDBD;
     max-height: 80%;
     overflow: auto;
 
-
 }
-
 
 /* The Close Button */
 .close {
@@ -241,7 +193,7 @@ th{
 }
 
 .button {
-    padding: 12px 28px;
+    padding: 12px 12px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -252,6 +204,8 @@ th{
     cursor: pointer;
     background-color: lightgrey;
     border: 2px solid #424242;
+    max-height: 50px;
+    min-width: 110px;
 }
 
 .button:hover {
@@ -260,38 +214,38 @@ th{
 }
 
 .atext {
-text-decoration: none;
-color: white;
-
+    text-decoration: none;
+    color: white
 }
-/*--------- Ferdig Concert Modal -------*/
 
+/*--------- Ferdig Concert Modal -------*/
 
 .con {
     display: none;
-
-    position:relative;
+    position: relative;
     padding: 5%;
     flex-basis: 100%;
     border-style: solid;
     border-color: #666666;
-    margin:20px;
+    margin: 20px;
     background-color: #9B9B9B;
 }
 
 /* ------------ Ferdig med content ------------------------- */
 
-#searchgreie1  {
-margin-top: 0px;
-border-radius:3px;
-height: 30px;
-width: 170px;
-border-style: solid;
-border: 1px;
-box-sizing: border-box;
-font-size: 15px;
-}
+/* Forms */
 
+
+#searchgreie1 {
+    margin-top: 0px;
+    border-radius: 3px;
+    height: 30px;
+    width: 170px;
+    border-style: solid;
+    border: 1px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
 
 #searchboks {
     margin: 25px 10px 11px 10px;
@@ -305,17 +259,52 @@ font-size: 15px;
 }
 
 #searchknapp {
-font-size:15px;
-width: 100px;
-height: 30px;
-border-radius: 4px;
-border: 1px solid;
-border-color: grey;
-background-color: #EEEEEE;
-padding: 5px;
-
+    font-size: 15px;
+    width: 100px;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid;
+    border-color: grey;
+    background-color: #EEEEEE;
+    padding: 5px;
 
 }
 
-/* Forms */
+/* Ferdig Forms */
 
+/*Booking form*/
+
+.stylingselect1 select {
+    width: 135px;
+    font-size: 18px;
+    margin: 0px 0px 1px 0px;
+    background: #EEEEEE;
+    margin-bottom: 2px;
+}
+
+.stylingselect2 input {
+    width: 135px;
+    font-size: 18px;
+    margin: 1px 0px 0px 0px;
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #EEEEEE;
+    color: black;
+    padding: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 29px;
+}
+
+.labels123 {
+    width: 150px;
+    text-align: right;
+    margin-right: 6px;
+    font-size: 25px;
+
+}
+/*Ferdig booking form*/
+
+.boss {
+    visibility: hidden;
+}
