@@ -2,27 +2,23 @@
 
 {% block content %}
 
-    <div>
-        <a href="{% url 'festivalapp:generate_price' calc=True %}" type="button" class="button">
-                Generate ticketprice
-        </a>
-    </div>
 
     <div>
-        {% if scenes %}
+            {% for concert in concerts %}
+                <p>Konsert: {{ concert.name }}</p>
 
-            {% for scene in scenes %}
-                <br>
-                <br>
-                Scene: {{ scene.scene }}
-                <br>
-                Kapasitet: {{ scene.capacity }}
-                <br>
-                Pris: {{ scene.ticketprice }} kr
-                <br>
+                <p>Kapasitet: {{ concert.capacity }}</p>
+
+                <p><b>Pris</b>: {{ concert.ticketprice }} kr</p>
+
+                <p>Scene:     {{ concert.scene }}</p>
+                <p>------------------------------</p>
+            {% empty %}
+                Det er ingen konserter lagt til i systemet.
             {% endfor %}
 
-        {% endif %}
+
+
     </div>
 
 {% endblock %}

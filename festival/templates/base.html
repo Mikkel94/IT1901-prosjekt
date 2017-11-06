@@ -64,7 +64,7 @@
 
         <div class="menu box {% if "generate_price" in request.path %}current{% endif %}">
             <h1>
-                <a href="{% url 'festivalapp:generate_price' calc=False %}" class="atext">Generer billettpris</a>
+                <a href="{% url 'festivalapp:generate_price' calc=True %}" class="atext">Billettpriser</a>
             </h1>
         </div>
 
