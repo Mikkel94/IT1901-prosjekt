@@ -309,7 +309,6 @@
 
         <table>
             <thead>
-
             <tr>
                 <th>Dato</th>
                 <th>Konsert</th>
@@ -318,35 +317,34 @@
                 <th>Se mer</th>
             </tr>
             </thead>
-
             <tbody>
 
             {% for concert in concerts %}
-                    <tr class="{{ concert.scene.name }} boss") class="boss2">
-                        <td>{{ concert.date }}</td>
-                        <td>{{ concert.name }}</td>
-                        <td>{{ concert.band }}</td>
-                        <td>{{ concert.scene }}</td>
-                        <td>
-                            <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer
-                                info
-                            </button>
+                <tr class="{{ concert.scene.name }} boss" ) class="boss2">
+                    <td>{{ concert.date }}</td>
+                    <td>{{ concert.name }}</td>
+                    <td>{{ concert.band }}</td>
+                    <td>{{ concert.scene }}</td>
+                    <td>
+                        <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer
+                            info
+                        </button>
 
-                            <div class="modal" id="modal_{{ forloop.counter }}">
-                                <!-- Modal content -->
-                                <div class="modal-content">
-                                    <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
+                        <div class="modal" id="modal_{{ forloop.counter }}">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
 
-                                    <p><b>Konsertnavn:</b> {{ concert.name }}</p>
-                                    <p><b>Band:</b> {{ concert.band }}</p>
-                                    <p><b>Dato:</b> {{ concert.date }}</p>
-                                    <p><b>Scene:</b> {{ concert.scene }}</p>
-                                    <p><b>Festival:</b> {{ concert.festival }}</p>
-                                    <p><b>Publikumstall:</b> {{ concert.audience }}</p>
-                                </div>
+                                <p><b>Konsertnavn:</b> {{ concert.name }}</p>
+                                <p><b>Band:</b> {{ concert.band }}</p>
+                                <p><b>Dato:</b> {{ concert.date }}</p>
+                                <p><b>Scene:</b> {{ concert.scene }}</p>
+                                <p><b>Festival:</b> {{ concert.festival }}</p>
+                                <p><b>Publikumstall:</b> {{ concert.audience }}</p>
                             </div>
-                        </th>
-                    </tr>
+                        </div>
+                    </th>
+                </tr>
                 {% empty %}
                 <tr>Ingen konserter å vise</tr>
 
