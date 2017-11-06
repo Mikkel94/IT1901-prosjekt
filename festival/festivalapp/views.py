@@ -102,6 +102,11 @@ def list_concert(request):
     elif emp.employee_status == 'BOOKINGANSVARLIG' or emp.employee_status == 'SERVICE MANAGER':
         info['concerts'] = list(
             models.Concert.objects.filter(festival__end_date__gte=date.today()).order_by('date'))
+    elif emp.employee_status == 'BOOKINGSJEF':
+        info['concerts'] = list(
+            models.Concert.objects.filter(festival__end_date__lte=date.today()).order_by('date'))
+        info['scenes'] = list(
+            models.Scene.objects.filter())
 
     return render(request, 'festivalapp/concert_list.html', info)
 

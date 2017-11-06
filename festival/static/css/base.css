@@ -117,32 +117,6 @@ li {
     list-style-type: none;
 }
 
-.concert_element{
-    box-sizing: border-box;
-    height: 440px;
-    position:relative;
-    padding: 4%;
-    min-width: 60%;
-    border-style: solid;
-    border-color: #666666;
-    margin:20px 10px;
-    background-color: #9B9B9B;
-}
-
-.concert_element > p {
-    text-align: center;
-    min-height: 10px;
-}
-
-.concert_element > p :empty {
-    display: none;
-}
-
-.concertcontainer1 {
-    width: 50%;
-    float: left;
-
-}
 
 #submitreview {
     margin-top: 20px;
@@ -151,26 +125,6 @@ li {
     cursor: pointer;
 }
 
-.concert_element2{
-    box-sizing: border-box;
-    height: 440px;
-    position:relative;
-    padding: 5%;
-    min-width: 60%;
-    border-style: solid;
-    border-color: #666666;
-    margin:20px 10px;
-    background-color: #9B9B9B;
-}
-
-.concert_element2 > p {
-    text-align: center;
-    min-height: 10px;
-}
-
-.concert_element2 > p :empty {
-    display: none;
-}
 
 table {
     min-width: 800px;
@@ -216,7 +170,7 @@ th {
     margin-top: 10%;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 70%;
     background-color: #BDBDBD;
     max-height: 80%;
     overflow: auto;
@@ -239,7 +193,7 @@ th {
 }
 
 .button {
-    padding: 12px 28px;
+    padding: 12px 12px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -250,6 +204,8 @@ th {
     cursor: pointer;
     background-color: lightgrey;
     border: 2px solid #424242;
+    max-height: 50px;
+    min-width: 110px;
 }
 
 .button:hover {
@@ -266,7 +222,6 @@ th {
 
 .con {
     display: none;
-
     position: relative;
     padding: 5%;
     flex-basis: 100%;
@@ -349,3 +304,7 @@ th {
 
 }
 /*Ferdig booking form*/
+
+.boss {
+    visibility: hidden;
+}
