@@ -99,7 +99,9 @@ def list_concert(request):
     elif emp.employee_status == 'PR-MANAGER':
         info['concerts'] = list(
             models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
-    elif emp.employee_status == 'BOOKINGANSVARLIG' or emp.employee_status == 'SERVICE MANAGER' :
+    elif emp.employee_status == 'BOOKINGANSVARLIG' \
+            or emp.employee_status == 'SERVICE MANAGER' \
+            or emp.employee_status == 'BOOKINGSJEF':
         info['concerts'] = list(
             models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
 
@@ -347,28 +349,34 @@ def generate_price(request, calc=False):
         # 1. regn ut kostnader (loennn + oppsett)
         # 2. regn ut inntekter (80% av scenekapasitet)
         # 3. generer en billettpris basert paa punkt 1 og 2
-        # 4. plusser paa et tall eps
 
-        scenes = models.Scene.objects.all()
-        scene_prices = []
-        for scene in scenes:
-            eps = 50
-            x = float(scene.capacity)
-            tickets_sold_ca = x * 0.8
-            loenn = 40000.0
-            oppsett = 20000.0
+
+        # TODO ENDRE DET TIL CONCERT
+        # TODO GÅ GJENNOM KONSERTER
+
+        concerts = models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date')
+        concert_prices = []
+        for concert in concerts:
+            x = int(concert.scene.capacity)
+            tickets_sold_ca = x * 0.6
+            loenn = 10000
+            y = concert.lighting_work.count()
+            z = concert.sound_work.count()
+            loenn += 10000*(y+z)
+            oppsett = 50000
             kostnader = loenn + oppsett
-            ticketprice = kostnader / tickets_sold_ca
-            ticketprice += eps
-            scene_prices.append({
-                'scene': scene,
-                'capacity': scene.capacity,
-                'ticketprice': ticketprice
+            ticketprice = int(round(kostnader / tickets_sold_ca))
+            concert_prices.append({
+                'concert': concert,
+                'capacity': concert.scene.capacity,
+                'ticketprice': ticketprice,
+                'name': concert.name,
+                'scene': concert.scene,
             })
 
         return render(request, 'festivalapp/generate_ticketprice.html', {
             'calc': calc,
-            'scenes': scene_prices
+            'concerts': concert_prices
         })
     else:
         return render(request, 'festivalapp/generate_ticketprice.html')
