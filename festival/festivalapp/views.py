@@ -98,7 +98,7 @@ def list_concert(request):
             return HttpResponseRedirect(reverse('festivalapp:index'))
     elif emp.employee_status == 'PR-MANAGER':
         info['concerts'] = list(
-            models.Concert.objects.filter(festival__end_date__gte=date.date.today()).order_by('date'))
+            models.Concert.objects.filter(festival__end_date__gte=date.today()).order_by('date'))
     elif emp.employee_status == 'BOOKINGANSVARLIG' \
             or emp.employee_status == 'SERVICE MANAGER' \
             or emp.employee_status == 'BOOKINGSJEF':
@@ -353,7 +353,7 @@ def generate_price(request, calc=False):
         # TODO ENDRE DET TIL CONCERT
         # TODO GÅ GJENNOM KONSERTER
 
-        concerts = models.Concert.objects.filter(festival__end_date__gte=date.date.today()).order_by('date')
+        concerts = models.Concert.objects.filter(festival__end_date__gte=date.today()).order_by('date')
         concert_prices = []
         for concert in concerts:
             x = int(concert.scene.capacity)
