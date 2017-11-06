@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if last_added_or_removed %}
+        <p><strong> Siste hendelse: {{ last_added_or_removed }}</strong></p>
+    {% endif %}
+    <div>
+        <p>Band: {{ band }}</p>
+        <p>Concert: {{ concert }}</p>
+    </div>
+
+    <div class="">
+        <h2>Lysteknikere</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Legg til</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for light_tech in light_techs %}
+                <tr>
+                    <td>{{ light_tech }}</td>
+                    <td>
+                        {% if not light_tech in concert.lighting_work.all %}
+                            <a href="{% url 'festivalapp:assign_light_tech' concert_pk=concert.pk pk=light_tech.pk %}"
+                               type="button"
+                               class="button add-button">Legg til</a>
+                        {% else %}
+                            <a href="{% url 'festivalapp:assign_light_tech' concert_pk=concert.pk pk=light_tech.pk %}"
+                               type="button"
+                               class="button add-button">Fjern</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="">
+        <h2>Lydteknikere</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Legg til</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for sound_tech in sound_techs %}
+                <tr>
+                    <td>{{ sound_tech }}</td>
+                    <td>
+                        {% if not sound_tech in concert.sound_work.all %}
+                            <a href="{% url 'festivalapp:assign_sound_tech' concert_pk=concert.pk pk=sound_tech.pk %}"
+                               type="button"
+                               class="button add-button">Legg til</a>
+                        {% else %}
+                            <a href="{% url 'festivalapp:assign_sound_tech' concert_pk=concert.pk pk=sound_tech.pk %}"
+                               type="button"
+                               class="button add-button">Fjern</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

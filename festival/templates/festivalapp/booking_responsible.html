@@ -12,14 +12,14 @@
             <li class="concert_element">
 
                 <p style="font-size: 20px;" :>Band: {{ band.name }}</p>
-                <p>Manager: {{ band.manager }}</p>
-                <p>Number of members: {{ band.members }}</p>
-                <p>Light needs: {{ band.light_needs }}</p>
-                <p>Sound needs: {{ band.sound_needs }}</p>
-                <p>Specific needs: {{ band.specific_needs }}</p>
-                <p>Sold albums: {{ band.sold_albums }}</p>
-                <p>Number of concerts: {{ band.former_concerts }}</p>
-                <p>Popularity: {{ band.popularity }}</p>
+                <p><b>Manager:</b> {{ band.manager }}</p>
+                <p><b>Number of members:</b> {{ band.members }}</p>
+                <p><b>Light needs:</b> {{ band.light_needs }}</p>
+                <p><b>Sound needs:</b> {{ band.sound_needs }}</p>
+                <p><b>Specific needs:</b> {{ band.specific_needs }}</p>
+                <p><b>Sold albums:</b> {{ band.sold_albums }}</p>
+                <p><b>Number of concerts:</b> {{ band.former_concerts }}</p>
+                <p><b>Popularity:</b> {{ band.popularity }}</p>
                 <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Tilbud
                 </button>
                 <a href="{% url 'festivalapp:booking' pk=band.pk %}" type="button" class="button add-button">Add</a>
@@ -62,12 +62,12 @@
         {% for band in bands %}
             <li class="concert_element2">
                 <p style="font-size: 20px;" :>Band: {{ band.name }}</p>
-                <p>Manager: {{ band.manager }}</p>
-                <p>Number of members: {{ band.members }}</p>
-                <p>Current review: {{ band.review }}</p>
+                <p><b>Manager:</b> {{ band.manager }}</p>
+                <p><b>Number of members:</b> {{ band.members }}</p>
+                <p><b>Current review:</b> {{ band.review }}</p>
                 <form action="{% url 'festivalapp:add_review' pk=band.pk %}" method="post" id="review-form">
                     {% csrf_token %}
-                    <p><label for="review">New review here:</label></p>
+                    <p><label for="review"><b>New review here:</b></label></p>
                     <textarea
                             style="height: 110px; width: 230px; resize: none; background-color: #EFEFEF; border-radius: 8px;"
                             name="review" id="review" cols="30" rows="10"></textarea>

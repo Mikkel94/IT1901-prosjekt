@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from . import forms
 from . import models
-from datetime import date
-import datetime
+from datetime import date, time
 # Login / Logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from time import  sleep
+from django.db.models import Count
+from time import sleep
 
 
 # Create your views here.
@@ -33,7 +33,7 @@ def user_login(request):
         else:
             print('Username: {} \nPassword: {}'.format(username, password))
             return render(request, 'invalid_credentials.html')
-            #return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
     else:
         return render(request, 'loginsite.html')
@@ -80,30 +80,35 @@ def list_concert(request):
 
     if emp.employee_status == 'LYSTEKNIKER':
         info['concerts'] = list(models.Concert.objects.filter(lighting_work=emp).filter(
-            festival__end_date__gte=datetime.date.today()).order_by('date'))
+            festival__end_date__gte=date.today()).order_by('date'))
     elif emp.employee_status == 'LYDTEKNIKER':
         info['concerts'] = list(models.Concert.objects.filter(sound_work=emp).filter(
-            festival__end_date__gte=datetime.date.today()).order_by('date'))
+            festival__end_date__gte=date.today()).order_by('date'))
     elif emp.employee_status == 'ARRANGER':
         info['concerts'] = list(
-            models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+            models.Concert.objects.filter(festival__end_date__gte=date.today()).order_by('date'))
     elif emp.employee_status == 'MANAGER':
         try:
             band = models.Band.objects.get(manager=emp)
             info['concerts'] = list(
-                models.Concert.objects.filter(band=band).filter(festival__end_date__gte=datetime.date.today()).order_by(
+                models.Concert.objects.filter(band=band).filter(festival__end_date__gte=date.today()).order_by(
                     'date'))
         except:
             # HVIS DU IKKE ER MANAGER FOR NOEN BAND SAA KOMMER DU INGEN STEDER
             return HttpResponseRedirect(reverse('festivalapp:index'))
     elif emp.employee_status == 'PR-MANAGER':
         info['concerts'] = list(
-            models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+            models.Concert.objects.filter(festival__end_date__gte=date.date.today()).order_by('date'))
     elif emp.employee_status == 'BOOKINGANSVARLIG' \
             or emp.employee_status == 'SERVICE MANAGER' \
             or emp.employee_status == 'BOOKINGSJEF':
         info['concerts'] = list(
-            models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date'))
+            models.Concert.objects.filter(festival__end_date__gte=date.today()).order_by('date'))
+    elif emp.employee_status == 'BOOKINGSJEF':
+        info['concerts'] = list(
+            models.Concert.objects.filter(festival__end_date__lte=date.today()).order_by('date'))
+        info['scenes'] = list(
+            models.Scene.objects.filter())
 
     return render(request, 'festivalapp/concert_list.html', info)
 
@@ -153,51 +158,49 @@ def booking_responsible(request):
     else:
         return HttpResponseRedirect(reverse('festivalapp:index'))
 
-
-@login_required
-def assign_tech_to_concert(request, tech_pk, concert_pk):
-    tech = models.Employee.objects.get(pk=tech_pk)
-    concert = models.Concert.objects.get(pk=concert_pk)
-    if tech.employee_status == 'LYSTEKNIKER':
-        concert.lighting_work.add(tech)
-    elif tech.employee_status == 'LYDTEKNIKER':
-        concert.sound_work.add(tech)
-    return index(request)
-
-
-@login_required
+@login_required # TODO Whats happening here? Is this even used?
 def delete_band(request, pk):
-    # pk = models.Band.kwargs['pk'] #Might be this instead
     band = models.Band.objects.get(pk=pk)
     concerts = models.ConcertRequest()
     return index(request)
 
-
 def get_festival_now(festival_pk):
     return models.Festival.objects.get(pk=festival_pk)
-
 
 @login_required
 def book_band(request, pk):
     band = models.Band.objects.get(pk=pk)
-    print(band)
     if request.method == 'POST':
         booking_form = forms.BookBandForm(data=request.POST)
         if booking_form.is_valid():
-            genre = booking_form.cleaned_data['genre']
-            date = booking_form.cleaned_data['date']
             scene = booking_form.cleaned_data['scene']
-            name = booking_form.cleaned_data['name']
-            price = booking_form.cleaned_data['price']
-            festival = models.Festival.objects.get(end_date__gte=datetime.date.today())
-            concert_request = models.ConcertRequest.objects.get_or_create(
-                name=name,
+            date = booking_form.cleaned_data['date']
+            start_time = booking_form.cleaned_data['start_time']
+            end_time = booking_form.cleaned_data['end_time']
+            all_conserts = models.Concert.objects.filter(
+                                scene=scene,
+                                date=date,
+                                start_time__lte=change_time(end_time),
+                                )
+            all_conserts2 = models.Concert.objects.filter(
+                                scene=scene,
+                                date=date,
+                                end_time__gte=start_time
+                                )
+            if all_conserts or all_conserts2:
+                return HttpResponse('Time of date and/or scene not available') # TODO return popup
+            festival = models.Festival.objects.get(end_date__gte=date.today())
+            concert_request = models.ConcertRequest.objects.create(
+                name=booking_form.cleaned_data['name'],
                 date=date,
                 scene=scene,
-                genre=genre,
+                genre=booking_form.cleaned_data['genre'],
+                price=booking_form.cleaned_data['price'],
+                start_time=start_time,
+                end_time=end_time,
                 band=band,
-                festival=festival,
-                price=price)[0]
+                festival=festival
+            )
             concert_request.save()
 
             band.is_booking_req_sendt = True
@@ -212,16 +215,15 @@ def book_band(request, pk):
             'booking_form': booking_form
         })
 
-
 @login_required
 def booking_requests(request):
     concert_requests = models.ConcertRequest.objects.all()
     concert_isbooked = models.Band.objects.filter(is_booked=True)
     avail_num = 0
-    if models.Festival.objects.filter(end_date__gte=datetime.date.today()):
-        f = models.Festival.objects.filter(end_date__gte=datetime.date.today())[0]
+    if models.Festival.objects.filter(end_date__gte=date.today()):
+        f = models.Festival.objects.filter(end_date__gte=date.today())[0]
         end_date = f.end_date
-        avail_num = (end_date - datetime.date.today()).days
+        avail_num = (end_date - date.today()).days
         avail_num -= len(concert_isbooked)
 
     return render(request, 'festivalapp/booking_requests.html', {
@@ -250,7 +252,9 @@ def accept_booking_request(request, pk):
         genre=concert_request.genre,
         band=concert_request.band,
         festival=concert_request.festival,
-        price=concert_request.price
+        price=concert_request.price,
+        start_time=concert_request.start_time,
+        end_time=concert_request.end_time
     )[0]
     band = models.Band.objects.get(pk=concert.band.pk)
     concert.save()
@@ -284,7 +288,6 @@ def cancel_booking_request(request, pk):
 #     return HttpResponse('<script>alert("Concert %s removed")</script>' % concert)
 #
 
-
 @login_required
 def show_previous_festivals(request):
     festivals = []
@@ -302,7 +305,6 @@ def show_previous_festivals(request):
         'concerts': concerts,
     })
 
-
 @login_required
 def set_audience(request, pk):
     if request.method == 'POST':
@@ -311,7 +313,6 @@ def set_audience(request, pk):
         concert.audience = audience
         concert.save()
         return HttpResponseRedirect(reverse('festivalapp:index'))
-
 
 @login_required
 def set_albums_and_former_concerts(request, pk):
@@ -326,7 +327,6 @@ def set_albums_and_former_concerts(request, pk):
     else:
         return index(request)
 
-
 @login_required
 def search(request):
     if request.method == 'POST':
@@ -334,13 +334,12 @@ def search(request):
         bands = models.Band.objects.filter(name__contains=search_input)
         concerts = []
         for band in bands:
-            concerts.append(models.Concert.objects.filter(band__exact=band).filter(date__lte=datetime.date.today()))
+            concerts.append(models.Concert.objects.filter(band__exact=band).filter(date__lte=date.today()))
         return render(request, 'festivalapp/search.html', context={
             'concerts': concerts
         })
     else:
         return HttpResponseRedirect(reverse('festivalapp:index'))
-
 
 @login_required
 def generate_price(request, calc=False):
@@ -354,7 +353,7 @@ def generate_price(request, calc=False):
         # TODO ENDRE DET TIL CONCERT
         # TODO GÅ GJENNOM KONSERTER
 
-        concerts = models.Concert.objects.filter(festival__end_date__gte=datetime.date.today()).order_by('date')
+        concerts = models.Concert.objects.filter(festival__end_date__gte=date.date.today()).order_by('date')
         concert_prices = []
         for concert in concerts:
             x = int(concert.scene.capacity)
@@ -381,7 +380,7 @@ def generate_price(request, calc=False):
     else:
         return render(request, 'festivalapp/generate_ticketprice.html')
 
-
+@login_required
 def add_review(request, pk):
     band = models.Band.objects.get(pk=pk)
     if request.method == 'POST':
@@ -393,3 +392,105 @@ def add_review(request, pk):
         return HttpResponseRedirect(reverse('festivalapp:index'))
     else:
         return index(request)
+
+# BEGIN assign tech
+@login_required  # For bookingansvarlig
+def assign_new_tech(request, pk, last_added_or_removed=""):
+    user = models.Employee.objects.get(user=request.user)
+
+    if user.employee_status == 'BOOKINGANSVARLIG':
+        concert = models.Concert.objects.get(pk=pk)
+        band = concert.band
+        remaining_needs = 0
+
+        available_light_workers = list()
+        available_sound_workers = list()
+        for worker in models.Employee.objects.filter(employee_status='LYDTEKNIKER'):
+            if is_tech_available(worker, concert):
+                available_sound_workers.append(worker)
+        for worker in models.Employee.objects.filter(employee_status='LYSTEKNIKER'):
+            if is_tech_available(worker, concert):
+                available_light_workers.append(worker)
+
+    else:
+        return index(request)
+
+    return render(request, 'festivalapp/assign_techs.html',
+                  {
+                      'remaining_needs': remaining_needs,
+                      'band': band,
+                      'concert': concert,
+                      'light_techs': available_light_workers,
+                      'sound_techs': available_sound_workers,
+                      'last_added_or_removed': last_added_or_removed
+                  })
+
+@login_required  # Også for Bookingansvarlig
+def assign_light_tech(request, concert_pk, pk):
+    concert = models.Concert.objects.get(pk=concert_pk)
+    c = models.Concert.objects.annotate(num_light=Count('lighting_work')).get(pk=concert_pk)
+    remaining_needs = concert.band.light_needs - c.num_light
+    worker = models.Employee.objects.get(pk=pk)
+    if remaining_needs > 0 and worker not in concert.lighting_work.all():
+        concert.lighting_work.add(worker)
+        concert.save()
+        last_added_or_removed = "Lystekniker " + worker.__str__() + " lagt til i konsert: " + concert.__str__()
+    elif worker in concert.lighting_work.all():
+        concert.lighting_work.remove(worker)
+        last_added_or_removed = "Lystekniker " + worker.__str__() + " fjernet fra konsert: " + concert.__str__()
+    else:
+        last_added_or_removed = "Ingenting skjedde"
+    return assign_new_tech(request, concert.pk, last_added_or_removed)
+
+@login_required  # Også for Bookingansvarlig
+def assign_sound_tech(request, concert_pk, pk):
+    concert = models.Concert.objects.get(pk=concert_pk)
+    c = models.Concert.objects.annotate(num_sound=Count('sound_work')).get(pk=concert_pk)
+    remaining_needs = concert.band.sound_needs - c.num_sound
+    worker = models.Employee.objects.get(pk=pk)
+    if remaining_needs > 0 and worker not in concert.sound_work.all():
+        concert.sound_work.add(worker)
+        concert.save()
+        last_added_or_removed = "Lydtekniker " + worker.__str__() + " lagt til i konsert: " + concert.__str__()
+    elif worker in concert.sound_work.all():
+        concert.sound_work.remove(worker)
+        last_added_or_removed = "Lydtekniker " + worker.__str__() + " fjernet fra konsert: " + concert.__str__()
+    else:
+        last_added_or_removed = "Ingenting skjedde"
+    return assign_new_tech(request, concert.pk, last_added_or_removed)
+
+@login_required
+def is_tech_available(tech, concert):
+    concerts = list()
+
+    for c in models.Concert.objects.filter(date__exact=concert.date):
+        if tech in c.sound_work.all() or tech in c.lighting_work.all():
+            concerts.append(c)
+    if len(concerts) == 1 and concerts[0] == concert:
+        return True
+    elif len(concerts) >= 1:
+        for c in concerts:
+            if not (change_time(c.end_time) < change_time(concert.start_time)
+                    or change_time(c.start_time) > change_time(concert.end_time)):
+                return False
+    return True
+
+def change_time(in_time):
+    if in_time < time(00, 00, 1):
+        return time(23, 59, 59)
+    else:
+        return in_time
+
+# DEPRECATED
+# @login_required
+# def assign_tech_to_concert(request, tech_pk, concert_pk):
+#     tech = models.Employee.objects.get(pk=tech_pk)
+#     concert = models.Concert.objects.get(pk=concert_pk)
+#     if tech.employee_status == 'LYSTEKNIKER':
+#         concert.lighting_work.add(tech)
+#     elif tech.employee_status == 'LYDTEKNIKER':
+#         concert.sound_work.add(tech)
+#     return index(request)
+
+
+        # END assign tech
