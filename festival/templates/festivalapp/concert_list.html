@@ -23,7 +23,8 @@
                     <td>{{ concert.band }}</td>
                     <td>{{ concert.scene }}</td>
                     <td>
-                        <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info</button>
+                        <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info
+                        </button>
                     </td>
                 </tr>
 
@@ -126,6 +127,7 @@
                 <th>Konsert:</th>
                 <th>Bandnavn:</th>
                 <th>Scene:</th>
+                <th>Legg til teknikere</th>
                 <th>Se mer:</th>
             </tr>
             </thead>
@@ -138,6 +140,10 @@
                     <td>{{ concert.name }}</td>
                     <td>{{ concert.band }}</td>
                     <td>{{ concert.scene }}</td>
+                    <td>
+                        <a href="{% url 'festivalapp:assign_tech' pk=concert.pk %}" type="button"
+                           class="button add-button">Legg til</a>
+                    </td>
                     <td>
                         <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Mer info
                         </button>
@@ -161,19 +167,23 @@
                                 <ul>
                                     {% for lys in concert.lighting_work.all %}
                                         <li><p>{{ lys }}</p></li>
+                                        {% empty %}
+                                        Ingen lystekniker
                                     {% endfor %}
                                 </ul>
                                 <h3>LYD:</h3>
                                 <ul>
                                     {% for lyd in concert.sound_work.all %}
                                         <li><p>{{ lyd }}</p></li>
+                                        {% empty %}
+                                        Ingen lystekniker
                                     {% endfor %}
                                 </ul>
-                                <form action="{% url 'festivalapp:set_audience' pk=concert.pk %}" metdod="POST">
+                                <form action="{% url 'festivalapp:set_audience' pk=concert.pk %}" method="POST">
                                     {% csrf_token %}
-                                    Set Audience:
+                                    Sett publikum:
                                     <input type="number" name="audience" id="audience">
-                                    <input type="submit" value="Set Audience">
+                                    <input type="submit" value="Sett publikum">
                                 </form>
                             </div>
                         </div>
@@ -213,11 +223,15 @@
                             <div class="modal-content">
                                 <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
                                 <h1>Bandinfo:</h1>
-                                <p><b>Bandnavn:</b> {{ concert.band.name }}</p>
-                                <p><b>Solgte album:</b> {{ concert.band.sold_albums }}</p>
-                                <p><b>Presseomtaler:</b> {{ concert.links }}</p>
-                                <p><b>Kontaktinfo:</b> {{ concert.band.contact_info }}</p>
-                                <p><b>Omtale:</b> {{ concert.band.review }}</p>
+                                <p>Bandnavn: {{ concert.band.name }}</p>
+                                <p>Solgte album: {{ concert.band.sold_albums }}</p>
+                                <p>Presseomtaler: {{ concert.links }}</p>
+                                <p>Kontaktinfo: {{ concert.band.contact_info }}</p>
+                                {% if concert.band.review %}
+                                    <p>Omtale: {{ concert.band.review }}</p>
+                                {% else %}
+                                    <p>Omtale: Ingen omtale ennå</p>
+                                {% endif %}
                             </div>
                         </div>
                     </td>
