@@ -358,9 +358,13 @@
 
                     if (c[i].className.indexOf(s) !== -1) {
                         c[i].style.visibility = "visible";
+                        c[i].style.display = "table-row";
+
                     }
                     else {
                         c[i].style.visibility = "hidden";
+                        c[i].style.display = "none";
+
                     }
                 }
             }
