@@ -2,15 +2,15 @@
 
 {% block content %}
 
-    <div class="concertcontainer1">
+    <div class="">
 
         <h2>BAND OFFERS</h2>
 
 
-        <div class="row">
+        <div class="row card-container">
             {% for band in bands %}
 
-                <li class="concert_element card">
+                <li class="card gray-card">
 
                     <p style="font-size: 20px;" :>Band: {{ band.name }}</p>
                     <p><b>Manager:</b> {{ band.manager }}</p>
@@ -60,10 +60,10 @@
     </div>
 
         <h2>SET REVIEW</h2>
-    <div class="row">
+    <div class="row card-container">
 
         {% for band in bands %}
-            <li class="concert_element2 card">
+            <li class="card gray-card">
                 <p style="font-size: 20px;" :>Band: {{ band.name }}</p>
                 <p><b>Manager:</b> {{ band.manager }}</p>
                 <p><b>Number of members:</b> {{ band.members }}</p>

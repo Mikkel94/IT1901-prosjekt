@@ -120,16 +120,15 @@ li {
     list-style-type: none;
 }
 
-
-.concert_element{
+.concert_element {
     box-sizing: border-box;
     height: 440px;
-    position:relative;
+    position: relative;
     padding: 4%;
-    min-width:60%;
+    min-width: 60%;
     border-style: solid;
     border-color: #666666;
-    margin:20px 10px;
+    margin: 20px 10px;
     background-color: #9B9B9B;
 }
 
@@ -138,7 +137,7 @@ li {
     min-height: 10px;
 }
 
-.concert_element > p :empty{
+.concert_element > p :empty {
     display: none;
 }
 
@@ -151,20 +150,19 @@ li {
 #submitreview {
     margin-top: 20px;
     display: inline-block;
-    width:105px;
+    width: 105px;
     cursor: pointer;
 }
 
-
-.concert_element2{
+.concert_element2 {
     box-sizing: border-box;
     height: 440px;
-    position:relative;
+    position: relative;
     padding: 5%;
-    min-width:60%;
+    min-width: 60%;
     border-style: solid;
     border-color: #666666;
-    margin:20px 10px;
+    margin: 20px 10px;
     background-color: #9B9B9B;
 }
 
@@ -173,11 +171,9 @@ li {
     min-height: 10px;
 }
 
-.concert_element2 > p :empty{
+.concert_element2 > p :empty {
     display: none;
 }
-
-
 
 table {
     min-width: 800px;
@@ -223,6 +219,16 @@ th {
     padding: 1rem;
     margin: 1rem;
     text-align: left;
+}
+
+.gray-card {
+    background-color: #9B9B9B;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .modal-content {
