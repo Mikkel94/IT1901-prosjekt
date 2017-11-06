@@ -151,9 +151,8 @@ def booking_responsible(request):
     else:
         return HttpResponseRedirect(reverse('festivalapp:index'))
 
-@login_required
+@login_required # TODO Whats happening here? Is this even used?
 def delete_band(request, pk):
-    # pk = models.Band.kwargs['pk'] #Might be this instead
     band = models.Band.objects.get(pk=pk)
     concerts = models.ConcertRequest()
     return index(request)
@@ -164,24 +163,37 @@ def get_festival_now(festival_pk):
 @login_required
 def book_band(request, pk):
     band = models.Band.objects.get(pk=pk)
-    print(band)
     if request.method == 'POST':
         booking_form = forms.BookBandForm(data=request.POST)
         if booking_form.is_valid():
-            genre = booking_form.cleaned_data['genre']
-            date = booking_form.cleaned_data['date']
             scene = booking_form.cleaned_data['scene']
-            name = booking_form.cleaned_data['name']
-            price = booking_form.cleaned_data['price']
+            date = booking_form.cleaned_data['date']
+            start_time = booking_form.cleaned_data['start_time']
+            end_time = booking_form.cleaned_data['end_time']
+            all_conserts = models.Concert.objects.filter(
+                                scene=scene,
+                                date=date,
+                                start_time__lte=change_time(end_time),
+                                )
+            all_conserts2 = models.Concert.objects.filter(
+                                scene=scene,
+                                date=date,
+                                end_time__gte=start_time
+                                )
+            if all_conserts or all_conserts2:
+                return HttpResponse('Time of date and/or scene not available') # TODO return popup
             festival = models.Festival.objects.get(end_date__gte=date.today())
-            concert_request = models.ConcertRequest.objects.get_or_create(
-                name=name,
+            concert_request = models.ConcertRequest.objects.create(
+                name=booking_form.cleaned_data['name'],
                 date=date,
                 scene=scene,
-                genre=genre,
+                genre=booking_form.cleaned_data['genre'],
+                price=booking_form.cleaned_data['price'],
+                start_time=start_time,
+                end_time=end_time,
                 band=band,
-                festival=festival,
-                price=price)[0]
+                festival=festival
+            )
             concert_request.save()
 
             band.is_booking_req_sendt = True
@@ -233,7 +245,9 @@ def accept_booking_request(request, pk):
         genre=concert_request.genre,
         band=concert_request.band,
         festival=concert_request.festival,
-        price=concert_request.price
+        price=concert_request.price,
+        start_time=concert_request.start_time,
+        end_time=concert_request.end_time
     )[0]
     band = models.Band.objects.get(pk=concert.band.pk)
     concert.save()
@@ -439,7 +453,9 @@ def is_tech_available(tech, concert):
     for c in models.Concert.objects.filter(date__exact=concert.date):
         if tech in c.sound_work.all() or tech in c.lighting_work.all():
             concerts.append(c)
-    if len(concerts) >= 1:
+    if len(concerts) == 1 and concerts[0] == concert:
+        return True
+    elif len(concerts) >= 1:
         for c in concerts:
             if not (change_time(c.end_time) < change_time(concert.start_time)
                     or change_time(c.start_time) > change_time(concert.end_time)):

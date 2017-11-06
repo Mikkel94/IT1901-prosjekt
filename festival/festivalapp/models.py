@@ -110,6 +110,8 @@ class ConcertRequest(models.Model):
 
     price = models.IntegerField(default=100)
     date = models.DateField()
+    start_time = models.TimeField(null=True)
+    end_time = models.TimeField(null=True)
     scene = models.ForeignKey(Scene)
     is_sendt = models.BooleanField(default=False)
 
