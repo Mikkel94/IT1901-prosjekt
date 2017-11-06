@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from . import forms
 from . import models
-from datetime import date, time
+from datetime import date, time, timedelta
 # Login / Logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
@@ -172,17 +172,17 @@ def book_band(request, pk):
         booking_form = forms.BookBandForm(data=request.POST)
         if booking_form.is_valid():
             scene = booking_form.cleaned_data['scene']
-            date = booking_form.cleaned_data['date']
+            in_date = booking_form.cleaned_data['date']
             start_time = booking_form.cleaned_data['start_time']
             end_time = booking_form.cleaned_data['end_time']
             all_conserts = models.Concert.objects.filter(
                                 scene=scene,
-                                date=date,
+                                date=in_date,
                                 start_time__lte=change_time(end_time),
                                 )
             all_conserts2 = models.Concert.objects.filter(
                                 scene=scene,
-                                date=date,
+                                date=in_date,
                                 end_time__gte=start_time
                                 )
             if all_conserts or all_conserts2:
@@ -190,7 +190,7 @@ def book_band(request, pk):
             festival = models.Festival.objects.get(end_date__gte=date.today())
             concert_request = models.ConcertRequest.objects.create(
                 name=booking_form.cleaned_data['name'],
-                date=date,
+                date=in_date,
                 scene=scene,
                 genre=booking_form.cleaned_data['genre'],
                 price=booking_form.cleaned_data['price'],
@@ -213,22 +213,41 @@ def book_band(request, pk):
             'booking_form': booking_form
         })
 
+def available_dates ( festival,end_date ):
+    org_date = date.today()
+    date_delta = (end_date - org_date).days
+    scenes = models.Scene.objects.all()
+    date_list = []
+    for x in range(date_delta):
+        tmp = [str(org_date.year) + ' - ' + str(org_date.month) + ' - ' + str(org_date.day)]
+        for scene in scenes:
+            concerts = models.Concert.objects.filter(date=org_date,scene=scene)
+            if len(concerts) <= 0:
+                tmp.append(str(scene))
+        date_list.append(tmp)
+        org_date += timedelta(days=1)
+    return date_list
+
 @login_required
 def booking_requests(request):
     concert_requests = models.ConcertRequest.objects.all()
     concert_isbooked = models.Band.objects.filter(is_booked=True)
     avail_num = 0
+    a_dates = []
     if models.Festival.objects.filter(end_date__gte=date.today()):
         f = models.Festival.objects.filter(end_date__gte=date.today())[0]
         end_date = f.end_date
+        a_dates.append(available_dates(f, end_date))
         avail_num = (end_date - date.today()).days
         avail_num -= len(concert_isbooked)
 
     return render(request, 'festivalapp/booking_requests.html', {
         'concerts': concert_requests,
         'concerts_isbooked': concert_isbooked,
-        'available_dates': avail_num
+        'available_dates': avail_num,
+        'a_dates': a_dates
     })
+
 
 @login_required
 def send_booking_request(request, pk):

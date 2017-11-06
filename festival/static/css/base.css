@@ -11,12 +11,16 @@ body {
     background-color: #616161;
 }
 
+h1 {
+    font-size: 2vw;
+}
+
 div.menu {
     box-sizing: border-box;
     height: 80px;
-    min-width : 150px;
-	background-color: #616161;
-	flex: 1;
+    min-width: 150px;
+    background-color: #616161;
+    flex: 1;
 
 }
 
@@ -47,7 +51,6 @@ div.current {
     background-color: #616161;
     flex-basis: 20%;
 }
-
 
 /* ------------ MENY FERDIG-------------------------------- */
 
@@ -117,14 +120,12 @@ li {
     list-style-type: none;
 }
 
-
 #submitreview {
     margin-top: 20px;
     display: inline-block;
     width: 105px;
     cursor: pointer;
 }
-
 
 table {
     min-width: 800px;
@@ -163,6 +164,13 @@ th {
     background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
     padding-bottom: 20px;
 
+}
+
+.card {
+    border: 1px solid black;
+    padding: 1rem;
+    margin: 1rem;
+    text-align: left;
 }
 
 .modal-content {
@@ -221,20 +229,17 @@ th {
 /*--------- Ferdig Concert Modal -------*/
 
 .con {
-    display: none;
-    position: relative;
-    padding: 5%;
-    flex-basis: 100%;
     border-style: solid;
     border-color: #666666;
-    margin: 20px;
     background-color: #9B9B9B;
+    padding: 1rem;
+    margin: 1rem;
+    text-align: left;
 }
 
 /* ------------ Ferdig med content ------------------------- */
 
 /* Forms */
-
 
 #searchgreie1 {
     margin-top: 0px;
@@ -275,7 +280,7 @@ th {
 /*Booking form*/
 
 .stylingselect1 select {
-    width: 135px;
+    width: 160px;
     font-size: 18px;
     margin: 0px 0px 1px 0px;
     background: #EEEEEE;
@@ -283,7 +288,7 @@ th {
 }
 
 .stylingselect2 input {
-    width: 135px;
+    width: 160px;
     font-size: 18px;
     margin: 1px 0px 0px 0px;
     font-family: "Roboto", sans-serif;
@@ -303,6 +308,7 @@ th {
     font-size: 25px;
 
 }
+
 /*Ferdig booking form*/
 
 .boss {

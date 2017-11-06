@@ -2,78 +2,91 @@
 
 {% block content %}
 
-<div style="display: flex;">
-    <div style=" display: flex; width: auto; margin-left: auto; margin-right: auto;">
+    <div style="display: flex;">
+        <div style=" display: flex; width: auto; margin-left: auto; margin-right: auto;">
 
-    <div style="flex: 1; width: auto;">
-        <button class="button" onclick="changeGenre1()" value="ROCK">ROCK</button>
+            <div style="flex: 1; width: auto;">
+                <button class="button" onclick="changeGenre1()" value="ROCK">ROCK</button>
+            </div>
+
+            <div style="flex: 1; width: auto;">
+                <button class="button" onclick="changeGenre2()" value="POP">POP</button>
+            </div>
+
+            <div style="flex: 1; width: auto;">
+                <button class="button" onclick="changeGenre3()" value="ELECTRIC">ELECTRIC</button>
+            </div>
+
+        </div>
     </div>
 
-    <div style="flex: 1; width: auto;">
-         <button class="button" onclick="changeGenre2()" value="POP">POP</button>
-    </div>
-
-    <div style="flex: 1; width: auto;">
-         <button class="button" onclick="changeGenre3()" value="ELECTRIC">ELECTRIC</button>
-    </div>
-
-    </div>
-</div>
-
+<div class="row" onload="show_all()">
 
     {% for concert in concerts %}
         {% if concert.festival in festivals %}
 
-    	<div class="{{concert.genre}} con">
-            <h1>{{concert.name}}</h1>
-            <p><b>Band</b>: {{concert.band}}</p>
-    		<p><b>Sjanger:</b> {{concert.genre}}</p>
-    		<p><b>Festival:</b> {{concert.festival}}</p>
-    		<p><b>Publikum:</b> {{concert.audience}}</p>
-            <p><b>Scene:</b> {{concert.scene}}</p>
-    	</div>
+            <div class="{{ concert.genre }} con">
+                <h1>{{ concert.name }}</h1>
+                <p><b>Band</b>: {{ concert.band }}</p>
+                <p><b>Sjanger:</b> {{ concert.genre }}</p>
+                <p><b>Festival:</b> {{ concert.festival }}</p>
+                <p><b>Publikum:</b> {{ concert.audience }}</p>
+                <p><b>Scene:</b> {{ concert.scene }}</p>
+            </div>
 
-    	{% endif %}
+        {% endif %}
         {% empty %}
-            <p>Det er ingen gamle konserter å vise</p>
+        <p>Det er ingen gamle konserter å vise</p>
     {% endfor %}
+</div>
 
 
 
 
-<script>
-	function changeGenre1() {
-	    	c = document.getElementsByClassName("con");
-	    	for (var i = c.length - 1; i >= 0; i--) {
-	    		if (c[i].className == "rock con") {
-	    			c[i].style.display = "block";
-	    		}
-	    		else {c[i].style.display = "none";}
-	    	}
-	}
+    <script>
+    function show_all(){
+        c = document.getElementsByClassName("con");
+        for (var i = c.length - 1; i >= 0; i--) {
+            c[i].style.display = "block";
+        }
+    }
+        function changeGenre1() {
+            c = document.getElementsByClassName("con");
+            for (var i = c.length - 1; i >= 0; i--) {
+                if (c[i].className == "rock con") {
+                    c[i].style.display = "block";
+                }
+                else {
+                    c[i].style.display = "none";
+                }
+            }
+        }
 
-		function changeGenre2() {
-	    	c = document.getElementsByClassName("con");
-	    	for (var i = c.length - 1; i >= 0; i--) {
-	    		if (c[i].className == "pop con") {
-	    			c[i].style.display = "block";
-	    		}
-	    		else {c[i].style.display = "none";}
-	    	}
-	}
+        function changeGenre2() {
+            c = document.getElementsByClassName("con");
+            for (var i = c.length - 1; i >= 0; i--) {
+                if (c[i].className == "pop con") {
+                    c[i].style.display = "block";
+                }
+                else {
+                    c[i].style.display = "none";
+                }
+            }
+        }
 
-		function changeGenre3() {
-	    	c = document.getElementsByClassName("con");
-	    	for (var i = c.length - 1; i >= 0; i--) {
-	    		if (c[i].className == "electric con") {
-	    			c[i].style.display = "block";
-	    		}
-	    		else {c[i].style.display = "none";}
-	    	}
-	}
+        function changeGenre3() {
+            c = document.getElementsByClassName("con");
+            for (var i = c.length - 1; i >= 0; i--) {
+                if (c[i].className == "electric con") {
+                    c[i].style.display = "block";
+                }
+                else {
+                    c[i].style.display = "none";
+                }
+            }
+        }
 
 
-
-</script>
+    </script>
 
 {% endblock %}
