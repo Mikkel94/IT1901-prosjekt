@@ -3,7 +3,7 @@
 {% block content %}
     <h1>Konserter:</h1>
 
-    {% if emp.employee_status == 'LYDTEKNIKER' or emp.employee_status == 'LYSTEKNIKER' or emp.employee_status == 'BOOKINGSJEF' %}
+    {% if emp.employee_status == 'LYDTEKNIKER' or emp.employee_status == 'LYSTEKNIKER' %}
         <table>
             <thead>
             <tr>
@@ -320,7 +320,7 @@
             <tbody>
 
             {% for concert in concerts %}
-                <tr class="{{ concert.scene.name }} boss" )>
+                <tr class="{{ concert.scene.name }} boss">
                     <td>{{ concert.date }}</td>
                     <td>{{ concert.name }}</td>
                     <td>{{ concert.band }}</td>
@@ -333,12 +333,15 @@
                             <div class="modal-content">
                                 <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
 
-                                <p><b>Konsertnavn:</b> {{ concert.name }}</p>
-                                <p><b>Band:</b> {{ concert.band }}</p>
-                                <p><b>Dato:</b> {{ concert.date }}</p>
-                                <p><b>Scene:</b> {{ concert.scene }}</p>
-                                <p><b>Festival:</b> {{ concert.festival }}</p>
-                                <p><b>Publikumstall:</b> {{ concert.audience }}</p>
+                                <p><strong>Konsertnavn:</strong> {{ concert.name }}</p>
+                                <p><strong>Band:</strong> {{ concert.band }}</p>
+                                <p><strong>Dato:</strong> {{ concert.date }}</p>
+                                <p><strong>Scene:</strong> {{ concert.scene }}</p>
+                                <p><strong>Festival:</strong> {{ concert.festival }}</p>
+                                <p><strong>Publikumstall:</strong> {{ concert.audience }}</p>
+                                <p><strong>Inntekter</strong>{{ income }}</p>
+                                <p><strong>Utgifter</strong>{{ expenses }}</p>
+                                <p><strong>Totale inntekter</strong>{{ net_income }}</p>
                             </div>
                         </div>
                     </th>

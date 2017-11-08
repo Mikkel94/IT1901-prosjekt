@@ -40,6 +40,7 @@ class Scene(models.Model):
         drinks = 1.5*y
         return int(drinks)
 
+    @property
     def calc_food(self):
         y = 0.9 * (int(str(self.capacity)))
         food = y/2
@@ -73,7 +74,7 @@ class Band(models.Model):
     @property
     def popularity(self):
         y = int(str(self.sold_albums))
-        return (y / 20) / 100
+        return (y / 20) / 2
 
 
 class Festival(models.Model):
