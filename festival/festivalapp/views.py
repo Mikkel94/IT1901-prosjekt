@@ -367,11 +367,6 @@ def generate_price(request, calc=False):
         # 1. regn ut kostnader (loennn + oppsett)
         # 2. regn ut inntekter (80% av scenekapasitet)
         # 3. generer en billettpris basert paa punkt 1 og 2
-
-
-        # TODO ENDRE DET TIL CONCERT
-        # TODO GÅ GJENNOM KONSERTER
-
         concerts = models.Concert.objects.filter(festival__end_date__gte=date.today()).order_by('date')
         concert_prices = []
         for concert in concerts:
