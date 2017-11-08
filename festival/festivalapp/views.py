@@ -366,7 +366,8 @@ def search ( request ):
         for band in bands:
             concerts.append(models.Concert.objects.filter(band__exact=band).filter(date__lte=date.today()))
         return render(request, 'festivalapp/search.html', context={
-            'concerts': concerts
+            'concerts': concerts,
+            'bands': bands
         })
     else:
         return HttpResponseRedirect(reverse('festivalapp:index'))

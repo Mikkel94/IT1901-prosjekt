@@ -3,20 +3,22 @@
 {% block content %}
 
 
-    <div>
+    <div class="row card-container">
+        <div class="card gray-card">
             {% for concert in concerts %}
+
                 <p>Konsert: {{ concert.name }}</p>
 
                 <p>Kapasitet: {{ concert.capacity }}</p>
 
                 <p><b>Pris</b>: {{ concert.ticketprice }} kr</p>
 
-                <p>Scene:     {{ concert.scene }}</p>
+                <p>Scene: {{ concert.scene }}</p>
                 <p>------------------------------</p>
             {% empty %}
                 Det er ingen konserter lagt til i systemet.
             {% endfor %}
-
+        </div>
 
 
     </div>

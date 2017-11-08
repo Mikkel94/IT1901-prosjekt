@@ -1,33 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
     <b>Band:</b>
+    <div class="card-container row">
     {% for band in bands %}
-        <li class="concert_element">
-            Band name: {{ band.name }}
-            Band rating: {{ band.popularity }}
-            Number of former concerts: {{ band.former_concerts }}
-            Already booked?: {{ band.is_booked }}
-            Manager: {{ band.manager }}
-        </li>
-        {% empty %}
+        <div class="card gray-card">
+
+            <p><strong>Band name: </strong>{{ band.name }}</p>
+            <p><strong>Band rating: </strong>{{ band.popularity }}</p>
+            <p><strong>Number of former concerts: </strong>{{ band.former_concerts }}</p>
+            <p><strong>Already booked?:</strong> {{ band.is_booked }}</p>
+            <p><strong>Manager: </strong>{{ band.manager }}</p>
+        </div>
+    {% empty %}
         <p>Ingen band å vise</p>
     {% endfor %}
+    </div>
 
     <b>Tidligere konserter:</b>
+    <div class="row card-container">
     {% for concert in concerts %}
         {% for value in concert %}
-            <li class="concert_element">
-                Concert - Band: {{ value }}
-                Audience: {{ value.audience }}
-                Genre: {{ value.genre }}
-                Festival: {{ value.festival }}
-                Scene: {{ value.scene }}
-                Date: {{ value.date }}
-            </li>
+            <div class="card gray-card">
+
+                <p><strong>Concert -Band:</strong> {{ value }}</p>
+                <p><strong>Audience:</strong>{{ value.audience }}</p>
+                <p><strong>Genre:</strong>{{ value.genre }}</p>
+                <p><strong>Festival:</strong>{{ value.festival }}</p>
+                <p><strong>Scene:</strong>{{ value.scene }}</p>
+                <p><strong>Date:</strong>{{ value.date }}</p>
+            </div>
         {% endfor %}
-        {% empty %}
+    </div>
+    {% empty %}
         <p>Ingen konserter å vise</p>
     {% endfor %}
 
