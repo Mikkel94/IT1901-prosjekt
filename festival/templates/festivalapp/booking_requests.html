@@ -5,23 +5,43 @@
     <br>
     <p>Antall konsertdatoer booket: {{ concerts_isbooked | length }}</p>
     <br>
-    <p>Antall ledige datoer: {{ available_dates }}</p>
 
+<div class="row card-container">
 
     {% for concert in concerts %}
-        <li class="concert_element">
-            <p>Band: {{ concert.band }}</p>
-            <p>Concert: {{ concert.name }}</p>
-            <p>Genre: {{ concert.genre }}</p>
-            <p>Festival: {{ concert.festival }}</p>
-            <p>Price: {{ concert.price }}</p>
-            <p>Date: {{ concert.date }}</p>
-            <p>Scene: {{ concert.scene }}</p>
-            <a href="{% url 'festivalapp:accept_booking_request' pk=concert.pk %}" type="button"
-               class="button add-button">Accept</a>
-            <a href="{% url 'festivalapp:decline_booking_request' pk=concert.pk %}" type="button"
-               class="button delete-button">Decline</a>
-        </li>
+        <div class="">
+            <li class="card gray-card">
+                <p><strong>Band:</strong> {{ concert.band }}</p>
+                <p><strong>konsert:</strong> {{ concert.name }}</p>
+                <p><strong>Sjanger: </strong>{{ concert.genre }}</p>
+                <p><strong>Festival: </strong>{{ concert.festival }}</p>
+                <p><strong>Pris: </strong>{{ concert.price }}</p>
+                <p><strong>Dato: </strong>{{ concert.date }}</p>
+                <p><strong>Scene: </strong>{{ concert.scene }}</p>
+                <a href="{% url 'festivalapp:accept_booking_request' pk=concert.pk %}" type="button"
+                   class="button add-button">Accept</a>
+                <a href="{% url 'festivalapp:decline_booking_request' pk=concert.pk %}" type="button"
+                   class="button delete-button">Decline</a>
+            </li>
+        </div>
     {% endfor %}
+</div>
 
+    <hr>
+<p><strong>Ledige datoer og hvilke scener som er ledige disse datoene</strong></p>
+    <div class="">
+        {% for lists in a_dates %}
+            <div class="row">
+                {% for list in lists %}
+                    <div class="card">
+                        {% for date in list %}
+                            <div>
+                                {{ date }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

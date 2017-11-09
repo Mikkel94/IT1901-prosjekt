@@ -2,65 +2,68 @@
 
 {% block content %}
 
-    <div class="concertcontainer1">
+    <div class="">
 
         <h2>BAND OFFERS</h2>
 
 
-        {% for band in bands %}
+        <div class="row card-container">
+            {% for band in bands %}
 
-            <li class="concert_element">
+                <li class="card gray-card">
 
-                <p style="font-size: 20px;" :>Band: {{ band.name }}</p>
-                <p><b>Manager:</b> {{ band.manager }}</p>
-                <p><b>Number of members:</b> {{ band.members }}</p>
-                <p><b>Light needs:</b> {{ band.light_needs }}</p>
-                <p><b>Sound needs:</b> {{ band.sound_needs }}</p>
-                <p><b>Specific needs:</b> {{ band.specific_needs }}</p>
-                <p><b>Sold albums:</b> {{ band.sold_albums }}</p>
-                <p><b>Number of concerts:</b> {{ band.former_concerts }}</p>
-                <p><b>Popularity:</b> {{ band.popularity }}</p>
-                <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Tilbud
-                </button>
-                <a href="{% url 'festivalapp:booking' pk=band.pk %}" type="button" class="button add-button">Add</a>
+                    <p style="font-size: 20px;" :>Band: {{ band.name }}</p>
+                    <p><b>Manager:</b> {{ band.manager }}</p>
+                    <p><b>Number of members:</b> {{ band.members }}</p>
+                    <p><b>Light needs:</b> {{ band.light_needs }}</p>
+                    <p><b>Sound needs:</b> {{ band.sound_needs }}</p>
+                    <p><b>Specific needs:</b> {{ band.specific_needs }}</p>
+                    <p><b>Sold albums:</b> {{ band.sold_albums }}</p>
+                    <p><b>Number of concerts:</b> {{ band.former_concerts }}</p>
+                    <p><b>Popularity:</b> {{ band.popularity }}</p>
+                    <button type="button" class="button" onclick='concert_button({{ forloop.counter }})'>Tilbud
+                    </button>
+                    <a href="{% url 'festivalapp:booking' pk=band.pk %}" type="button" class="button add-button">Add</a>
 
 
-                <div class="modal" id="modal_{{ forloop.counter }}">
+                    <div class="modal" id="modal_{{ forloop.counter }}">
 
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
-                        {% for b, cs in concert_requests.items %}
-                            {% if b == band.name %}
-                                <p> <b>Concert requests for {{ b }}:</b></p>
-                                {% for c in cs %}
-                                    <div>
-                                        {{ c.name }}
-                                        {{ c.date }}
-                                        <a href="{% url 'festivalapp:cancel_booking_request' pk=c.pk %}" type="button"
-                                           class="button add-button">Cancel request</a>
-                                    </div>
-                                    {% empty %}
-                                    <p>No requests</p>
-                                {% endfor %}
-                            {% endif %}
-                        {% endfor %}
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span onclick="myFunction({{ forloop.counter }})" class="close">&times;</span>
+                            {% for b, cs in concert_requests.items %}
+                                {% if b == band.name %}
+                                    <p><b>Concert requests for {{ b }}:</b></p>
+                                    {% for c in cs %}
+                                        <div>
+                                            {{ c.name }}
+                                            {{ c.date }}
+                                            <a href="{% url 'festivalapp:cancel_booking_request' pk=c.pk %}"
+                                               type="button"
+                                               class="button add-button">Cancel request</a>
+                                        </div>
+                                        {% empty %}
+                                        <p>No requests</p>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
 
+                        </div>
                     </div>
-                </div>
 
-            </li>
+                </li>
 
-        {% endfor %}
+            {% endfor %}
+        </div>
 
 
     </div>
 
-    <div class="concertcontainer1">
         <h2>SET REVIEW</h2>
+    <div class="row card-container">
 
         {% for band in bands %}
-            <li class="concert_element2">
+            <li class="card gray-card">
                 <p style="font-size: 20px;" :>Band: {{ band.name }}</p>
                 <p><b>Manager:</b> {{ band.manager }}</p>
                 <p><b>Number of members:</b> {{ band.members }}</p>
