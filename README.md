@@ -39,3 +39,15 @@ mkvirtualenv festival
 workon festival
 pip install -r requirements.txt
 ```
+
+## How to start server to see everything:
+1. Follow guide above to setup environment
+2. In django root folder:
+  1. python manage.py makemigrations
+  2. python manage.py migrate
+  3. python manage.py loaddata init
+3. Go to url: localhost:8000/admin
+4. Log in with usr: Admin, pw: Test123test
+5. Go to Employees model here, and you will see all the usernames you can use, names correspond to their position as workers at the festival. 
+6. All passwords are Test123test.
+7 More info about the database that is also readable is in the file init.json.
